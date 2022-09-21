@@ -1,0 +1,51 @@
+.secondary-header{
+    text-transform: uppercase;
+    padding: 2% 0;
+}
+
+.kids--brand{
+    justify-content: space-around;
+    div{
+        img{
+            width: 200px;
+            height: 200px;
+            // border-radius: 50%;
+        }
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 2px solid yellow;
+        overflow: hidden;
+    }
+}
+
+.kids--ionic{
+    justify-content: space-around;
+    img{
+        width: 300px;
+    }
+}
+
+.kids--fashion{
+    justify-content: space-around;
+    img{
+        width: 300px;
+    }
+}
+
+.buy--box{
+    text-align: center;
+    text-transform: uppercase;
+    // column-gap: 5px;
+    div{
+        // border: 1px solid red;
+        padding: 30px;
+        background-color: #fec94f;
+        p{
+            padding: 15px;
+            font-size: 30px;
+            font-weight: 500;
+            color: #fff;
+        }
+    }
+}

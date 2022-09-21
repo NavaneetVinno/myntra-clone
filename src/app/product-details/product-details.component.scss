@@ -1,0 +1,93 @@
+.brand--head{
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.wrapper {
+    img{
+        width: 100%;
+        height: 600px;
+    }
+}
+
+.product--name{
+    color: #555;
+    font-size: 20px;
+}
+
+.rate--box{
+    width: fit-content;
+    display: flex;
+    gap: 20px;
+    border: 1px solid #444;
+    padding: 5px;
+    font-size: 16px;
+    .rating{
+        color: #000;
+        font-weight: 900;
+        i{
+            color: #17a78d;
+        }
+    }
+}
+
+.price--box{
+    .price--cont{
+        display: flex;
+        gap: 15px;
+        font-size: 28px;
+        .price{
+            font-weight: 900;
+        }
+        .original-price{
+            color: #666;
+            span{
+                text-decoration: line-through;
+            }
+        }
+        .offer{
+            color: #fe9275;
+            font-weight: 700;
+        }
+    }
+    .tax-text{
+        color: #17a78d;
+    }
+    .size--box{
+        font-size: 20px;
+        .slct{
+            font-weight: 600;
+        }
+        .chart{
+            color: #fd457f;
+        }
+        .size--list{
+            font-size: 22px;
+            ul{
+                list-style-type : none;
+                li{
+                    border: 1px solid #333;
+                    padding: 15px;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+    .button--box{
+        display: flex;
+        
+        gap: 10px;
+        .btn-bag{
+            font-size: 24px;
+            width: 90%;
+            background-color: #fd457f;
+            color : #fff;
+        }
+        .btn-wish{
+            font-size: 24px;
+            width: 90%;
+            border: 1px solid #333;
+        }
+    }
+}
