@@ -1,0 +1,55 @@
+<div class="container">
+<div class="row my-4">
+    <div class="col-md-6">
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let image of product.images">
+              <div class="wrapper">
+                <img [src]="image.src != '' ? image.src : 'https://preview.redd.it/ynd3as3qqxt01.jpg?auto=webp&s=edb3ea0e502cd3d34c5da14d396075afd1795987'" alt="Random first slide"/>
+              </div>
+              <div class="carousel-caption">
+                <!-- <h3>{{ image.title }}</h3>
+                <p>{{ image.short }}</p> -->
+              </div>
+            </ng-template>
+          </ngb-carousel>
+    </div>
+    <div class="col-md-6" *ngFor="let obj in product let i = index">
+        <div class="head--box">
+            <div class="brand--head">{{obj.brand}}</div>
+            <div class="product--name">{{obj.product}}</div>
+            <div class="rate--box my-3">
+                <div class="rating">{{(obj.rating).toFixed(2)}} <i class="bi bi-star-fill"></i></div>
+                <div class="rating--count">{{obj.ratingCount}} rating</div>
+            </div>
+            <hr>
+        </div>
+        <div class="price--box">
+            <div class="price--cont">
+                <div class="price">₹{{obj.price}}</div>
+                <div class="original-price">MRP <span>₹{{obj.mrp}}</span></div>
+                <div class="offer">({{obj.discount}} OFF)</div>
+            </div>
+            <p class="tax-text">inclusive of all taxes</p>
+            <div class="size--box my-3">
+                <div class="d-flex">
+                    <div class="me-5 slct">SELECT SIZE</div>
+                    <div class="chart">SIZE CHART <i class="bi bi-caret-right-fill"></i></div>
+                </div>
+                <div class="size--list my-4">
+                    <ul class="d-flex justify-content-between" *ngFor="let size in product.inventoryInfo">
+                        <li>{{size.label}}</li>
+                        <!-- <li>40</li>
+                        <li>42</li>
+                        <li>44</li>
+                        <li>46</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="button--box mt-5 mb-2">
+                <button class="btn btn-bag p-2"><i class="bi bi-bag-fill"></i> Add to bag</button>
+                <button class="btn btn-wish p-2"><i class="bi bi-heart-fill"></i> wishlist</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

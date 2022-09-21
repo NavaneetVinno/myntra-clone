@@ -1,0 +1,148 @@
+<div class="my-4 row box">
+    <div class="filter--box col-2 my-5">
+        <div class="filter-gender">
+            <div class="d-flex justify-content-between mx-1">
+                <h3 class="filter--head">Filters</h3>
+                <a href=".." class="clear">Clear All</a>
+            </div>
+            <hr>
+            <div class="radio--box mx-1">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <label class="form-check-label" for="exampleRadios1">
+                      Men
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                    <label class="form-check-label" for="exampleRadios2">
+                      Women
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3">
+                      Kids
+                    </label>
+                </div>
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                      Girls
+                    </label>
+                </div> -->
+            </div>
+            <hr>
+        </div>
+        <div class="filter-brand">
+            <h3 class="filter--head mx-1">Brands</h3>
+            <div class="check--box">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Ethnic basket
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        7Threads
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        KALINI   
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        1 Stop Fashion    
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        W
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Anouk
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        RANGMANCH BY PANTALOONS
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Varanga
+                    </label>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="filter-price">
+            <h3 class="filter--head mx-1">Price</h3>
+            <div class="price--check">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Rs. 199 to Rs. 5150
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Rs. 5150 to Rs. 10101
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Rs. 10101 to Rs. 15052
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product--box col-10">
+        <div class="sort--box my-5">
+            <select class="form-select" (change)="selectChange($event.target)">
+                <option selected>Sort by price</option>
+                <option value="high">Price high to low</option>
+                <option value="low">Price low to high</option>
+                
+            </select>
+        </div>
+        <div class="products row g-4">
+            <div class="col-md-3 col-sm-4 box--products product {{flag ? 'hide': ''}}" *ngFor="let product of products | async">
+                <div class="card">
+                    <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.brand}}</h5>
+                        <p class="card-text">{{product.additionalInfo}}</p>
+                        <p class="card-text"><span class="price">₹ {{product.price}} </span><span class="original--price">{{product.mrp}}</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-4 box--results {{!flag ? 'hide': ''}}" *ngFor="let product of results">
+                <div class="card">
+                    <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.brand}}</h5>
+                        <p class="card-text">{{product.additionalInfo}}</p>
+                        <p class="card-text"><span class="price">₹ {{product.price}} </span><span class="original--price">{{product.mrp}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
