@@ -2,7 +2,7 @@
 <div class="row my-4">
     <div class="col-md-6">
         <ngb-carousel>
-            <ng-template ngbSlide *ngFor="let image of product.images">
+            <ng-template ngbSlide *ngFor="let image of product[0].images">
               <div class="wrapper">
                 <img [src]="image.src != '' ? image.src : 'https://preview.redd.it/ynd3as3qqxt01.jpg?auto=webp&s=edb3ea0e502cd3d34c5da14d396075afd1795987'" alt="Random first slide"/>
               </div>
@@ -13,7 +13,7 @@
             </ng-template>
           </ngb-carousel>
     </div>
-    <div class="col-md-6" *ngFor="let obj in product let i = index">
+    <div class="col-md-6" *ngFor="let obj of product">
         <div class="head--box">
             <div class="brand--head">{{obj.brand}}</div>
             <div class="product--name">{{obj.product}}</div>
@@ -27,7 +27,7 @@
             <div class="price--cont">
                 <div class="price">₹{{obj.price}}</div>
                 <div class="original-price">MRP <span>₹{{obj.mrp}}</span></div>
-                <div class="offer">({{obj.discount}} OFF)</div>
+                <div class="offer">({{((obj.discount/obj.mrp)*100).toFixed(2)}}% OFF)</div>
             </div>
             <p class="tax-text">inclusive of all taxes</p>
             <div class="size--box my-3">
@@ -36,7 +36,7 @@
                     <div class="chart">SIZE CHART <i class="bi bi-caret-right-fill"></i></div>
                 </div>
                 <div class="size--list my-4">
-                    <ul class="d-flex justify-content-between" *ngFor="let size in product.inventoryInfo">
+                    <ul class="d-flex justify-content-between direction" *ngFor="let size of product[0].inventoryInfo">
                         <li>{{size.label}}</li>
                         <!-- <li>40</li>
                         <li>42</li>

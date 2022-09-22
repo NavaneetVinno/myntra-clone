@@ -64,14 +64,18 @@
         }
         .size--list{
             font-size: 22px;
+            display: flex;
             ul{
                 list-style-type : none;
+                flex-direction: row;
                 li{
                     border: 1px solid #333;
                     padding: 15px;
                     border-radius: 50%;
+                    
                 }
             }
+            
         }
     }
     .button--box{

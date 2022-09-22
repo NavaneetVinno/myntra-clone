@@ -128,7 +128,7 @@
             </select>
         </div>
         <div class="products row g-4">
-            <div class="col-md-3 col-sm-4 box--products product {{flag ? 'hide': ''}}" *ngFor="let product of products | async">
+            <div class="col-md-3 col-sm-4 box--products product {{flag ? 'hide': ''}}" *ngFor="let product of products | async let i = index" (click)="details(i,product)">
                 <div class="card">
                     <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -139,7 +139,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-4 box--results {{!flag ? 'hide': ''}}" *ngFor="let product of results">
+            <div class="col-md-3 col-sm-4 box--results {{!flag ? 'hide': ''}}" *ngFor="let product of results let i = index" (click)="details(i,product)">
                 <div class="card">
                     <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
                     <div class="card-body">

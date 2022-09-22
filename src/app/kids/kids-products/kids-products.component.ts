@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataServiceService } from 'src/app/data-service.service';
 
@@ -13,7 +14,7 @@ export class KidsProductsComponent implements OnInit {
   results:any[] = [];
   flag = false;
   
-  constructor(private service: DataServiceService, private el: ElementRef) {
+  constructor(private service: DataServiceService, private el: ElementRef, private router: Router) {
     service.getKidsProducts().subscribe(data => console.log(data))
    }
 
@@ -44,6 +45,11 @@ export class KidsProductsComponent implements OnInit {
     })
   }
    
+  }
+
+  details(i: any, data: any){
+    this.service.setProduct(data);
+    this.router.navigate(['/details'])
   }
 
 }
