@@ -38,51 +38,51 @@
             <h3 class="filter--head mx-1">Brands</h3>
             <div class="check--box">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="max" id="flexCheckDefault" [checked]="selectedIndex === 0" (change)="getValue($event,0)">
                     <label class="form-check-label" for="flexCheckDefault">
                         max
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="H&M" id="flexCheckChecked" [checked]="selectedIndex === 1" (change)="getValue($event,1)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Hopscotch
+                        H&M
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="HELLCAT" id="flexCheckDefault" [checked]="selectedIndex === 2" (change)="getValue($event,2)">
                     <label class="form-check-label" for="flexCheckDefault">
-                        Gini and Jony
+                        HELLCAT
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="pspeaches" id="flexCheckChecked" [checked]="selectedIndex === 3" (change)="getValue($event,3)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Wish Karo
+                        pspeaches
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="A.T.U.N." id="flexCheckDefault" [checked]="selectedIndex === 4" (change)="getValue($event,4)">
                     <label class="form-check-label" for="flexCheckDefault">
-                        Pantaloons Junior
+                        A.T.U.N.
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="Kids Ville" id="flexCheckChecked" [checked]="selectedIndex === 5" (change)="getValue($event,5)">
                     <label class="form-check-label" for="flexCheckChecked">
                         Kids Ville
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="Naughty Ninos" id="flexCheckDefault" [checked]="selectedIndex === 6" (change)="getValue($event,6)">
                     <label class="form-check-label" for="flexCheckDefault">
-                        UTH by Roadster
+                        Naughty Ninos
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="CUTECUMBER" id="flexCheckChecked" [checked]="selectedIndex === 7" (change)="getValue($event,7)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Disney by Wear Your Mind
+                        CUTECUMBER
                     </label>
                 </div>
             </div>
@@ -92,27 +92,27 @@
             <h3 class="filter--head mx-1">Price</h3>
             <div class="price--check">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="550" id="flexCheckChecked" [checked]="selectedIndex === 11" (change)="findRange($event,11)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 119 to Rs. 1635
+                        Rs. 250 to Rs. 550
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="900" id="flexCheckChecked" [checked]="selectedIndex === 12" (change)="findRange($event,12)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 1635 to Rs. 3151
+                        Rs. 551 to Rs. 900
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="1400" id="flexCheckChecked" [checked]="selectedIndex === 13" (change)="findRange($event,13)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 3151 to Rs. 4667
+                        Rs. 901 to Rs. 1400
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="2000" id="flexCheckChecked" [checked]="selectedIndex === 14" (change)="findRange($event,14)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 4667 to Rs. 6183
+                        Rs. 1400 to Rs. 2100
                     </label>
                 </div>
             </div>

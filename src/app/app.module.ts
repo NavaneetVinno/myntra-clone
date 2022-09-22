@@ -18,6 +18,7 @@ import { WomenProductsComponent } from './women/women-products/women-products.co
 import { KidsProductsComponent } from './kids/kids-products/kids-products.component';
 import { environment } from 'src/environments/environment';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     MenProductsComponent,
     WomenProductsComponent,
     KidsProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,

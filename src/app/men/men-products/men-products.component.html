@@ -37,54 +37,56 @@
         <div class="filter-brand">
             <h3 class="filter--head mx-1">Brands</h3>
             <div class="check--box">
+                <form >
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="Dennis Lingo" id="flexCheckDefault" [checked]="selectedIndex === 0" (change)="getValue($event,0)">
                     <label class="form-check-label" for="flexCheckDefault">
-                        Louis Philippe 
+                        Dennis Lingo 
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="HERE&NOW" id="flexCheckChecked" [checked]="selectedIndex === 1" (change)="getValue($event,1)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Allen Solly
+                        HERE&NOW
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="Roadster" id="flexCheckDefault" [checked]="selectedIndex === 2" (change)="getValue($event,2)">
                     <label class="form-check-label" for="flexCheckDefault">
                         Roadster  
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="HIGHLANDER" id="flexCheckChecked" [checked]="selectedIndex === 3" (change)="getValue($event,3)">
                     <label class="form-check-label" for="flexCheckChecked">
                         HIGHLANDER   
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="WROGN" id="flexCheckDefault" [checked]="selectedIndex === 4" (change)="getValue($event,4)">
                     <label class="form-check-label" for="flexCheckDefault">
-                        Arrow
+                        WROGN
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="Mast & Harbour" id="flexCheckChecked" [checked]="selectedIndex === 5" (change)="getValue($event,5)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Mufti
+                        Mast & Harbour
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="The Indian Garage Co" id="flexCheckDefault" [checked]="selectedIndex === 6" (change)="getValue($event,6)">
                     <label class="form-check-label" for="flexCheckDefault">
-                        Van Heusen
+                        The Indian Garage Co
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="WILD WEST" id="flexCheckChecked" [checked]="selectedIndex === 7" (change)="getValue($event,7)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Louis Philippe Sport
+                        WILD WEST
                     </label>
                 </div>
+            </form>
             </div>
             <hr>
         </div>
@@ -92,21 +94,21 @@
             <h3 class="filter--head mx-1">Price</h3>
             <div class="price--check">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="630" id="flexCheckChecked" [checked]="selectedIndex === 11" (change)="findRange($event,11)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 279 to Rs. 3959
+                        Rs. 450 to Rs. 629
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="900" id="flexCheckChecked" [checked]="selectedIndex === 12" (change)="findRange($event,12)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 3959 to Rs. 7639
+                        Rs. 630 to Rs. 900
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <input class="form-check-input" type="checkbox" value="1400" id="flexCheckChecked" [checked]="selectedIndex === 13" (change)="findRange($event,13)">
                     <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 7639 to Rs. 11319
+                        Rs. 901 to Rs. 1400
                     </label>
                 </div>
             </div>
@@ -125,6 +127,13 @@
             <div class="col-md-3 col-sm-4 box--products product {{flag ? 'hide': ''}}" *ngFor="let product of products | async let i = index" (click)="details(i,product)">
                 <div class="card">
                     <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
+                    <div class="card-img-overlay">
+                        <div class="card-text text-end">
+                            <button class="btn wish--btn" (click)="addWish(i,product)">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{product.brand}}</h5>
                         <p class="card-text">{{product.additionalInfo}}</p>

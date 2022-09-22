@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>wishlist page</h2>
+  <div class="row">
+    <div *ngFor="let prod of wishProducts | async">
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="{{prod.images[0].src}}" alt="{{prod.brand}}" />
+          <div class="card-body">
+            <p class="card-title">{{prod.brand}}</p>
+            <p class="card-text">{{prod.price}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

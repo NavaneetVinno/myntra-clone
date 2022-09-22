@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataServiceService } from 'src/app/data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -12,7 +13,7 @@ export class ProductDetailsComponent implements OnInit {
   product:any;
   myArr = [];
 
-  constructor(private service: DataServiceService, private config: NgbCarouselConfig) {
+  constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router) {
     config.keyboard = true;
    
    }
@@ -31,5 +32,11 @@ export class ProductDetailsComponent implements OnInit {
   //     this.myArr.push(this.object[i]);
   //   }
   // }
+
+  addToWish(data:any){
+    console.log(data);
+    this.service.setWishlist(data);
+    // this.router.navigate(['/wishlist'])
+  }
 
 }

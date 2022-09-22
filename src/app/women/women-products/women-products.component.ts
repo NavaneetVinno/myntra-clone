@@ -13,6 +13,8 @@ export class WomenProductsComponent implements OnInit {
   products!: Observable<any[]>;
   results:any[] = [];
   flag = false;
+  isSelected: boolean = false;
+  selectedIndex!: number | undefined;
   
   constructor(private service: DataServiceService, private el: ElementRef, private router: Router) {
     service.getWomenProducts().subscribe(data => console.log(data))
@@ -21,6 +23,80 @@ export class WomenProductsComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.service.getWomenProducts();
     console.log(this.results);
+  }
+
+  getValue(e:any, index:number){
+    const name = e.target.value;
+    this.selectedIndex = e.target.checked ? index : undefined;
+    
+    this.flag = true;
+    if(name === 'Vishudh'){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.brand == name)
+      })
+    } else if(name === 'FASHOR'){
+      this.isSelected = true;
+        this.service.getWomenProducts().subscribe(data => {
+          this.results = data.filter(arr => arr.brand == name)
+        })
+    } else if(name === 'KALINI'){
+      this.isSelected = true;
+        this.service.getWomenProducts().subscribe(data => {
+          this.results = data.filter(arr => arr.brand == name)
+        })
+    } else if(name === 'Libas'){
+      this.isSelected = true;
+        this.service.getWomenProducts().subscribe(data => {
+          this.results = data.filter(arr => arr.brand == name)
+        })
+    } else if(name === 'AHIKA'){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.brand == name)
+      })
+    } else if(name === 'Anouk'){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.brand == name)
+      })
+    } else if(name === 'HERE&NOW'){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.brand == name)
+      })
+    } else if(name === 'Varanga'){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.brand == name)
+      })
+    }
+  }
+
+  findRange(e:any,index:number){
+    const val = e.target.value;
+    this.flag = true;
+
+    this.selectedIndex = e.target.checked ? index : undefined;
+    if(val === "600"){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.price > 250 && arr.price < 600);
+        console.log(this.results);
+      })
+    } else if(val === "800"){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.price > 601 && arr.price < 800);
+        console.log(this.results);
+      })
+    } else if(val === "1400"){
+      this.isSelected = true;
+      this.service.getWomenProducts().subscribe(data => {
+        this.results = data.filter(arr => arr.price > 801 && arr.price < 1400);
+        console.log(this.results);
+      })
+    }
   }
 
   selectChange(event: any){
