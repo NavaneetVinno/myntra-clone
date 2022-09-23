@@ -1,16 +1,26 @@
 <div class="container">
-  <h2>wishlist page</h2>
+  <h2 class="head my-4">wishlist page</h2>
+  <button class="btn btn-danger" (click)="deleteAll()" [disabled]="!isEmpty">Clear All</button>
+  <div *ngIf="!isEmpty" class="empty">
+    Wish list is empty <i class="bi bi-cart4"></i>
+  </div>
   <div class="row">
-    <div *ngFor="let prod of wishProducts | async">
-      <div class="col-md-4">
+    <div *ngFor="let prod of wishProducts | async let i = index">
+      
+      <!-- <div class="boxes"> -->
         <div class="card">
           <img class="card-img-top" src="{{prod.images[0].src}}" alt="{{prod.brand}}" />
           <div class="card-body">
-            <p class="card-title">{{prod.brand}}</p>
-            <p class="card-text">{{prod.price}</p>
+            <h4 class="card-title">{{prod.brand}}</h4>
+            <p class="card-text">{{prod.additionalInfo}}</p>
+            <p class="card-text">Rs. {{prod.price}}</p>
+            <div>
+              <button class="btn btn-primary me-1">Add to Bag <i class="bi bi-bag-plus-fill"></i></button>
+              <button class="btn btn-danger" (click)="deleteItem(i)">Remove <i class="bi bi-trash-fill"></i></button>
+            </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>

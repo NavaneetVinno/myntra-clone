@@ -28,6 +28,17 @@ export class MenProductsComponent implements OnInit {
     // console.log(this.results);
   }
 
+  gotoPage(event:any){
+    const target = event.target.value;
+    if(target === "option1"){
+      this.router.navigate(['/men/products']);
+    } else if(target === "option2"){
+      this.router.navigate(['/women/products']);
+    } else if(target === "option3"){
+      this.router.navigate(['/kids/products'])
+    }
+  }
+
   getValue(e:any,index:number){
     const name = e.target.value;
     this.selectedIndex = e.target.checked ? index : undefined;
@@ -140,7 +151,7 @@ export class MenProductsComponent implements OnInit {
     // btn?.classList.toggle("bi-heart-fill")
     this.wish = this.wish+1;
     console.log(this.wishArr);
-    this.service.setWishlist(data);
+    // this.service.setWishlist(data);
 
     // this.wishArr.find((arr: { key: any; }) => arr.key === data.key ? 'true' : 'false')
     

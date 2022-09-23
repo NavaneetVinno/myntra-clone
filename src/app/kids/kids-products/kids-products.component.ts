@@ -25,6 +25,17 @@ export class KidsProductsComponent implements OnInit {
     console.log(this.results);
   }
 
+  gotoPage(event:any){
+    const target = event.target.value;
+    if(target === "option1"){
+      this.router.navigate(['/men/products']);
+    } else if(target === "option2"){
+      this.router.navigate(['/women/products']);
+    } else if(target === "option3"){
+      this.router.navigate(['/kids/products'])
+    }
+  }
+
   getValue(e:any,index:number){
     const name = e.target.value;
     this.selectedIndex = e.target.checked ? index : undefined;

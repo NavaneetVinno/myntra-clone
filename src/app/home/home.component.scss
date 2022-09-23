@@ -1,7 +1,14 @@
 .deal--img {
-    justify-content: space-between;
-    img{
-        width: 200px;
+    justify-content: space-around;
+    width: 95%;
+    // gap: 10px;
+    div{
+        object-fit: cover;
+        img{
+            width: 100%;
+            // object-fit: cover;
+            // padding: 20px;
+        }
     }
 }
 
@@ -12,35 +19,46 @@
 
 .top--img{
     justify-content: space-around;
-    img{
-        width: 240px;
+    width: 100%;
+    div{
+        object-fit: contain;
+        height: fit-content;
+        img{
+            width: 100%;
+        }
     }
 }
 
 .her--img{
     justify-content: space-around;
+    width: 100%;
     padding: 18px 5px;
     background-image: linear-gradient(to bottom right, rgb(236, 75, 75),rgb(230, 230, 72));
+    div{
+        object-fit: fill;
+    }
     img{
-        width: 220px;
+        width: 100%;
     }
 }
 
 .him--img{
     justify-content: space-around;
+    width: 100%;
     padding: 18px 5px;
     background-image: linear-gradient(to bottom right, green, blue);
     img{
-        width: 220px;
+        width: 100%;
     }
 }
 
 .kid--img{
     justify-content: space-around;
+    width: 100%;
     padding: 18px 5px;
     background-image: linear-gradient(to bottom, rgb(199, 93, 93), rgb(236, 236, 116));
     img{
-        width: 240px;
+        width: 100%;
     }
 }
 

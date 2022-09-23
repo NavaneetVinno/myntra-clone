@@ -5,14 +5,15 @@
 
 .kids--brand{
     justify-content: space-around;
+    column-gap: 5px;
     div{
         img{
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            // height: 200px;
             // border-radius: 50%;
         }
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        // height: 200px;
         border-radius: 50%;
         border: 2px solid yellow;
         overflow: hidden;
@@ -22,14 +23,14 @@
 .kids--ionic{
     justify-content: space-around;
     img{
-        width: 300px;
+        width: 100%;
     }
 }
 
 .kids--fashion{
     justify-content: space-around;
     img{
-        width: 300px;
+        width: 100%;
     }
 }
 
@@ -48,4 +49,8 @@
             color: #fff;
         }
     }
+}
+
+a{
+    text-decoration: none;
 }

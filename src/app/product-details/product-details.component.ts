@@ -35,7 +35,10 @@ export class ProductDetailsComponent implements OnInit {
 
   addToWish(data:any){
     console.log(data);
-    this.service.setWishlist(data);
+    const fin = this.service.getWish();
+    
+    this.service.setWish(data);
+    // this.service.setWishlist(data);
     // this.router.navigate(['/wishlist'])
   }
 
