@@ -9,6 +9,7 @@ import { MenComponent } from './men/men.component';
 import { WomenComponent } from './women/women.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { BagComponent } from './bag/bag.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'kids/products', component: KidsProductsComponent},
   {path: 'details', component: ProductDetailsComponent},
   {path: 'wishlist', component: WishlistComponent},
+  {path: 'bag', component: BagComponent}
 ];
 
 @NgModule({

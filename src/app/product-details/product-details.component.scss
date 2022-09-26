@@ -68,6 +68,11 @@
             ul{
                 list-style-type : none;
                 flex-direction: row;
+                gap: 10px;
+                .size--circle{
+                    color: red;
+                    border: 1px solid red;
+                }
                 li{
                     border: 1px solid #333;
                     padding: 15px;

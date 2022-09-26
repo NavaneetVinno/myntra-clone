@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataServiceService } from 'src/app/data-service.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
   product:any;
   myArr = [];
+  flag = false;
+  size:number | undefined;
+  // getTransaction!: Observable<any>;
 
   constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router) {
     config.keyboard = true;
@@ -19,27 +22,52 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // service.getProduct().subscribe((data: any[]) => this.object = data)
     this.product = Array(this.service.getProduct());
     console.log(this.product);
-
-    // this.getArray()
   }
 
-  // getArray(){
-  //   for(let i in this.object){
-  //     console.log(this.object[i]);
-  //     this.myArr.push(this.object[i]);
-  //   }
-  // }
+ 
 
   addToWish(data:any){
     console.log(data);
     const fin = this.service.getWish();
     
     this.service.setWish(data);
-    // this.service.setWishlist(data);
-    // this.router.navigate(['/wishlist'])
+   
+  }
+
+  getSize(el:number,i:any,num:any){
+    this.flag = true;
+    
+    this.size = el;
+    
+    const list = document.getElementById(i)
+    
+    list?.classList.add("size--circle")
+  }
+
+  addBag(elem:any){
+
+    const obj = {
+      title: elem.brand,
+      description: elem.additionalInfo,
+      size: this.size,
+      price: elem.price,
+      image: elem.images[0].src,
+      discount: elem.discountDisplayLabel,
+      qty: 1,
+    }
+    
+    this.service.setBag(obj);
+
+
+
+    this.router.navigate(['/bag'])
+  }
+
+  compare(item:any){
+    const arr = this.service.getBag();
+    
   }
 
 }

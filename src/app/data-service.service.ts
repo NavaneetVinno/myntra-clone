@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { map, Observable, of } from 'rxjs';
+import { map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +8,47 @@ import { map, Observable, of } from 'rxjs';
 export class DataServiceService {
   public prod : any;
   public wishlist:any = []
+  num: any;
   dbPath = "/wish"
   listArr : AngularFireList<any> | undefined
+  bagPath = "/bags"
+  bagArr : AngularFireList<any> | undefined
 
   constructor(private db: AngularFireDatabase) { 
     this.listArr = db.list(this.dbPath);
+    this.bagArr = db.list(this.bagPath);
   }
 
   getWish(){
     return this.listArr;
   }
 
+  getBag(){
+    return this.bagArr
+  }
+
   setWish(data:any){
     return this.listArr?.push(data)
+  }
+
+  setBag(data:any){
+    return this.bagArr?.push(data);
   }
 
   deleteWish(key:any){
     return this.listArr?.remove(key);
   }
 
+  deleteBagItem(key: any){
+    return this.bagArr?.remove(key)
+  }
+
   deleteAllWish(){
     return this.listArr?.remove()
+  }
+
+  deleteBag(){
+    return this.bagArr?.remove()
   }
 
   getMenProducts(){
@@ -63,22 +83,20 @@ export class DataServiceService {
 
   setProduct(data:any){
     this.prod = data
-    console.log(this.prod);
+    // console.log(this.prod);
   }
 
   getProduct(){
     return this.prod
   }
 
-  // setWishlist(data:any){
-  //   this.wishlist.push(data)
-  //   console.log(this.wishlist);
-  //   localStorage.setItem("wishlist", JSON.stringify(this.wishlist))
-  // }
+  setTotalItem(data:any){
+    this.num = data;
+    // console.log(this.num);
+  }
 
-  // getWishlist(){
-  //   console.log(this.wishlist);
-  //   const res = JSON.parse(localStorage.getItem("wishlist")|| '{}') 
-  //   return res;
-  // }
+  getTotalItem(){
+    // console.log(this.num);
+    return this.num;
+  }
 }
