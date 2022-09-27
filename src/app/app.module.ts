@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database'
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,6 +21,8 @@ import { environment } from 'src/environments/environment';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { BagComponent } from './bag/bag.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { BagComponent } from './bag/bag.component';
     KidsProductsComponent,
     ProductDetailsComponent,
     WishlistComponent,
-    BagComponent
+    BagComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ import { BagComponent } from './bag/bag.component';
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

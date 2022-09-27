@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+// import {HttpClient} from '@angular/common/http'
 import {Router} from '@angular/router';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { DataServiceService } from 'src/app/data-service.service';
 
 @Component({
@@ -18,15 +19,39 @@ export class MenProductsComponent implements OnInit {
   wishArr:any = [];
   isSelected: boolean = false;
   selectedIndex!: number | undefined;
+  // arr!:any[];
+  joined!:any[];
+  datas:any;
   
   constructor(private service: DataServiceService, private el: ElementRef, private router: Router) { 
     service.getMenProducts().subscribe(data => console.log(data))
   }
 
   ngOnInit(): void {
+    
     this.products = this.service.getMenProducts()
     // console.log(this.results);
+    this.service.getWish()?.snapshotChanges().subscribe(
+      data => this.datas = data
+    )
+    // console.log(p);
+    forkJoin([
+      this.service.getMenProducts(),
+      this.service.getWish()
+    ]).subscribe(([arrayOne, arrayTwo]:any) => {
+      this.joined = arrayOne.map((item: { brand: any; }) => ({
+        ...arrayTwo.find((t: { arrayOneBrand: any; }) => t.arrayOneBrand === item.brand),
+        ...item
+      }));
+      console.log(this.joined);
+    });
+    this.fn();
   }
+
+ fn(){
+  // const intersection = this.datas.filter((element: any) => this.products.includes(element));
+  console.log(this.products);
+ }
 
   gotoPage(event:any){
     const target = event.target.value;

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+// import {HttpClient} from '@angular/common/http'
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map, of } from 'rxjs';
 
@@ -18,6 +19,10 @@ export class DataServiceService {
     this.listArr = db.list(this.dbPath);
     this.bagArr = db.list(this.bagPath);
   }
+
+  // getDatas(){
+  //   return this.http.get('https://myntra-men-data-default-rtdb.firebaseio.com/wish')
+  // }
 
   getWish(){
     return this.listArr;
