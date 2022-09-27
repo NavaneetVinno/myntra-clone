@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { DataServiceService } from '../data-service.service';
 
@@ -13,7 +14,7 @@ export class WishlistComponent implements OnInit {
   arr : any;
   // subSubscription:Subject<any> = new Subject()
 
-  constructor(private service: DataServiceService) {
+  constructor(private service: DataServiceService, private router: Router) {
   
     service.getWish()
    }
@@ -43,6 +44,13 @@ export class WishlistComponent implements OnInit {
   deleteAll(){
     this.service.deleteAllWish()?.then((data)=> console.log(data)).catch(err => console.log(err)
     )
+  }
+
+  details(data: any,i:any){
+    // console.log(data);
+    this.service.setProduct(data);
+    // this.service.deleteWish(i);
+    this.router.navigate(['/details']);
   }
 
 }

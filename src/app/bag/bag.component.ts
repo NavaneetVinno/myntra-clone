@@ -24,7 +24,6 @@ export class BagComponent implements OnInit {
 
   constructor(private service: DataServiceService) { 
     service.getBag()
-    
   }
 
   ngOnInit(): void {
@@ -63,6 +62,7 @@ export class BagComponent implements OnInit {
 
   submit(data:any){
     console.log(data);
+    this.service.setDetails(data)
   }
 
   deleteItem(key:any){

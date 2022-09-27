@@ -14,10 +14,13 @@ export class DataServiceService {
   listArr : AngularFireList<any> | undefined
   bagPath = "/bags"
   bagArr : AngularFireList<any> | undefined
+  addressPath = "/address"
+  addArr : AngularFireList<any> | undefined
 
   constructor(private db: AngularFireDatabase) { 
     this.listArr = db.list(this.dbPath);
     this.bagArr = db.list(this.bagPath);
+    this.addArr = db.list(this.addressPath);
   }
 
   // getDatas(){
@@ -30,6 +33,14 @@ export class DataServiceService {
 
   getBag(){
     return this.bagArr
+  }
+
+  getDetails(){
+    return this.addArr;
+  }
+
+  setDetails(data:any){
+    return this.addArr?.push(data)
   }
 
   setWish(data:any){
