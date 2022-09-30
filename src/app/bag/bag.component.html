@@ -1,18 +1,20 @@
 <div class="container my-4">
-  
-
-
 <div class="container">
   <!-- <div *ngIf="isEmpty"> -->
-    <div class="steps">
+    <div class="steps" *ngIf="isEmpty">
         <a class="step" (click)="openTab(1)">Bag List</a>
         <span class="connect-line line--1"></span>
         <a class="step" (click)="openTab(2)">Address</a>
         <span class="connect-line line--2"></span>
         <a class="step" (click)="openTab(3)">Payment</a>
     </div>
+    <div class="empty" *ngIf="!isEmpty">
+      <h2>Your Bag is Empty</h2>
+      <i class="bi bi-cart3"></i>
+      <a href="/" class="btn btn-success">Add items</a>
+    </div>
   <!-- </div> -->
-    <form class="form" *ngIf="isEmpty" [formGroup]="stepperForm" (ngSubmit)="submit(stepperForm.value)">
+    <form class="form" *ngIf="isEmpty" [formGroup]="stepperForm" (ngSubmit)="getDatas(bag,stepperForm.value)">
     <div class="tab" *ngIf="steps==1">
         <div class="all my-4" *ngIf="isEmpty">
             <button class="btn btn-danger" (click)="deleteAll()">Remove All</button>

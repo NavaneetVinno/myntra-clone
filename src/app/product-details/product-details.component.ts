@@ -47,8 +47,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addBag(elem:any){
-
+    let id = (new Date()).getTime().toString()
     const obj = {
+      id: id,
       title: elem.brand,
       description: elem.additionalInfo,
       size: this.size,

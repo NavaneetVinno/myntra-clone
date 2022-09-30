@@ -39,22 +39,22 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           </div>
           <div class="nav--icon d-flex">
-            <div class="mx-1">
-              <i class="bi bi-person m-auto"></i>
+            <a href="/profile" class="mx-1 blink">
+              <i class="bi bi-person"></i>
               <a class="nav-link" href="/profile">Profile</a>
-            </div>
-            <div class="mx-1">
-              <i class="bi bi-heart m-auto"></i>
+            </a>
+            <a href="/wishlist" class="mx-1 blink">
+              <i class="bi bi-heart"></i>
               <a class="nav-link" href="/wishlist">Wishlist</a>
-            </div>
-            <div class="mx-1 position-relative">
-              <i class="bi bi-handbag m-auto"></i>
+            </a>
+            <a href="/bag" class="mx-1 position-relative blink">
+              <i class="bi bi-handbag"></i>
               <a class="nav-link" href="/bag">Bag</a>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="(bagProducts| async)?.length > 0">
                 {{(bagProducts| async)?.length}}
                 <span class="visually-hidden">unread messages</span>
               </span>
-            </div>
+            </a>
           </div>
         </form>
       </div>

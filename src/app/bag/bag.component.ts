@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { reduce } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { DataServiceService } from '../data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bag',
@@ -20,9 +21,10 @@ export class BagComponent implements OnInit {
   steps: any = 1;
   num: any = 0;
   stepperForm!: FormGroup;
+  bag!: any[];
 
 
-  constructor(private service: DataServiceService) { 
+  constructor(private service: DataServiceService, private router: Router) { 
     service.getBag()
   }
 
@@ -36,6 +38,13 @@ export class BagComponent implements OnInit {
       }))
     )
 
+    this.service.getBag()?.valueChanges().subscribe(
+      (data:any) => {
+        this.bag = data;
+        console.log(this.bag);
+      }
+    )
+
     this.stepperForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
@@ -44,7 +53,8 @@ export class BagComponent implements OnInit {
       cardNum: new FormControl(null, Validators.required),
       userCard: new FormControl(null, Validators.required),
       date: new FormControl(null, Validators.required),
-      cvv: new FormControl(null, Validators.required)
+      cvv: new FormControl(null, Validators.required),
+      
     })
 
     this.total = this.bagProducts?.pipe(
@@ -58,6 +68,36 @@ export class BagComponent implements OnInit {
       this.service.setTotalItem(this.itemTotal)
     })
     this.stepIndicator(this.steps - 1);
+  }
+
+  getDatas(arr:any,data:any){
+    // console.log(arr);
+    // console.log(data);
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    let str:any = dd + '-' + mm + '-' + yyyy;
+    
+    let deliveryDay: Date = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);
+    let da = String(deliveryDay.getDate()).padStart(2, '0');
+    let mo = String(deliveryDay.getMonth() + 1).padStart(2, '0');
+    let ye = deliveryDay.getFullYear();
+    let delivery = da + '-' + mo + '-' + ye;
+    
+    // console.log(delivery);
+    // console.log(str);
+    const obj = {
+    
+      "datas": arr,
+      "address": data,
+      "time": str,
+      "delivery": delivery,
+    }
+    this.service.setOrders(obj);
+    this.deleteAll();
+    this.router.navigate(["/"])
   }
 
   submit(data:any){

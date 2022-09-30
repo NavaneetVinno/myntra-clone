@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // import {HttpClient} from '@angular/common/http'
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { FirebaseOperation } from '@angular/fire/compat/database/interfaces';
 import { map, of } from 'rxjs';
 
 @Injectable({
@@ -16,16 +17,31 @@ export class DataServiceService {
   bagArr : AngularFireList<any> | undefined
   addressPath = "/address"
   addArr : AngularFireList<any> | undefined
+  ordersPath = "/orders"
+  ordersArr : AngularFireList<any> | undefined
 
   constructor(private db: AngularFireDatabase) { 
     this.listArr = db.list(this.dbPath);
     this.bagArr = db.list(this.bagPath);
     this.addArr = db.list(this.addressPath);
+    this.ordersArr = db.list(this.ordersPath);
   }
 
   // getDatas(){
   //   return this.http.get('https://myntra-men-data-default-rtdb.firebaseio.com/wish')
   // }
+
+  setOrders(data:any){
+    return this.ordersArr?.push(data);
+  }
+
+  getOrders(){
+    return this.ordersArr;
+  }
+
+  deleteOrder(id:any){
+    return this.ordersArr?.remove(id);
+  }
 
   getWish(){
     return this.listArr;

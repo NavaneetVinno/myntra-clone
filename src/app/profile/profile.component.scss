@@ -1,0 +1,53 @@
+.set--point{
+    cursor: pointer;
+    text-decoration: none;
+    color: #555;
+}
+
+.set--point:hover{
+    color: #000;
+}
+
+.overview--box{
+    border: 1px solid #333;
+    
+}
+
+.orders--box{
+    // margin: auto;
+    border: 1px solid #333;
+    // text-align: center;
+    display: flex;
+    flex-direction: column;
+    .order--head{
+        margin: auto;
+    }
+    .card{
+        margin-left: 15%;
+        width: 100%;
+        background-color: rgb(218, 209, 209);
+        img{
+            object-fit: contain;
+        }
+        button{
+            border-radius: 50%;
+            position: absolute;
+            top: 1%;
+            right: 0%;
+        }
+        .relative{
+            position: relative;
+        }
+        .card-text{
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.hide{
+    display: none;
+}
+
+// .boxes{
+    
+// }
