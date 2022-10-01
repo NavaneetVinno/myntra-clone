@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataServiceService } from 'src/app/data-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SnapshotAction } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-product-details',
@@ -14,23 +15,27 @@ export class ProductDetailsComponent implements OnInit {
   myArr = [];
   flag = false;
   size:number | undefined;
+  wishlistItems:any;
   // getTransaction!: Observable<any>;
 
-  constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router) {
+  constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
     config.keyboard = true;
-   
+    this.route.params.subscribe(params => {
+      console.log(params);
+      
+      // In a real app: dispatch action to load the details here.
+   });
    }
 
   ngOnInit(): void {
     this.product = Array(this.service.getProduct());
     console.log(this.product);
+    // this.wishlistItems = Array(this.service.getWish()?.snapshotChanges().subscribe(data =>  console.log(data.values().next())))
+    // console.log(this.wishlistItems);
   }
-
- 
 
   addToWish(data:any){
     console.log(data);
-    const fin = this.service.getWish();
     
     this.service.setWish(data);
    

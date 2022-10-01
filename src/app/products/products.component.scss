@@ -1,0 +1,51 @@
+.box {
+  position: relative;
+  width: 90%;
+  margin: auto;
+}
+
+.product--box {
+  overflow-y: auto;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.original--price {
+  text-decoration: line-through;
+  color: red;
+}
+
+.sort--box {
+  width: 30%;
+  justify-content: center;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.bi-heart {
+  color: #fd457f;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.bi-heart-fill {
+  color: #fd457f;
+}
+
+.clear {
+  text-decoration: none;
+  color: crimson;
+}
+
+.filter--box {
+  position: sticky;
+}

@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
   ordersProduct:Observable<any> | undefined
   // n = 0;
   flag = false;
+  full:any;
   constructor(private service: DataServiceService) {
     
    }
@@ -39,7 +40,22 @@ export class ProfileComponent implements OnInit {
   }
 
   modalView(datas:any,data:any){
-    console.log(datas);
-    console.log(data);
+    
+    const details = {
+      "delivery": datas.delivery,
+      "placed": datas.time,
+      "person": datas.address.userName,
+      "address": datas.address.address,
+      "phone": datas.address.phone,
+      "title": data.title,
+      "description": data.description,
+      "price": data.price,
+      "size": data.size,
+      "qty": data.qty,
+      "discount": data.discount,
+      "image": data.image,
+    }
+    // console.log(details);
+    this.full = details
   }
 }

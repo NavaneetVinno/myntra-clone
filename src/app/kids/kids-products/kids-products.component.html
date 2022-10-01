@@ -25,12 +25,6 @@
                       kids
                     </label>
                 </div>
-                <!-- <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                    <label class="form-check-label" for="exampleRadios4">
-                      Girls
-                    </label>
-                </div> -->
             </div>
             <hr>
         </div>
@@ -128,27 +122,10 @@
             </select>
         </div>
         <div class="products row g-4">
-            <div class="col-md-3 col-sm-4 box--products product {{flag ? 'hide': ''}}" *ngFor="let product of products | async let i = index" (click)="details(i,product)">
-                <div class="card">
-                    <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product.brand}}</h5>
-                        <p class="card-text">{{product.additionalInfo}}</p>
-                        <p class="card-text"><span class="price">₹ {{product.price}} </span><span class="original--price">{{product.mrp}}</span></p>
-                    </div>
-                </div>
-            </div>
+           
+            <app-products [class]="products" [cls]="product" [boo]="flag" [fun]="details" [products]="products | async"></app-products>
 
-            <div class="col-md-3 col-sm-4 box--results {{!flag ? 'hide': ''}}" *ngFor="let product of results let i = index" (click)="details(i,product)">
-                <div class="card">
-                    <img src="{{product.images[0].src}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product.brand}}</h5>
-                        <p class="card-text">{{product.additionalInfo}}</p>
-                        <p class="card-text"><span class="price">₹ {{product.price}} </span><span class="original--price">{{product.mrp}}</span></p>
-                    </div>
-                </div>
-            </div>
+            <app-products [class]="results" [cls]="" [boo]="!flag" [fun]="details" [products]="results"></app-products>
         </div>
     </div>
 </div>

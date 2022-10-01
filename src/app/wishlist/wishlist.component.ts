@@ -9,14 +9,16 @@ import { DataServiceService } from '../data-service.service';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
+[x: string]: any;
   wishProducts:Observable<any> | undefined;
   isEmpty: any = false;
   arr : any;
+  products:any[] = [];
   // subSubscription:Subject<any> = new Subject()
 
   constructor(private service: DataServiceService, private router: Router) {
   
-    service.getWish()
+    service.getWish()?.snapshotChanges().subscribe(data => this.products.push(...data))
    }
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class WishlistComponent implements OnInit {
       // this.isEmpty = true,
     )
     console.log(this.wishProducts);
+    
   }
 
   deleteItem(key:any){

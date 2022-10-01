@@ -113,8 +113,6 @@ export class WomenProductsComponent implements OnInit {
   selectChange(event: any){
     const res = event.value;
     this.flag = true;
-    let doc = this.el.nativeElement.querySelector(".box--products").classList
-    console.log(doc);
     
     if(res === "high"){
       // console.log("success");

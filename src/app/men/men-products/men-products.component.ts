@@ -35,16 +35,16 @@ export class MenProductsComponent implements OnInit {
       data => this.datas = data
     )
     // console.log(p);
-    forkJoin([
-      this.service.getMenProducts(),
-      this.service.getWish()
-    ]).subscribe(([arrayOne, arrayTwo]:any) => {
-      this.joined = arrayOne.map((item: { brand: any; }) => ({
-        ...arrayTwo.find((t: { arrayOneBrand: any; }) => t.arrayOneBrand === item.brand),
-        ...item
-      }));
-      console.log(this.joined);
-    });
+    // forkJoin([
+    //   this.service.getMenProducts(),
+    //   this.service.getWish()
+    // ]).subscribe(([arrayOne, arrayTwo]:any) => {
+    //   this.joined = arrayOne.map((item: { brand: any; }) => ({
+    //     ...arrayTwo.find((t: { arrayOneBrand: any; }) => t.arrayOneBrand === item.brand),
+    //     ...item
+    //   }));
+    //   console.log(this.joined);
+    // });
     this.fn();
   }
 
@@ -142,8 +142,8 @@ export class MenProductsComponent implements OnInit {
   selectChange(event: any){
     const res = event.value;
     this.flag = true;
-    let doc = this.el.nativeElement.querySelector(".box--products").classList
-    console.log(doc);
+    // let doc = this.el.nativeElement.querySelector(".box--products").classList
+    // console.log(doc);
     
     if(res === "high"){
       // console.log("success");
@@ -163,9 +163,10 @@ export class MenProductsComponent implements OnInit {
    
   }
 
-  details(i:any, data:any){
-    this.service.setProduct(data);
-    this.router.navigate(['/details'])
+  details(i:any, productData:any){
+    this.service.setProduct(productData);
+
+    this.router.navigate(['/details', productData])
   }
 
   addWish(i:any,data: any){

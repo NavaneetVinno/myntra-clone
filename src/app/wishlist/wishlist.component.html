@@ -16,7 +16,7 @@
             <p class="card-text">Rs. {{prod.price}}</p>
             <div>
               <button class="btn btn-primary me-1" (click)="details(prod,i)">Add to Bag <i class="bi bi-bag-plus-fill"></i></button>
-              <button class="btn btn-danger" (click)="deleteItem(i)">Remove <i class="bi bi-trash-fill"></i></button>
+              <button class="btn btn-danger" (click)="deleteItem(prod[key])">Remove <i class="bi bi-trash-fill"></i></button>
             </div>
           </div>
         </div>

@@ -59,8 +59,8 @@
                             <p class="card-text">{{box.description}}</p>
                             <p class="card-text">Size : {{box.size}}</p>
                             <p class="card-text">MRP : {{box.price}}Rs.</p>
-                            <p class="card-text">Your order is placed on {{prod.time}}</p>
-                            <p class="card-text">Delivery expected on {{prod.delivery}} in {{prod.address.address}}</p>
+                            <!-- <p class="card-text">Your order is placed on {{prod.time}}</p>
+                            <p class="card-text">Delivery expected on {{prod.delivery}} in {{prod.address.address}}</p> -->
                         </div>
                         <!-- <button class="btn btn-danger mx-2" (click)="removeItem(prod.key)"><i class="bi bi-x-lg"></i></button> -->
                         
@@ -77,18 +77,35 @@
 
     <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{full?.title}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="row">
+            <div class="col-md-6">
+                <img src="{{full?.image}}" alt="..." width="90%">
+            </div>
+            <div class="col-md-6 card">
+                <div class="card-body">
+                    <h3 class="card-title">{{full?.title}}</h3>
+                    <h4 class="card-subtitle mb-2 text-muted">{{full?.description}}</h4>
+                    <p class="card-text">MRP Rs. {{full?.price}} {{full?.discount}}</p>
+                    <p class="card-text">Quantity: {{full?.qty}}</p>
+                    <p class="card-text">Size: {{full?.size}}</p>
+                    <p class="card-text">Ordered by {{full?.person}}</p>
+                    <p class="card-text">Order is placed on {{full?.placed}}</p>
+                    <p class="card-text d-flex flex-column">Delivery address on <span>{{full?.address}}</span><span>Contact number:{{full?.phone}}</span></p>
+                    <p class="card-text">Order will be reach before {{full?.delivery}}</p>
+                    <p class="card-text">Alternate number {{full?.phone}}</p>
+                </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

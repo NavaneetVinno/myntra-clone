@@ -23,6 +23,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { BagComponent } from './bag/bag.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
     WishlistComponent,
     BagComponent,
     ProfileComponent,
+    ProductsComponent,
     
   ],
   imports: [
