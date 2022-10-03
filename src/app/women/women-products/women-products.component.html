@@ -1,110 +1,11 @@
 <div class="my-4 row box">
     <div class="filter--box col-2 my-5">
-        <div class="filter-gender">
-            <div class="d-flex justify-content-between mx-1">
-                <h3 class="filter--head">Filters</h3>
-                <a href=".." class="clear">Clear All</a>
-            </div>
-            <hr>
-            <div class="radio--box mx-1">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" (change)="gotoPage($event)">
-                    <label class="form-check-label" for="exampleRadios1">
-                      Men
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" (change)="gotoPage($event)" checked>
-                    <label class="form-check-label" for="exampleRadios2">
-                      Women
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" (change)="gotoPage($event)">
-                    <label class="form-check-label" for="exampleRadios3">
-                      Kids
-                    </label>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <div class="filter-brand">
-            <h3 class="filter--head mx-1">Brands</h3>
-            <div class="check--box">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Vishudh" id="flexCheckDefault" [checked]="selectedIndex === 0" (change)="getValue($event,0)">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Vishudh
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="FASHOR" id="flexCheckChecked" [checked]="selectedIndex === 1" (change)="getValue($event,1)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        FASHOR
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="KALINI" id="flexCheckDefault" [checked]="selectedIndex === 2" (change)="getValue($event,2)">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        KALINI   
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Libas" id="flexCheckChecked" [checked]="selectedIndex === 3" (change)="getValue($event,3)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Libas    
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="AHIKA" id="flexCheckDefault" [checked]="selectedIndex === 4" (change)="getValue($event,4)">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        AHIKA
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Anouk" id="flexCheckChecked" [checked]="selectedIndex === 5" (change)="getValue($event,5)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Anouk
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="HERE&NOW" id="flexCheckDefault" [checked]="selectedIndex === 6" (change)="getValue($event,6)">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        HERE&NOW
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Varanga" id="flexCheckChecked" [checked]="selectedIndex === 7" (change)="getValue($event,7)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Varanga
-                    </label>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <div class="filter-price">
-            <h3 class="filter--head mx-1">Price</h3>
-            <div class="price--check">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="600" id="flexCheckChecked" [checked]="selectedIndex === 11" (change)="findRange($event,11)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 250 to Rs. 600
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="800" id="flexCheckChecked" [checked]="selectedIndex === 12" (change)="findRange($event,12)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 601 to Rs. 800
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1400" id="flexCheckChecked" [checked]="selectedIndex === 13" (change)="findRange($event,13)">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Rs. 801 to Rs. 1400
-                    </label>
-                </div>
-            </div>
-        </div>
+        <app-filters
+        [radios]="radioFilter"
+        [brands]="filterBrands" (result)="getVal($event)"
+        [price]="filterPrice" (range)="getRange($event)"
+        [selInd]="selectedIndex" [ind]="1"
+        ></app-filters>
     </div>
     <div class="product--box col-10">
         <div class="sort--box my-5">
@@ -112,7 +13,6 @@
                 <option selected>Sort by price</option>
                 <option value="high">Price high to low</option>
                 <option value="low">Price low to high</option>
-                
             </select>
         </div>
         <div class="products row g-4">

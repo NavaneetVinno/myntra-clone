@@ -1,0 +1,41 @@
+<div class="filter-gender">
+    <div class="d-flex justify-content-between mx-1">
+        <h3 class="filter--head">Filters</h3>
+        <a href=".." class="clear">Clear All</a>
+    </div>
+    <hr>
+    <div class="radio--box mx-1">
+        <div class="form-check" *ngFor="let x of radios let i = index">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios{{i+1}}" value="option{{i+1}}" (change)="gotoPage($event)" [checked]="i == ind">
+            <label class="form-check-label" for="exampleRadios1">
+              {{x}}
+            </label>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="filter-brand">
+    <h3 class="filter--head mx-1">Brands</h3>
+    <div class="check--box">
+        <form >
+        <div class="form-check" *ngFor="let x of brands let i = index">
+            <input class="form-check-input" type="checkbox" value="{{x}}" id="flexCheckDefault" [checked]="selectedIndex === i" (change)="getValue($event,i)">
+            <label class="form-check-label" for="flexCheckDefault">
+                {{x}} 
+            </label>
+        </div>
+    </form>
+    </div>
+    <hr>
+</div>
+<div class="filter-price">
+    <h3 class="filter--head mx-1">Price</h3>
+    <div class="price--check">
+        <div class="form-check" *ngFor="let x of price let i = index">
+            <input class="form-check-input" type="checkbox" value="{{x}}" id="flexCheckChecked" [checked]="selectedIndex === i+11" (change)="findRange($event,i+11)">
+            <label class="form-check-label" for="flexCheckChecked">
+                {{x}}
+            </label>
+        </div>
+    </div>
+</div>

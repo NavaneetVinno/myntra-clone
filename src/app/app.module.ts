@@ -24,6 +24,7 @@ import { BagComponent } from './bag/bag.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
+import { FiltersComponent } from './filters/filters.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ProductsComponent } from './products/products.component';
     BagComponent,
     ProfileComponent,
     ProductsComponent,
+    FiltersComponent,
     
   ],
   imports: [
