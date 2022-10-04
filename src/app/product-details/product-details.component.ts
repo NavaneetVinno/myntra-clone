@@ -16,6 +16,10 @@ export class ProductDetailsComponent implements OnInit {
   flag = false;
   size:number | undefined;
   wishlistItems:any;
+  arr:any;
+  getData:any;
+  lists!:any[];
+  bag!:any[];
   // getTransaction!: Observable<any>;
 
   constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
@@ -32,22 +36,50 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.product);
     // this.wishlistItems = Array(this.service.getWish()?.snapshotChanges().subscribe(data =>  console.log(data.values().next())))
     // console.log(this.wishlistItems);
+    // this.arr = this.service.getDatas()
+    // this.getData = this.service.getWish()?.query.get()
+    // console.log(this.getData);
+    // const id = this.route.params;
+    // console.log(id);
+    this.lists = []
+    this.service.getWish()?.snapshotChanges().forEach(datas => {
+      datas.forEach(data => {
+        let d = data.payload.toJSON()
+        this.lists.push(d)
+      })
+    })
+    
+    this.bag = [];
+    this.service.getBag()?.snapshotChanges().forEach(datas => {
+      datas.forEach(data => {
+        let d = data.payload.toJSON()
+        this.bag.push(d)
+        console.log(this.bag);
+      })
+    })
+    
   }
 
   addToWish(data:any){
     console.log(data);
-    
-    this.service.setWish(data);
-   
+    let f;
+    this.lists.forEach(d => {
+      if(d.productId == data.productId){
+        f = true;
+      } else {
+        f = false;
+      }
+    })
+    console.log(f);
+    if(!f){
+      this.service.setWish(data);
+    }
   }
 
   getSize(el:number,i:any,num:any){
     this.flag = true;
-    
     this.size = el;
-    
     const list = document.getElementById(i)
-    
     list?.classList.add("size--circle")
   }
 
@@ -63,12 +95,19 @@ export class ProductDetailsComponent implements OnInit {
       discount: elem.discountDisplayLabel,
       qty: 1,
     }
-    
-    this.service.setBag(obj);
-
-
-
-    this.router.navigate(['/bag'])
+    let flag;
+    this.bag.forEach(item => {
+      if(item.description == obj.description && item.size == obj.size){
+        flag = true;
+      } else {
+        flag = false;
+      }
+    })
+    // console.log(flag);
+    if(!flag){
+      this.service.setBag(obj);
+    }
+    // this.router.navigate(['/bag'])
   }
 
   compare(item:any){

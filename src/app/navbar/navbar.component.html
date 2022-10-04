@@ -43,15 +43,19 @@
               <i class="bi bi-person"></i>
               <a class="nav-link" href="/profile">Profile</a>
             </a>
-            <a href="/wishlist" class="mx-1 blink">
+            <a href="/wishlist" class="mx-1 position-relative blink">
               <i class="bi bi-heart"></i>
               <a class="nav-link" href="/wishlist">Wishlist</a>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="wish?.length > 0">
+                {{wish.length}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
             </a>
             <a href="/bag" class="mx-1 position-relative blink">
               <i class="bi bi-handbag"></i>
               <a class="nav-link" href="/bag">Bag</a>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="(bagProducts| async)?.length > 0">
-                {{(bagProducts| async)?.length}}
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="data?.length > 0">
+                {{data.length}}
                 <span class="visually-hidden">unread messages</span>
               </span>
             </a>

@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   }
 
   details(i:any, productData:any){
+    
     this.service.setProduct(productData);
 
     this.router.navigate(['/details', productData])

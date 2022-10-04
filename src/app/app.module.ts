@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
 import { FiltersComponent } from './filters/filters.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { FiltersComponent } from './filters/filters.component';
     ProfileComponent,
     ProductsComponent,
     FiltersComponent,
+    LoaderComponent,
     
   ],
   imports: [

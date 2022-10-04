@@ -24,7 +24,7 @@ export class MenProductsComponent implements OnInit {
   radioFilter = ["Men","Women","Kids"];
   filterBrands = ["Dennis Lingo","HERE&NOW","Roadster","HIGHLANDER","WROGN","Mast & Harbour","The Indian Garage Co","WILD WEST"];
   filterPrice = ["Rs. 450 to Rs. 629","Rs. 630 to Rs. 900","Rs. 901 to Rs. 1400"];
-  
+  loader:boolean = false;
   constructor(private service: DataServiceService, private el: ElementRef, private router: Router) { 
     service.getMenProducts().subscribe(data => console.log(data))
   }
@@ -42,16 +42,21 @@ export class MenProductsComponent implements OnInit {
  }
 
   getVal(event:any){
+    this.loader = true;
     this.flag = true;
     this.results = event
+    this.loader = false
   }
 
   getRange(event:any){
+    this.loader = true;
     this.flag = true;
     this.results = event
+    this.loader = false
   }
 
   selectChange(event: any){
+    this.loader = true;
     const res = event.value;
     this.flag = true;
     if(res === "high"){
@@ -65,6 +70,7 @@ export class MenProductsComponent implements OnInit {
         console.log(this.results);
       })
     }
+    this.loader = false;
   }
 
   

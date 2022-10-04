@@ -125,12 +125,12 @@ export class BagComponent implements OnInit {
   }
 
   stepIndicator(n: any) {
-    const x = document.querySelectorAll('.step');
-    // console.log(x);
-    for (let i = 0; i < x.length; i++) {
-      x[i].className = x[i].className.replace(' active', '');
-    }
-    x[n].className += ' active';
+    // const x = document.querySelectorAll('.step');
+    // // console.log(x);
+    // for (let i = 0; i < x.length; i++) {
+    //   x[i].className = x[i].className.replace(' active', '');
+    // }
+    // x[n].className += ' active';
   }
 
   openTab(n: number) {

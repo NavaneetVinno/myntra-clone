@@ -13,8 +13,9 @@ export class WishlistComponent implements OnInit {
   wishProducts:Observable<any> | undefined;
   isEmpty: any = false;
   arr : any;
-  products:any = []
-  boxes:any;
+  products:any = [];
+  boxes: any;
+  total:any;
   // subSubscription:Subject<any> = new Subject()
 
   constructor(private service: DataServiceService, private router: Router) {
@@ -22,9 +23,6 @@ export class WishlistComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.wishProducts = this.service.getWishlist()
-    // console.log(this.wishProducts);
-    // this.wishProducts = this.service.getWish();
     this.wishProducts = this.service.getWish()?.snapshotChanges().pipe(
       map((products: any[]) => products.map(prod => {
         const payload = prod.payload.val();
@@ -35,14 +33,14 @@ export class WishlistComponent implements OnInit {
       // this.isEmpty = true,
     )
     console.log(this.wishProducts);
-    
-    // console.log(this.boxes);
+    this.service.getDatas()
   }
 
-  deleteItem(key:any){
+  deleteItem(data:any){
     // this.service.deleteWish(key)
-    console.log(key);
-    this.service.deleteWish(key)
+    console.log(data);
+    // let id = key.productId;
+    // this.service.deleteWish(data.$key)
   }
 
   deleteAll(){

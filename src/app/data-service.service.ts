@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 // import {HttpClient} from '@angular/common/http'
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { FirebaseOperation } from '@angular/fire/compat/database/interfaces';
@@ -19,6 +19,8 @@ export class DataServiceService {
   addArr : AngularFireList<any> | undefined
   ordersPath = "/orders"
   ordersArr : AngularFireList<any> | undefined
+  // @Output() lists = new EventEmitter<any>()
+  loading:boolean = false;
 
   constructor(private db: AngularFireDatabase) { 
     this.listArr = db.list(this.dbPath);
@@ -30,6 +32,21 @@ export class DataServiceService {
   // getDatas(){
   //   return this.http.get('https://myntra-men-data-default-rtdb.firebaseio.com/wish')
   // }
+  setLoading(loading: boolean) {
+    this.loading = loading;
+  }
+
+  getLoading(): boolean {
+    return this.loading;
+  }
+
+  getDatas(){
+    this.listArr?.valueChanges().subscribe(data => {
+      console.log(data);
+      data
+      
+    })
+  }
 
   setOrders(data:any){
     return this.ordersArr?.push(data);
@@ -68,7 +85,7 @@ export class DataServiceService {
   }
 
   deleteWish(key:any){
-    return this.listArr?.remove(key);
+    return this.listArr?.remove(key)
   }
 
   deleteBagItem(key: any){
