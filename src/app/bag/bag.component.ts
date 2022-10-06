@@ -22,7 +22,7 @@ export class BagComponent implements OnInit {
   num: any = 0;
   stepperForm!: FormGroup;
   bag!: any[];
-
+  loader:boolean = false;
 
   constructor(private service: DataServiceService, private router: Router) { 
     service.getBag()
@@ -42,6 +42,7 @@ export class BagComponent implements OnInit {
       (data:any) => {
         this.bag = data;
         console.log(this.bag);
+        this.loader = true;
       }
     )
 
@@ -62,17 +63,13 @@ export class BagComponent implements OnInit {
     )
 
     this.bagProducts?.subscribe(res => {
-      // console.log(res.length)
       this.itemTotal = res.length;
-      // console.log(this.itemTotal);
       this.service.setTotalItem(this.itemTotal)
     })
     this.stepIndicator(this.steps - 1);
   }
 
   getDatas(arr:any,data:any){
-    // console.log(arr);
-    // console.log(data);
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -85,11 +82,8 @@ export class BagComponent implements OnInit {
     let mo = String(deliveryDay.getMonth() + 1).padStart(2, '0');
     let ye = deliveryDay.getFullYear();
     let delivery = da + '-' + mo + '-' + ye;
-    
-    // console.log(delivery);
-    // console.log(str);
+
     const obj = {
-    
       "datas": arr,
       "address": data,
       "time": str,
@@ -106,7 +100,6 @@ export class BagComponent implements OnInit {
   }
 
   deleteItem(key:any){
-    // console.log(key);
     this.service.deleteBagItem(key)
   }
 
@@ -126,16 +119,10 @@ export class BagComponent implements OnInit {
 
   stepIndicator(n: any) {
     // const x = document.querySelectorAll('.step');
-    // // console.log(x);
-    // for (let i = 0; i < x.length; i++) {
-    //   x[i].className = x[i].className.replace(' active', '');
-    // }
-    // x[n].className += ' active';
   }
 
   openTab(n: number) {
     this.steps = n;
     this.stepIndicator(n - 1);
   }
-
 }

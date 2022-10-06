@@ -9,11 +9,13 @@ import { DataServiceService } from '../data-service.service';
 })
 export class ProfileComponent implements OnInit {
   ordersProduct:Observable<any> | undefined
-  // n = 0;
   flag = false;
   full:any;
+  loader:boolean = false;
   constructor(private service: DataServiceService) {
-    
+    service.getOrders()?.valueChanges().subscribe(data => {
+      this.loader = true;
+    })
    }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class ProfileComponent implements OnInit {
         return <any>{key, ...payload}
       }))
     )
+    this.loader = false;
   }
 
   gotoDiv(n:number){
@@ -36,7 +39,6 @@ export class ProfileComponent implements OnInit {
 
   removeItem(key:any){
     this.service.deleteOrder(key);
-    // console.log(key);
   }
 
   modalView(datas:any,data:any){
@@ -55,7 +57,6 @@ export class ProfileComponent implements OnInit {
       "discount": data.discount,
       "image": data.image,
     }
-    // console.log(details);
     this.full = details
   }
 }

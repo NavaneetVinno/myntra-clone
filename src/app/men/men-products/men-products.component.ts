@@ -32,8 +32,12 @@ export class MenProductsComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.service.getMenProducts()
     this.service.getWish()?.snapshotChanges().subscribe(
-      data => this.datas = data
+      data => {
+        this.datas = data;
+        this.loader = true;
+      }
     )
+    this.loader= false;
     this.fn();
   }
 

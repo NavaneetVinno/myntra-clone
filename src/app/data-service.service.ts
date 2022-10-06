@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-// import {HttpClient} from '@angular/common/http'
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { FirebaseOperation } from '@angular/fire/compat/database/interfaces';
 import { map, of } from 'rxjs';
@@ -19,7 +18,6 @@ export class DataServiceService {
   addArr : AngularFireList<any> | undefined
   ordersPath = "/orders"
   ordersArr : AngularFireList<any> | undefined
-  // @Output() lists = new EventEmitter<any>()
   loading:boolean = false;
 
   constructor(private db: AngularFireDatabase) { 
@@ -29,9 +27,6 @@ export class DataServiceService {
     this.ordersArr = db.list(this.ordersPath);
   }
 
-  // getDatas(){
-  //   return this.http.get('https://myntra-men-data-default-rtdb.firebaseio.com/wish')
-  // }
   setLoading(loading: boolean) {
     this.loading = loading;
   }
@@ -44,7 +39,6 @@ export class DataServiceService {
     this.listArr?.valueChanges().subscribe(data => {
       console.log(data);
       data
-      
     })
   }
 
@@ -132,7 +126,6 @@ export class DataServiceService {
 
   setProduct(data:any){
     this.prod = data
-    // console.log(this.prod);
   }
 
   getProduct(){
@@ -141,11 +134,9 @@ export class DataServiceService {
 
   setTotalItem(data:any){
     this.num = data;
-    // console.log(this.num);
   }
 
   getTotalItem(){
-    // console.log(this.num);
     return this.num;
   }
 }

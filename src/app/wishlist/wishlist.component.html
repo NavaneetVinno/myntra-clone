@@ -1,4 +1,5 @@
-<div class="container">
+<app-loader *ngIf="!loader"></app-loader>
+<div class="container" *ngIf="loader">
   <h2 class="head my-4">wishlist page</h2>
   <button class="btn btn-danger" (click)="deleteAll()" [disabled]="!isEmpty">Clear All</button>
   <div *ngIf="!isEmpty" class="empty">

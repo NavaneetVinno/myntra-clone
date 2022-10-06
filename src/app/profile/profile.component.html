@@ -44,9 +44,11 @@
                     </table>
                 </div>
             </div>
-            <div class="orders--box {{flag == false ? 'hide' : ''}}">
+            <div class="orders--box {{flag == false ? 'hide' : ''}}" >
                 <h2 class="order--head">Your Orders</h2>
-                <div *ngFor="let prod of ordersProduct | async">
+                <app-loader *ngIf="!loader"></app-loader>
+                <div *ngIf="loader">
+                <div *ngFor="let prod of ordersProduct | async" >
                 <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div class="card mb-3 mt-3" style="max-width: 540px;" *ngFor="let box of prod.datas">
                     <div class="row g-0 boxes open--model" (click)="modalView(prod,box)">
@@ -59,17 +61,13 @@
                             <p class="card-text">{{box.description}}</p>
                             <p class="card-text">Size : {{box.size}}</p>
                             <p class="card-text">MRP : {{box.price}}Rs.</p>
-                            <!-- <p class="card-text">Your order is placed on {{prod.time}}</p>
-                            <p class="card-text">Delivery expected on {{prod.delivery}} in {{prod.address.address}}</p> -->
                         </div>
-                        <!-- <button class="btn btn-danger mx-2" (click)="removeItem(prod.key)"><i class="bi bi-x-lg"></i></button> -->
-                        
                         </div>
                     </div>
                     </div>
                 </a>
-                
                 </div> 
+            </div>
             </div>
         </div>
     </div>

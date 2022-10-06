@@ -17,15 +17,20 @@ export class WomenProductsComponent implements OnInit {
   selectedIndex!: number | undefined;
   radioFilter = ["Men","Women","Kids"];
   filterBrands = ["Vishudh","FASHOR","KALINI","Libas","AHIKA","Anouk","HERE&NOW","Varanga"];
-  filterPrice = ["Rs. 250 to Rs. 600","Rs. 601 to Rs. 800","Rs. 801 to Rs. 1400"]
+  filterPrice = ["Rs. 250 to Rs. 600","Rs. 601 to Rs. 800","Rs. 801 to Rs. 1400"];
+  loader:boolean = false;
   
   constructor(private service: DataServiceService, private el: ElementRef, private router: Router) {
-    service.getWomenProducts().subscribe(data => console.log(data))
+    service.getWomenProducts().subscribe(data =>{
+      console.log(data);
+      this.loader = true;
+    })
    }
 
   ngOnInit(): void {
-    this.products = this.service.getWomenProducts();
+    this.products = this.service.getWomenProducts()
     console.log(this.results);
+    this.loader = false;
   }
 
   getVal(event:any){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { DataServiceService } from '../data-service.service';
 
@@ -12,24 +13,20 @@ export class NavbarComponent implements OnInit {
   bagProducts!: Observable<any>;
   data:any;
   wish:any;
-  constructor(private service: DataServiceService) {
+  constructor(private service: DataServiceService,private router:Router) {
     service.getTotalItem()
    }
 
   ngOnInit(): void {
-    // this.bagProducts = this.service.getBag()?.snapshotChanges().pipe(
-    //   map((products: any[]) => products.map(prod => {
-    //     const payload = prod.payload.val();
-    //     const key = prod.key;
-    //     return <any>{ key, ...payload };
-    //   }))
-    // )
-    // this.service.getBag()?.valueChanges().subscribe((data:any) => data = this.bagProducts)
     this.service.getBag()?.valueChanges().subscribe(data =>{
       this.data = data
     })
     this.service.getWish()?.valueChanges().subscribe(data => {
       this.wish = data;
     })
+  }
+  getoHome(){
+    // console.log("get");
+    this.router.navigate(['/'])
   }
 }

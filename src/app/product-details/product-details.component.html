@@ -7,8 +7,6 @@
                 <img [src]="image.src != '' ? image.src : 'https://preview.redd.it/ynd3as3qqxt01.jpg?auto=webp&s=edb3ea0e502cd3d34c5da14d396075afd1795987'" alt="Random first slide"/>
               </div>
               <div class="carousel-caption">
-                <!-- <h3>{{ image.title }}</h3>
-                <p>{{ image.short }}</p> -->
               </div>
             </ng-template>
           </ngb-carousel>
@@ -39,17 +37,12 @@
                     <ul id="sizes" class="d-flex justify-content-between direction" >
                         <li *ngFor="let size of product[0].inventoryInfo let i = index" 
                         id={{i}} (click)="getSize(size.label,i,this)">{{size.label}}</li>
-                        <!-- <input type="checkbox" name="" id="" {{size.label}}> -->
-                        <!-- <li>40</li>
-                        <li>42</li>
-                        <li>44</li>
-                        <li>46</li> -->
                     </ul>
                 </div>
             </div>
             <div class="button--box mt-5 mb-2">
                 <button class="btn btn-bag p-2" [disabled]="!flag" (click)="addBag(obj)"><i class="bi bi-bag-fill"></i> Add to bag</button>
-                <button class="btn btn-wish p-2" (click)="addToWish(obj)"><i class="bi bi-heart-fill"></i> wishlist</button>
+                <button class="btn btn-wish p-2" (click)="addToWish(obj)"><i class="bi bi-heart"></i> wishlist</button>
             </div>
         </div>
     </div>

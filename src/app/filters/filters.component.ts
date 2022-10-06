@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { DataServiceService } from '../data-service.service';
 
 @Component({
@@ -9,7 +8,6 @@ import { DataServiceService } from '../data-service.service';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
-// [x: string]: any;
   @Input() radios:any;
   @Input() brands:any;
   @Input() price:any;

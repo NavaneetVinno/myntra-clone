@@ -3,7 +3,7 @@ import { map, Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataServiceService } from 'src/app/data-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SnapshotAction } from '@angular/fire/compat/database';
+import { AngularFireList, SnapshotAction } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-product-details',
@@ -16,31 +16,27 @@ export class ProductDetailsComponent implements OnInit {
   flag = false;
   size:number | undefined;
   wishlistItems:any;
-  arr:any;
+  arr:any = []
   getData:any;
   lists!:any[];
   bag!:any[];
-  // getTransaction!: Observable<any>;
+  favBtn:boolean = false;
+  ex:any;
 
   constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
     config.keyboard = true;
-    this.route.params.subscribe(params => {
-      console.log(params);
-      
-      // In a real app: dispatch action to load the details here.
-   });
+    this.route.params.subscribe((par: any) => {
+      console.log(par);
+      this.ex = par;
+    })
    }
 
   ngOnInit(): void {
     this.product = Array(this.service.getProduct());
-    console.log(this.product);
-    // this.wishlistItems = Array(this.service.getWish()?.snapshotChanges().subscribe(data =>  console.log(data.values().next())))
-    // console.log(this.wishlistItems);
-    // this.arr = this.service.getDatas()
-    // this.getData = this.service.getWish()?.query.get()
-    // console.log(this.getData);
-    // const id = this.route.params;
-    // console.log(id);
+    let text = this.product[0].productId;
+    console.log(text);
+    console.log(this.product[0]);
+
     this.lists = []
     this.service.getWish()?.snapshotChanges().forEach(datas => {
       datas.forEach(data => {
@@ -48,17 +44,27 @@ export class ProductDetailsComponent implements OnInit {
         this.lists.push(d)
       })
     })
-    
+    console.log(this.lists);
     this.bag = [];
     this.service.getBag()?.snapshotChanges().forEach(datas => {
       datas.forEach(data => {
         let d = data.payload.toJSON()
         this.bag.push(d)
-        console.log(this.bag);
       })
     })
-    
+    // this.isPre(this.product[0])
   }
+  
+  // isPre(data:any){
+  //   let match = this.lists.map(d => {
+  //     if(d.productId == data.productId){
+  //       return true
+  //     } else {
+  //       return false
+  //     }
+  //   })
+  //   console.log(match);
+  // }
 
   addToWish(data:any){
     console.log(data);
@@ -70,7 +76,6 @@ export class ProductDetailsComponent implements OnInit {
         f = false;
       }
     })
-    console.log(f);
     if(!f){
       this.service.setWish(data);
     }
@@ -96,23 +101,16 @@ export class ProductDetailsComponent implements OnInit {
       qty: 1,
     }
     let flag;
-    this.bag.forEach(item => {
+    this.bag.forEach((item: { description: any; size: any; }) => {
       if(item.description == obj.description && item.size == obj.size){
         flag = true;
       } else {
         flag = false;
       }
     })
-    // console.log(flag);
     if(!flag){
       this.service.setBag(obj);
     }
-    // this.router.navigate(['/bag'])
-  }
-
-  compare(item:any){
-    const arr = this.service.getBag();
-    
   }
 
 }

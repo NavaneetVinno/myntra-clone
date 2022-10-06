@@ -16,7 +16,7 @@ export class WishlistComponent implements OnInit {
   products:any = [];
   boxes: any;
   total:any;
-  // subSubscription:Subject<any> = new Subject()
+  loader:boolean = false;
 
   constructor(private service: DataServiceService, private router: Router) {
     
@@ -30,17 +30,18 @@ export class WishlistComponent implements OnInit {
         const key = prod.key;
         return <any>{ key, ...payload };
       }))
-      // this.isEmpty = true,
     )
     console.log(this.wishProducts);
     this.service.getDatas()
+    this.service.getWish()?.valueChanges().subscribe(data => {
+      this.loader = true;
+    })
+    
+    
   }
 
   deleteItem(data:any){
-    // this.service.deleteWish(key)
     console.log(data);
-    // let id = key.productId;
-    // this.service.deleteWish(data.$key)
   }
 
   deleteAll(){
@@ -49,9 +50,7 @@ export class WishlistComponent implements OnInit {
   }
 
   details(data: any,i:any){
-    // console.log(data);
     this.service.setProduct(data);
-    // this.service.deleteWish(i);
     this.router.navigate(['/details']);
   }
 
