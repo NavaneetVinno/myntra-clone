@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-men',
   templateUrl: './men.component.html',
-  styleUrls: ['./men.component.scss']
+  styleUrls: ['./men.component.scss'],
 })
 export class MenComponent implements OnInit {
   indianWear:any;
