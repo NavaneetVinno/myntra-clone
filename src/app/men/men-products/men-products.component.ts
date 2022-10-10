@@ -77,8 +77,6 @@ export class MenProductsComponent implements OnInit {
     this.loader = false;
   }
 
-  
-
   addWish(i:any,data: any){
     console.log(data);
     let datas:any[] = Array.of(data)

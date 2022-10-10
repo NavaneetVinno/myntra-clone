@@ -55,7 +55,6 @@ export class BagComponent implements OnInit {
       userCard: new FormControl(null, Validators.required),
       date: new FormControl(null, Validators.required),
       cvv: new FormControl(null, Validators.required),
-      
     })
 
     this.total = this.bagProducts?.pipe(
