@@ -26,18 +26,19 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
 import { FiltersComponent } from './filters/filters.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SharedModuleModule } from './shared/shared-module/shared-module.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent,
+    // FooterComponent,
     HomeComponent,
     MenComponent,
     WomenComponent,
     KidsComponent,
-    CarouselComponent,
+    // CarouselComponent,
     MenProductsComponent,
     WomenProductsComponent,
     KidsProductsComponent,
@@ -58,6 +59,7 @@ import { LoaderComponent } from './loader/loader.component';
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

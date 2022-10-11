@@ -21,7 +21,7 @@ export class MenProductsComponent implements OnInit {
   joined!:any[];
   datas:any;
   flag2 = false;
-  radioFilter = ["Men","Women","Kids"];
+  radioFilter:any = ["Men","Women","Kids"];
   filterBrands = ["Dennis Lingo","HERE&NOW","Roadster","HIGHLANDER","WROGN","Mast & Harbour","The Indian Garage Co","WILD WEST"];
   filterPrice = ["Rs. 450 to Rs. 629","Rs. 630 to Rs. 900","Rs. 901 to Rs. 1400"];
   loader:boolean = false;

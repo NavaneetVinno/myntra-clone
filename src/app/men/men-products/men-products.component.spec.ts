@@ -1,10 +1,25 @@
-import { async, ComponentFixture, fakeAsync, inject, TestBed, tick } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, inject, TestBed, tick, waitForAsync } from "@angular/core/testing";
 import { DataServiceService } from "src/app/data-service.service";
 import { MenProductsComponent } from "./men-products.component"
 
 describe("MenProductsComponent",()=>{
     let component: MenProductsComponent = jasmine.createSpyObj(['component'])
+    // let component: MenProductsComponent
+    let fixture: ComponentFixture<MenProductsComponent>
     let service: DataServiceService;
+   
+    // beforeEach(async()=>{
+    //     TestBed.configureTestingModule({
+    //         imports:[],
+    //         declarations:[MenProductsComponent],
+    //         providers:[DataServiceService]
+    //     })
+    //     fixture = TestBed.createComponent(MenProductsComponent)
+    // })
+    // beforeEach(()=>{
+    //     component = fixture.componentInstance
+    //     fixture.detectChanges()
+    // })
 
     it("should create component",()=>{
         expect(component).toBeTruthy()
@@ -21,14 +36,13 @@ describe("MenProductsComponent",()=>{
     it("should sort by price high and low",()=>{
         expect(component.selectChange).toBeUndefined()
     })
-    // it("should get all men products", fakeAsync(()=>{
-    //     // expect(service.getMenProducts().subscribe()).toBeUndefined()
-    //     // service.getMenProducts().subscribe((products:any[])=>{
-    //     //     expect(products?.length).toEqual(50)
-    //     //     done()
-    //     // })
-    //     component.products.subscribe((datas:any[])=>{
-    //         expect(datas?.length).toBeGreaterThan(1)
-    //     })
-    // }))
+    
+    it("should filter the products",()=>{
+        expect(component.filterProducts).not.toBeNull()
+    })
+    it("should have access to go to different pages using radio",()=>{
+        // expect(component.radioFilter).not.toBeNull()
+        // expect(component.radioFilter).toBe(["Men","Women","Kids"])
+    })
+    
 })
