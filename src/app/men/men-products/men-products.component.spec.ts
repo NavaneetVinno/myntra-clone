@@ -4,22 +4,6 @@ import { MenProductsComponent } from "./men-products.component"
 
 describe("MenProductsComponent",()=>{
     let component: MenProductsComponent = jasmine.createSpyObj(['component'])
-    // let component: MenProductsComponent
-    let fixture: ComponentFixture<MenProductsComponent>
-    let service: DataServiceService;
-   
-    // beforeEach(async()=>{
-    //     TestBed.configureTestingModule({
-    //         imports:[],
-    //         declarations:[MenProductsComponent],
-    //         providers:[DataServiceService]
-    //     })
-    //     fixture = TestBed.createComponent(MenProductsComponent)
-    // })
-    // beforeEach(()=>{
-    //     component = fixture.componentInstance
-    //     fixture.detectChanges()
-    // })
 
     it("should create component",()=>{
         expect(component).toBeTruthy()
@@ -40,9 +24,9 @@ describe("MenProductsComponent",()=>{
     it("should filter the products",()=>{
         expect(component.filterProducts).not.toBeNull()
     })
-    it("should have access to go to different pages using radio",()=>{
-        // expect(component.radioFilter).not.toBeNull()
-        // expect(component.radioFilter).toBe(["Men","Women","Kids"])
-    })
+    // it("should have access to go to different pages using radio",()=>{
+    //     // expect(component.radioFilter).not.toBeNull()
+    //     // expect(component.radioFilter).toBe(["Men","Women","Kids"])
+    // })
     
 })

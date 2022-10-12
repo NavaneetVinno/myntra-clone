@@ -1,8 +1,10 @@
+import { async, ComponentFixture, TestBed } from "@angular/core/testing"
+import { AppComponent } from "../app.component"
 import { FooterComponent } from "./footer.component"
 
 describe("FooterComponent",()=>{
-    let component: FooterComponent
     it("should create component",()=>{
-        expect(component).toBeTruthy
+        let component = FooterComponent;
+        expect(component).toBeTruthy()
     })
 })
