@@ -3,7 +3,6 @@ import { map, Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataServiceService } from 'src/app/data-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFireList, SnapshotAction } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-product-details',
@@ -52,19 +51,9 @@ export class ProductDetailsComponent implements OnInit {
         this.bag.push(d)
       })
     })
-    // this.isPre(this.product[0])
   }
   
-  // isPre(data:any){
-  //   let match = this.lists.map(d => {
-  //     if(d.productId == data.productId){
-  //       return true
-  //     } else {
-  //       return false
-  //     }
-  //   })
-  //   console.log(match);
-  // }
+
 
   addToWish(data:any){
     console.log(data);

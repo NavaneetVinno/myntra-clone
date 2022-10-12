@@ -5,7 +5,6 @@ describe('MenComponent',()=>{
         let component:MenComponent = jasmine.createSpyObj(['component'])
     })
     it("should create component",()=>{
-       
         expect(MenComponent).toBeTruthy()
     })
 

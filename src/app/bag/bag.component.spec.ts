@@ -1,7 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testing";
-import { async } from "@firebase/util";
-import { of } from "rxjs/internal/observable/of";
-// import { of } from "rxjs";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ComponentFixture, fakeAsync, inject, TestBed, tick } from "@angular/core/testing";
 import { DataServiceService } from "../data-service.service";
 import { BagComponent } from "./bag.component"
 
@@ -30,17 +28,23 @@ describe("BagComponent",()=>{
         qty: 1,
     }]
 
-    beforeEach(()=>{
-        TestBed.configureTestingModule({
+    beforeEach(async()=>{
+        await TestBed.configureTestingModule({
             declarations:[BagComponent],
-            providers: [DataServiceService]
+            providers: [DataServiceService],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents()
     })
     
     it("should create component",()=>{
         expect(component).toBeUndefined()
     })
-
+    
+    // it("should calling subscribe function",inject([DataServiceService],(service:DataServiceService)=>{
+    //     service.getBag()?.valueChanges().subscribe(data => {
+    //         expect(data).toBeTruthy()
+    //     })
+    // }))
     // it("should calling the subscribe function",()=>{
     //     let spy = spyOn(service.getBag()?.valueChanges(), "subscribe")
     //     component.ngOnInit()

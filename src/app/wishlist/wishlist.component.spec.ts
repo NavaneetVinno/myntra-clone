@@ -8,5 +8,7 @@ describe("WishlistComponent",()=>{
     it("should contain products",()=>{
         expect(component.wishProducts).not.toBeNull()
     })
-    
+    it("should show loader on false",()=>{
+        expect(component.loader).toBeFalsy()
+    })
 })

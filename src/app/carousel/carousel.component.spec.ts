@@ -1,12 +1,19 @@
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core"
+import { TestBed } from "@angular/core/testing"
 import { CarouselComponent } from "./carousel.component"
 
 describe("CarouselComponent",()=>{
-    let component = jasmine.createSpyObj(['component'])
+    let component:CarouselComponent = jasmine.createSpyObj(['component'])
+    beforeEach(()=>{
+        TestBed.configureTestingModule({
+            declarations:[CarouselComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        })
+    })
     it("should exists",()=>{
         expect(component).toBeTruthy()
     })
     it("should contain images of length 5",()=>{
-        let images = [1,2,3,4,5]
-        expect(images.length).toEqual(5);
+        expect(component.images).not.toBeNull()
     })
 })

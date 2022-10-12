@@ -18,9 +18,7 @@ export class WishlistComponent implements OnInit {
   total:any;
   loader:boolean = false;
 
-  constructor(private service: DataServiceService, private router: Router) {
-    
-   }
+  constructor(private service: DataServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.wishProducts = this.service.getWish()?.snapshotChanges().pipe(
@@ -36,8 +34,6 @@ export class WishlistComponent implements OnInit {
     this.service.getWish()?.valueChanges().subscribe(data => {
       this.loader = true;
     })
-    
-    
   }
 
   deleteItem(data:any){
