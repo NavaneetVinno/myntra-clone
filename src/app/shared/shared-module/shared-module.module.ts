@@ -8,11 +8,12 @@ import { CarouselComponent } from 'src/app/carousel/carousel.component';
 @NgModule({
   declarations: [
     FooterComponent,
-    CarouselComponent
+    // CarouselComponent
   ],
   exports: [
     FooterComponent,
-    CarouselComponent],
+    // CarouselComponent
+  ],
   imports: [
     CommonModule
   ]

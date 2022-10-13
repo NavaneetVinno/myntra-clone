@@ -22,4 +22,12 @@ describe("Profile Component",()=>{
     it("should show and hide on boolean",()=>{
         expect(component).not.toBeNull()
     })
+    it("should contain loader",()=>{
+        let comp: ProfileComponent = jasmine.createSpyObj(['comp'])
+        expect(comp.loader).toBeFalsy()
+    })
+    it("should contain a boolean flag",()=>{
+        let comp: ProfileComponent = jasmine.createSpyObj(['comp'])
+        expect(comp.flag).toBeFalsy()
+    })
 })

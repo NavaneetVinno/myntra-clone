@@ -4,8 +4,14 @@
         <h3 class="secondary-header">Trending in indian wear</h3>
         <a href="/men/products">
         <div class="row men--ind">
-            <div class="col" *ngFor="let image of indianWear">
-                <img src="{{image}}" alt="1">
+            <div class="col" *ngFor="let image of indianWear let i = index">
+                <div class="card text-bg-dark">
+                    <img src="{{image}}" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">{{indianWearText[i]}}</h5>
+                      <p class="card-text"><small>Click here to explore </small><span>&rarr;</span></p>
+                    </div>
+                </div>
             </div>
         </div>
         </a>
@@ -14,8 +20,14 @@
         <h3 class="secondary-header">Trending in sports wear</h3>
         <a href="/men/products">
         <div class="row men--sport">
-            <div class="col" *ngFor="let image of sportsWear">
-                <img src="{{image}}" alt="1">
+            <div class="col" *ngFor="let image of sportsWear let i = index">
+                <div class="card text-bg-dark">
+                    <img src="{{image}}" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">{{sportsWearText[i]}}</h5>
+                      <p class="card-text"><small>Click here to explore </small><span>&rarr;</span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </a>
@@ -24,8 +36,14 @@
         <h3 class="secondary-header">Trending in footwear</h3>
         <a href="/men/products">
         <div class="row men--foot">
-            <div class="col" *ngFor="let image of footWear">
-                <img src="{{image}}" alt="1">
+            <div class="col" *ngFor="let image of footWear let i = index">
+                <div class="card text-bg-dark">
+                    <img src="{{image}}" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">{{footWearText[i]}}</h5>
+                      <p class="card-text"><small>Click here to explore </small><span>&rarr;</span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </a>
@@ -34,8 +52,14 @@
         <h3 class="secondary-header">Trending in accessories</h3>
         <a href="/men/products">
         <div class="row men--acc">
-            <div class="col" *ngFor="let image of accessories">
-                <img src="{{image}}" alt="1">
+            <div class="col" *ngFor="let image of accessories let i = index">
+                <div class="card text-bg-dark">
+                    <img src="{{image}}" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">{{accessoriesText[i]}}</h5>
+                      <p class="card-text"><small>Click here to explore </small><span>&rarr;</span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </a>

@@ -1,4 +1,3 @@
-
 import { ComponentFixture, TestBed } from "@angular/core/testing"
 import { NavbarComponent } from "./navbar.component"
 
@@ -8,7 +7,7 @@ describe("NavbarComponent",()=>{
         let component = NavbarComponent;
         expect(component).toBeTruthy()
     })
-    it("should have all",()=>{
+    it("should have all navbar buttons",()=>{
         let component = NavbarComponent
         expect(component).not.toBeNull()
     })

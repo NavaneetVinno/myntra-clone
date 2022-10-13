@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class KidsComponent implements OnInit {
   brands:any;
   ionicBrands:any;
+  ionicTest:any;
   fasion:any;
+  fasionText:any;
 
   constructor() { }
 
@@ -31,12 +33,26 @@ export class KidsComponent implements OnInit {
       "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/9694605/2019/7/10/17dbd7f3-42b0-4af9-afc3-2385c1e759931562755290229-Mango-Kids-Girls-White-Printed-T-shirt-4231562755289771-1.jpg",
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17976620/2022/5/4/bb1cd151-4563-4f8b-a591-5bc79bddb4911651645804413HeelsMANGOWomenFlatsMANGOWomenHandbagsMANGOWomenHandbagsMANG1.jpg"
     ]
+    this.ionicTest = [
+      "H.M.",
+      "MANGO Kids",
+      "Chicco",
+      "MARK & SPENCER",
+      "TOMMY HILFIGER"
+    ]
     this.fasion = [
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/15190496/2021/9/28/479f853b-b42f-4f1d-b619-c86a0512c9ad1632837089986-CENWELL-Kids-5-pcs-Reusable-6-Ply-3D-Cotton-Mask-99716328370-14.jpg",
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/12277336/2022/3/3/93f2117d-ef43-48a7-b03e-f32b757c2d611646297299979-Johnsons-Baby-Care-Collection-with-Organic-Cotton-Bib-and-Ba-1.jpg",
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/18370386/2022/5/30/f4b07399-6179-4b67-9d14-0e6d4bfe5cf31653908801698ZalioBoysGreyBlackCheckedT-shirtwithTrousers1.jpg",
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/productimage/2021/2/26/07837259-ff86-4e2a-b4f5-6da6d2b92d401614340366668-1.jpg",
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17743934/2022/4/5/96b8dd46-e0aa-4291-8424-ac92413441111649148100770AnthriloBoysNavyBlueNightsuits1.jpg",
+    ]
+    this.fasionText = [
+      "Protective Masks",
+      "BABY care",
+      "Shorts",
+      "Value Pack & Sets",
+      "SLEAPWEAR,INNERWEAR"
     ]
   }
 

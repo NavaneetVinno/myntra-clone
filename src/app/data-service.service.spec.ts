@@ -4,6 +4,17 @@ import { AngularFireDatabase } from "@angular/fire/compat/database"
 import { DataServiceService } from "./data-service.service"
 
 describe("Data Service",()=>{
+    // let service: DataServiceService;
+    // beforeEach(async()=>{
+    //     await TestBed.configureTestingModule({
+    //         providers: [DataServiceService],
+    //         schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    //     })
+    //     service = TestBed.inject(DataServiceService)
+    // })
+    // it("should create service",()=>{
+    //     expect(service).toBeTruthy()
+    // })
     beforeEach(async()=>{
         await TestBed.configureTestingModule({
             providers:[DataServiceService, AngularFireDatabase],
@@ -14,5 +25,5 @@ describe("Data Service",()=>{
         let service = DataServiceService;
         expect(service).toBeTruthy()
    })
-   it("")
+   
 })

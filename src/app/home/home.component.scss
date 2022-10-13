@@ -1,5 +1,5 @@
 .deal--img {
-    justify-content: space-around;
+    justify-content: space-between;
     width: 95%;
     div{
         object-fit: cover;
@@ -7,6 +7,18 @@
             width: 100%;
         }
     }
+
+    .image--d{
+        img{
+            width: 100%;
+            height: 125px;
+        }
+    }
+}
+
+.image--d{
+    padding: 15px;
+    background-color: rgb(212, 130, 15);
 }
 
 .secondary-header{
@@ -59,4 +71,31 @@
     }
 }
 
+.card{
+    // border: none;
+    .card-img-overlay{
+        background-color: rgba(255, 255, 255, 0.328);
+        padding: 10px 15px;
+        top: auto;
+        color: rgb(15, 16, 31);
+        line-height: 10px;
+        .card-text{
+            span{
+                font-size: 32px;
+                font-weight: 700;
+            }
+        }
+    }
+    .card-img-overlay:hover{
+        background-color: #fff;
+        color: #000;
+    }
+    .card-body{
+        text-decoration: none;
+        color: #000;
+    }
+}
 
+.box{
+    text-decoration: none;
+}

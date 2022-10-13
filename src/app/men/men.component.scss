@@ -11,6 +11,7 @@
             width: 100%;
         }
     }
+
 }
 
 .men--sport{
@@ -18,6 +19,7 @@
     img{
         width: 100%;
     }
+
 }
 
 .men--foot{
@@ -25,11 +27,38 @@
     img{
         width: 100%;
     }
+
 }
 
 .men--acc{
     justify-content: space-around;
     img{
         width: 100%;
+    }
+    // .card-img-overlay{
+    //     top:auto;
+    //     color: #081f8f ;
+    // }
+    // .card-img-overlay:hover{
+    //     color: black;
+    // }
+}
+// .card{
+//     border: none;
+// }
+.card-img-overlay{
+    background-color: rgba(255, 255, 255, 0.328);
+    top: auto;
+    color: rgb(15, 16, 31);
+    line-height: 5px;
+}
+.card-img-overlay:hover{
+    background-color: #fff;
+    color: #000;
+}
+.card-text{
+    span{
+        font-size: 32px;
+        font-weight: 700;
     }
 }

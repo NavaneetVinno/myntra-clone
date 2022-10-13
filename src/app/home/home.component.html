@@ -2,9 +2,9 @@
   <app-carousel></app-carousel>
   <div class="my-3 mx-4">
     <h3 class="secondary-header">Deals of the day</h3>
-    <a href="/men">
-    <div class="row deal--img">
-      <div class="col-1" *ngFor="let img of dealsArr">
+    <a href="/men" class="box-deal">
+    <div class="d-flex deal--img">
+      <div class="image--d" *ngFor="let img of dealsArr">
         <img src="{{img}}" alt="1">
       </div>
     </div>
@@ -12,40 +12,64 @@
   </div>
   <div class="my-3 mx-4">
     <h3 class="secondary-header">Top pics</h3>
-    <a href="/men">
+    <a href="/men" class="box">
     <div class="row  top--img">
-      <div class="col" *ngFor="let img of topPics">
-        <img src="{{img}}" alt="1">
+      <div class="col" *ngFor="let img of topPics let i = index">
+        <div class="card text-bg-dark">
+          <img src="{{img}}" class="card-img" alt="...">
+          <div class="card-img-overlay">
+            <h5 class="card-title">{{picsText[i]}}</h5>
+            <p class="card-text"><small>Explore more </small><span>&rarr;</span></p>
+          </div>
+      </div>
       </div>
     </div>
   </a>
   </div>
   <div class="my-3 mx-4 ">
     <h3 class="secondary-header">Trends for her</h3>
-    <a href="/women">
+    <a href="/women" class="box">
     <div class="row  her--img box--her">
-      <div class="col" *ngFor="let img of trendsHer">
-        <img src="{{img}}" alt="her1">
+      <div class="col" *ngFor="let img of trendsHer let i = index">
+        <div class="card mb-3">
+          <img src="{{img}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{herText[i]}}</h5>
+            <p class="card-text"><small>Explore more </small><span>&rarr;</span></p>
+          </div>
+        </div>
       </div>
     </div>
     </a>
   </div>
   <div class="my-3 mx-4 ">
     <h3 class="secondary-header">Trends for him</h3>
-    <a href="/men">
+    <a href="/men" class="box">
     <div class="row  him--img box--him">
-      <div class="col" *ngFor="let img of trendsHim">
-        <img src="{{img}}" alt="him1">
+      <div class="col" *ngFor="let img of trendsHim let i = index">
+        <div class="card mb-3">
+          <img src="{{img}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{himText[i]}}</h5>
+            <p class="card-text"><small>Explore more </small><span>&rarr;</span></p>
+          </div>
+        </div>
       </div>
     </div>
   </a>
   </div> 
   <div class="my-3 mx-4">
     <h3 class="secondary-header">Best of kidswear</h3>
-    <a href="/kids">
+    <a href="/kids" class="box">
     <div class="row  kid--img">
-      <div class="col" *ngFor="let img of kids">
-        <img src="{{img}}" alt="kid1">
+      <div class="col" *ngFor="let img of kids let i = index">
+        <div class="card mb-3">
+          <img src="{{img}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{kidsText[i]}}</h5>
+            <p class="card-text"><small>Explore more </small><span>&rarr;</span></p>
+          </div>
+        </div>
       </div>
     </div>
   </a>

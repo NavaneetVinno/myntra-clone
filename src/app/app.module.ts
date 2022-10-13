@@ -38,7 +38,7 @@ import { SharedModuleModule } from './shared/shared-module/shared-module.module'
     MenComponent,
     WomenComponent,
     KidsComponent,
-    // CarouselComponent,
+    CarouselComponent,
     MenProductsComponent,
     WomenProductsComponent,
     KidsProductsComponent,

@@ -40,6 +40,7 @@ describe("BagComponent",()=>{
         expect(component).toBeUndefined()
     })
     
+    
     // it("should calling subscribe function",inject([DataServiceService],(service:DataServiceService)=>{
     //     service.getBag()?.valueChanges().subscribe(data => {
     //         expect(data).toBeTruthy()

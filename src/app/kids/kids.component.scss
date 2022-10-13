@@ -49,3 +49,23 @@
 a{
     text-decoration: none;
 }
+.card{
+    // border: none;
+    .card-img-overlay{
+        background-color: rgba(255, 255, 255, 0.328);
+        padding: 10px 15px;
+        top: auto;
+        color: rgb(15, 16, 31);
+        line-height: 10px;
+        .card-text{
+            span{
+                font-size: 32px;
+                font-weight: 700;
+            }
+        }
+    }
+    .card-img-overlay:hover{
+        background-color: #fff;
+        color: #000;
+    }
+}

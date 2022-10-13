@@ -27,7 +27,9 @@
             <a class="nav-link">BEAUTY</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">STUDIO</a>
+            <a class="nav-link position-relative">STUDIO
+              <p class="position-absolute nav--new">NEW</p>
+            </a>
           </li>
         </ul>
       </div>
@@ -43,21 +45,23 @@
               <i class="bi bi-person"></i>
               <a class="nav-link" href="/profile">Profile</a>
             </a>
-            <a href="/wishlist" class="mx-1 position-relative blink">
-              <i class="bi bi-heart"></i>
-              <a class="nav-link" href="/wishlist">Wishlist</a>
+            <a href="/wishlist" class="mx-1 blink">
+              <i class="bi bi-heart position-relative">
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="wish?.length > 0">
                 {{wish.length}}
                 <span class="visually-hidden">unread messages</span>
               </span>
+            </i>
+              <a class="nav-link" href="/wishlist">Wishlist</a>
             </a>
-            <a href="/bag" class="mx-1 position-relative blink">
-              <i class="bi bi-handbag"></i>
-              <a class="nav-link" href="/bag">Bag</a>
+            <a href="/bag" class="mx-1 blink">
+              <i class="bi bi-handbag position-relative">
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="data?.length > 0">
                 {{data.length}}
                 <span class="visually-hidden">unread messages</span>
               </span>
+            </i>
+              <a class="nav-link" href="/bag">Bag</a>
             </a>
           </div>
         </form>
