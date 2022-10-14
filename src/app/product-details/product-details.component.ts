@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { DataServiceService } from 'src/app/data-service.service';
+// import { DataServiceService } from 'src/app/data-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WishlistService } from '../services/wishlist/wishlist.service';
+import { BagsService } from '../services/bags/bags.service';
 
 @Component({
   selector: 'app-product-details',
@@ -22,7 +24,7 @@ export class ProductDetailsComponent implements OnInit {
   favBtn:boolean = false;
   ex:any;
 
-  constructor(private service: DataServiceService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
+  constructor(private service: WishlistService,private service2:BagsService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
     config.keyboard = true;
     this.route.params.subscribe((par: any) => {
       console.log(par);
@@ -45,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
     })
     console.log(this.lists);
     this.bag = [];
-    this.service.getBag()?.snapshotChanges().forEach(datas => {
+    this.service2.getBag()?.snapshotChanges().forEach(datas => {
       datas.forEach(data => {
         let d = data.payload.toJSON()
         this.bag.push(d)
@@ -56,7 +58,9 @@ export class ProductDetailsComponent implements OnInit {
 
 
   addToWish(data:any){
-    console.log(data);
+    // console.log(data);
+    delete data.key
+    // console.log(data);
     let f;
     this.lists.forEach(d => {
       if(d.productId == data.productId){
@@ -98,7 +102,7 @@ export class ProductDetailsComponent implements OnInit {
       }
     })
     if(!flag){
-      this.service.setBag(obj);
+      this.service2.setBag(obj);
     }
   }
 

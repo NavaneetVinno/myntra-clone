@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DataServiceService } from 'src/app/data-service.service';
+import { DatasService } from 'src/app/services/datas/datas.service';
 
 @Component({
   selector: 'app-women-products',
@@ -20,7 +20,7 @@ export class WomenProductsComponent implements OnInit {
   filterPrice = ["Rs. 250 to Rs. 600","Rs. 601 to Rs. 800","Rs. 801 to Rs. 1400"];
   loader:boolean = false;
   
-  constructor(private service: DataServiceService, private el: ElementRef, private router: Router) {
+  constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getWomenProducts().subscribe(data =>{
       console.log(data);
       this.loader = true;

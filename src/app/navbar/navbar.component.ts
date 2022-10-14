@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { DataServiceService } from '../data-service.service';
+// import { DataServiceService } from '../data-service.service';
+import { BagsService } from '../services/bags/bags.service';
+import { WishlistService } from '../services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +15,12 @@ export class NavbarComponent implements OnInit {
   bagProducts!: Observable<any>;
   data:any;
   wish:any;
-  constructor(private service: DataServiceService,private router:Router) {
-    service.getTotalItem()
+  constructor(private service: WishlistService,private router:Router, private service2:BagsService) {
+    // service.getTotalItem()
    }
 
   ngOnInit(): void {
-    this.service.getBag()?.valueChanges().subscribe(data =>{
+    this.service2.getBag()?.valueChanges().subscribe(data =>{
       this.data = data
     })
     this.service.getWish()?.valueChanges().subscribe(data => {

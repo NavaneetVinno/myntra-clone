@@ -3,8 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { reduce } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-import { DataServiceService } from '../data-service.service';
+// import { DataServiceService } from '../data-service.service';
 import { Router } from '@angular/router';
+import { BagsService } from '../services/bags/bags.service';
+import { OrdersService } from '../services/orders/orders.service';
 
 @Component({
   selector: 'app-bag',
@@ -24,7 +26,7 @@ export class BagComponent implements OnInit {
   bag!: any[];
   loader:boolean = false;
 
-  constructor(private service: DataServiceService, private router: Router) { 
+  constructor(private service: BagsService, private router: Router, private service2:OrdersService) { 
     service.getBag()
   }
 
@@ -88,9 +90,9 @@ export class BagComponent implements OnInit {
       "time": str,
       "delivery": delivery,
     }
-    this.service.setOrders(obj);
-    this.deleteAll();
-    this.router.navigate(["/"])
+    this.service2.setOrders(obj);
+    // this.deleteAll();
+    // this.router.navigate(["/"])
   }
 
   submit(data:any){
@@ -100,6 +102,7 @@ export class BagComponent implements OnInit {
 
   deleteItem(key:any){
     this.service.deleteBagItem(key)
+    console.log(key)
   }
 
   deleteAll(){

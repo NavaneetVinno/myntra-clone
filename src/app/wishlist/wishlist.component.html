@@ -6,16 +6,16 @@
     Wish list is empty <i class="bi bi-cart4"></i>
   </div>
   <div class="row">
-    <div *ngFor="let prod of wishProducts | async let i = index">
+    <div *ngFor="let product of wishProducts | async; let i = index">
         <div class="card">
-          <img class="card-img-top" src="{{prod.images[0].src}}" alt="{{prod.brand}}" />
+          <img class="card-img-top" src="{{product.images[0].src}}" alt="{{product.brand}}" />
           <div class="card-body">
-            <h4 class="card-title">{{prod.brand}}</h4>
-            <p class="card-text">{{prod.additionalInfo}}</p>
-            <p class="card-text">Rs. {{prod.price}}</p>
+            <h4 class="card-title">{{product.brand}}</h4>
+            <p class="card-text">{{product.additionalInfo}}</p>
+            <p class="card-text">Rs. {{product.price}}</p>
             <div>
-              <button class="btn btn-primary me-1" (click)="details(prod,i)">Add to Bag <i class="bi bi-bag-plus-fill"></i></button>
-              <button class="btn btn-danger" (click)="deleteItem(i)">Remove <i class="bi bi-trash-fill"></i></button>
+              <button class="btn btn-primary me-1" (click)="details(product,i)">Add to Bag <i class="bi bi-bag-plus-fill"></i></button>
+              <button class="btn btn-danger" (click)="deleteItem(product.key)">Remove <i class="bi bi-trash-fill"></i></button>
             </div>
           </div>
         </div>

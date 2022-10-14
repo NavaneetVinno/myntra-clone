@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-import { DataServiceService } from 'src/app/data-service.service';
+// import { DataServiceService } from 'src/app/data-service.service';
+import { DatasService } from 'src/app/services/datas/datas.service';
 
 @Component({
   selector: 'app-men-products',
@@ -10,7 +11,7 @@ import { DataServiceService } from 'src/app/data-service.service';
 })
 export class MenProductsComponent implements OnInit {
 [x: string]: any;
-  products!: Observable<any[]>;
+  products!: Observable<any> | any;
   results:any[] = [];
   filterProducts:any[] = [];
   flag = false;
@@ -19,30 +20,40 @@ export class MenProductsComponent implements OnInit {
   isSelected: boolean = false;
   selectedIndex!: number | undefined;
   joined!:any[];
-  datas:any;
+  datas:any = []
   flag2 = false;
   radioFilter:any = ["Men","Women","Kids"];
   filterBrands = ["Dennis Lingo","HERE&NOW","Roadster","HIGHLANDER","WROGN","Mast & Harbour","The Indian Garage Co","WILD WEST"];
   filterPrice = ["Rs. 450 to Rs. 629","Rs. 630 to Rs. 900","Rs. 901 to Rs. 1400"];
   loader:boolean = false;
-  constructor(private service: DataServiceService, private el: ElementRef, private router: Router) { 
+  constructor(private service: DatasService, private el: ElementRef, private router: Router) { 
     service.getMenProducts().subscribe(data => console.log(data))
   }
 
   ngOnInit(): void {
     this.products = this.service.getMenProducts()
-    this.service.getWish()?.snapshotChanges().subscribe(
-      data => {
-        this.datas = data;
-        this.loader = true;
-      }
-    )
-    this.loader= false;
+    
+    // this.service.getWish()?.snapshotChanges().subscribe(
+    //   data => {
+    //     this.datas = data;
+    //     this.loader = true;
+    //   }
+    // )
+    // this.loader= false;
     this.fn();
   }
 
  fn(){
-  
+  this.service.getMenProducts().subscribe(d => {
+    // console.log(d);
+    this.loader = true;
+    d.map(da => {
+      da["wishProd"] = false;
+    })
+    // console.log(d);
+    this.datas = d;
+    // console.log(this.datas);
+  })
  }
 
   getVal(event:any){
@@ -65,12 +76,20 @@ export class MenProductsComponent implements OnInit {
     this.flag = true;
     if(res === "high"){
      this.service.getMenProducts().subscribe(data => {
+      data.map(da => {
+        da["wishProd"] = false;
+      })
       this.results = data.sort((a,b) => b.price - a.price)
+      this.loader = true;
       console.log(this.results);
      })
     } else if(res === "low"){
       this.service.getMenProducts().subscribe(data => {
+        data.map(da => {
+          da["wishProd"] = false;
+        })
         this.results = data.sort((a,b) => a.price - b.price)
+        this.loader = true;
         console.log(this.results);
       })
     }

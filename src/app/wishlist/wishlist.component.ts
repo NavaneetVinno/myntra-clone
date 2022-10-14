@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { DataServiceService } from '../data-service.service';
+// import { DataServiceService } from '../data-service.service';
+import { WishlistService } from '../services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -18,26 +19,27 @@ export class WishlistComponent implements OnInit {
   total:any;
   loader:boolean = false;
 
-  constructor(private service: DataServiceService, private router: Router) {}
+  constructor(private service: WishlistService, private router: Router) {}
 
   ngOnInit(): void {
     this.wishProducts = this.service.getWish()?.snapshotChanges().pipe(
       map((products: any[]) => products.map(prod => {
         const payload = prod.payload.val();
         this.isEmpty = true;
-        const key = prod.key;
+        const key = prod.payload.key;
         return <any>{ key, ...payload };
       }))
     )
     console.log(this.wishProducts);
-    this.service.getDatas()
+    // this.service.getDatas()
     this.service.getWish()?.valueChanges().subscribe(data => {
       this.loader = true;
     })
   }
 
-  deleteItem(data:any){
-    console.log(data);
+  deleteItem(key:any){
+    this.service.deleteWish(key)
+    console.log(key);
   }
 
   deleteAll(){

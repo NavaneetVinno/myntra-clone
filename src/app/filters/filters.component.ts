@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataServiceService } from '../data-service.service';
+// import { DataServiceService } from '../data-service.service';
+import { DatasService } from '../services/datas/datas.service';
 
 @Component({
   selector: 'app-filters',
@@ -22,7 +23,7 @@ export class FiltersComponent implements OnInit {
   @Output() range = new EventEmitter<any>()
   selectedIndex:any
 
-  constructor(private router: Router, private service:DataServiceService) { }
+  constructor(private router: Router, private service:DatasService) { }
 
   ngOnInit(): void {
   }

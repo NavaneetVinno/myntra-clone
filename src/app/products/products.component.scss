@@ -33,12 +33,13 @@
 
 .bi-heart {
   color: #fd457f;
-  cursor: pointer;
+  // cursor: pointer;
   font-size: 20px;
 }
 
 .bi-heart-fill {
   color: #fd457f;
+  font-size: 20px;
 }
 
 .clear {
@@ -48,4 +49,10 @@
 
 .filter--box {
   position: sticky;
+}
+
+.icons{
+  cursor: pointer;
+  top: 2%;
+  right: 5%;
 }

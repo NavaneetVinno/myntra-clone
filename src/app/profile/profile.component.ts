@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { DataServiceService } from '../data-service.service';
+import { OrdersService } from '../services/orders/orders.service';
+// import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,8 +13,8 @@ export class ProfileComponent implements OnInit {
   flag = false;
   full:any;
   loader:boolean = false;
-  constructor(private service: DataServiceService) {
-    service.getOrders()?.valueChanges().subscribe(data => {
+  constructor(private service: OrdersService) {
+    service.getOrders()?.valueChanges().subscribe((data:any) => {
       this.loader = true;
     })
    }

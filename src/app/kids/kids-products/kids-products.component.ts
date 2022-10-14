@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DataServiceService } from 'src/app/data-service.service';
+// import { DataServiceService } from 'src/app/data-service.service';
+import { DatasService } from 'src/app/services/datas/datas.service';
 
 @Component({
   selector: 'app-kids-products',
@@ -20,7 +21,7 @@ export class KidsProductsComponent implements OnInit {
   filterPrice = ["Rs. 250 to Rs. 550","Rs. 551 to Rs. 900","Rs. 901 to Rs. 1400","Rs. 1400 to Rs. 2100"];
   loader:boolean = false;
   
-  constructor(private service: DataServiceService, private el: ElementRef, private router: Router) {
+  constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getKidsProducts().subscribe(data => {
       console.log(data)
       this.loader = true
