@@ -7,7 +7,37 @@ import { map } from 'rxjs';
 })
 export class DatasService {
 
-  constructor(private db: AngularFireDatabase) {}
+
+  constructor(private db: AngularFireDatabase) {
+    
+  }
+
+  // Men section------------------
+  // -------------------------
+
+  setMenProducts(item:any){
+    this.db.list('/data').snapshotChanges().forEach(datas => {
+      datas.forEach(da => {
+        let dataVal:any = da.payload.val()
+        let key = da.key
+        if(item.productId == dataVal.productId){
+          console.log(key);
+          this.db.object('/data/'+key).update({wishProd:true})
+        }
+      })
+    })
+  }
+  removeMenProducts(item:any){
+    this.db.list('/data').snapshotChanges().forEach(datas => {
+      datas.forEach(da => {
+        let dataVal:any = da.payload.val()
+        let key = da.key
+        if(item.productId == dataVal.productId){
+          this.db.object('/data/'+key).update({wishProd:false})
+        }
+      })
+    })
+  }
 
   getMenProducts(){
     return this.db.list('/data').snapshotChanges().pipe(
@@ -19,6 +49,33 @@ export class DatasService {
     );
   }
 
+  // Women section-------------------------------------
+  // --------------------------------------
+
+  setWomenProducts(item:any){
+    this.db.list('/women').snapshotChanges().forEach(datas => {
+      datas.forEach(da => {
+        let dataVal:any = da.payload.val()
+        let key = da.key
+        if(item.productId == dataVal.productId){
+          console.log(key);
+          this.db.object('/women/'+key).update({wishProd:true})
+        }
+      })
+    })
+  }
+  removeWomenProducts(item:any){
+    this.db.list('/women').snapshotChanges().forEach(datas => {
+      datas.forEach(da => {
+        let dataVal:any = da.payload.val()
+        let key = da.key
+        if(item.productId == dataVal.productId){
+          this.db.object('/women/'+key).update({wishProd:false})
+        }
+      })
+    })
+  }
+
   getWomenProducts(){
     return this.db.list('/women').snapshotChanges().pipe(
       map((products: any[]) => products.map(prod => {
@@ -27,6 +84,33 @@ export class DatasService {
         return <any>{key, ...payload};
       }))
     )
+  }
+
+  // kids section-------------------------------------------
+  // --------------------------------------
+
+  setKidsProducts(item:any){
+    this.db.list('/kids').snapshotChanges().forEach(datas => {
+      datas.forEach(da => {
+        let dataVal:any = da.payload.val()
+        let key = da.key
+        if(item.productId == dataVal.productId){
+          console.log(key);
+          this.db.object('/kids/'+key).update({wishProd:true})
+        }
+      })
+    })
+  }
+  removeKidsProducts(item:any){
+    this.db.list('/kids').snapshotChanges().forEach(datas => {
+      datas.forEach(da => {
+        let dataVal:any = da.payload.val()
+        let key = da.key
+        if(item.productId == dataVal.productId){
+          this.db.object('/kids/'+key).update({wishProd:false})
+        }
+      })
+    })
   }
 
   getKidsProducts(){

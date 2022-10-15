@@ -19,6 +19,7 @@ export class WomenProductsComponent implements OnInit {
   filterBrands = ["Vishudh","FASHOR","KALINI","Libas","AHIKA","Anouk","HERE&NOW","Varanga"];
   filterPrice = ["Rs. 250 to Rs. 600","Rs. 601 to Rs. 800","Rs. 801 to Rs. 1400"];
   loader:boolean = false;
+  women = "women"
   
   constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getWomenProducts().subscribe(data =>{

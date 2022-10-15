@@ -20,6 +20,7 @@ export class KidsProductsComponent implements OnInit {
   filterBrands = ["max","H&M","HELLCAT","pspeaches","A.T.U.N.","Kids Ville","Naughty Ninos","CUTECUMBER"];
   filterPrice = ["Rs. 250 to Rs. 550","Rs. 551 to Rs. 900","Rs. 901 to Rs. 1400","Rs. 1400 to Rs. 2100"];
   loader:boolean = false;
+  kids = "kids"
   
   constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getKidsProducts().subscribe(data => {

@@ -23,6 +23,8 @@ export class ProductDetailsComponent implements OnInit {
   bag!:any[];
   favBtn:boolean = false;
   ex:any;
+  favIcon = false;
+  lat = false;
 
   constructor(private service: WishlistService,private service2:BagsService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
     config.keyboard = true;
@@ -53,23 +55,28 @@ export class ProductDetailsComponent implements OnInit {
         this.bag.push(d)
       })
     })
+    this.iconChange()
   }
   
-
+  iconChange(){
+    this.service.getWish()?.snapshotChanges().forEach(datas => {
+      datas.forEach(data => {
+        let val = data.payload.val();
+        if(this.product[0].productId == val.productId){
+          console.log("found");
+          this.favIcon = true;
+          this.lat = true;
+        }
+      })
+    })
+  }
 
   addToWish(data:any){
     // console.log(data);
     delete data.key
     // console.log(data);
-    let f;
-    this.lists.forEach(d => {
-      if(d.productId == data.productId){
-        f = true;
-      } else {
-        f = false;
-      }
-    })
-    if(!f){
+    
+    if(this.lat == false){
       this.service.setWish(data);
     }
   }

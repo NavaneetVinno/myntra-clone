@@ -17,6 +17,7 @@ export class FiltersComponent implements OnInit {
   @Input() priceFn:any;
   @Input() selInd:any
   @Input() ind:any
+  @Input() loader = false;
   flag = false
   isSelected = false
   @Output() result = new EventEmitter<any>()
