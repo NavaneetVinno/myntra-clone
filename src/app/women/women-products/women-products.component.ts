@@ -23,14 +23,14 @@ export class WomenProductsComponent implements OnInit {
   
   constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getWomenProducts().subscribe(data =>{
-      console.log(data);
+      // console.log(data);
       this.loader = true;
     })
    }
 
   ngOnInit(): void {
     this.products = this.service.getWomenProducts()
-    console.log(this.results);
+    // console.log(this.results);
     this.loader = false;
   }
 
@@ -59,7 +59,4 @@ export class WomenProductsComponent implements OnInit {
       })
     }
   }
-
-  
-
 }

@@ -1,8 +1,8 @@
 
 <div class="row g-4">
-<div class="col-md-3 col-sm-4 box--{{class}} {{cls}} {{boo ? 'hide': ''}}" *ngFor="let product of products let i = index">
+<div class="col-md-3 col-sm-4 box--{{class}} {{cls}} {{boo ? 'hide': ''}}" *ngFor="let product of products; let i = index">
     <div class="card">
-        <img src="{{product.images[0].src}}" class="card-img-top position-relative" alt="...">
+        <img [src]="product.images?.[0]?.src" class="card-img-top position-relative" alt="...">
         <div class="position-absolute icons">
             <a *ngIf="!product.wishProd" (click)="addToWish(product)">
                 <i class="bi bi-heart"></i>

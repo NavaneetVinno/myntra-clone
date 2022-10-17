@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-// import { DataServiceService } from 'src/app/data-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WishlistService } from '../services/wishlist/wishlist.service';
 import { BagsService } from '../services/bags/bags.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { DatasService } from '../services/datas/datas.service';
 
 @Component({
   selector: 'app-product-details',
@@ -25,11 +26,19 @@ export class ProductDetailsComponent implements OnInit {
   ex:any;
   favIcon = false;
   lat = false;
+  flag2 = false
 
-  constructor(private service: WishlistService,private service2:BagsService, private config: NgbCarouselConfig, private router: Router,private route: ActivatedRoute) {
+  constructor(
+    private service: WishlistService,
+    private service2:BagsService, 
+    private service3:DatasService,
+    private config: NgbCarouselConfig,
+    private router: Router,
+    private route: ActivatedRoute,
+    private db: AngularFireDatabase,
+    ) {
     config.keyboard = true;
     this.route.params.subscribe((par: any) => {
-      console.log(par);
       this.ex = par;
     })
    }
@@ -37,9 +46,15 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.product = Array(this.service.getProduct());
     let text = this.product[0].productId;
-    console.log(text);
-    console.log(this.product[0]);
 
+    this.service.getWish()?.snapshotChanges().subscribe(datas => {
+      datas.forEach(data => {
+        let val = data.payload.val()
+        if(this.product[0].productId == val.productId){
+          this.favIcon = true
+        }
+      })
+    })
     this.lists = []
     this.service.getWish()?.snapshotChanges().forEach(datas => {
       datas.forEach(data => {
@@ -47,15 +62,9 @@ export class ProductDetailsComponent implements OnInit {
         this.lists.push(d)
       })
     })
-    console.log(this.lists);
     this.bag = [];
-    this.service2.getBag()?.snapshotChanges().forEach(datas => {
-      datas.forEach(data => {
-        let d = data.payload.toJSON()
-        this.bag.push(d)
-      })
-    })
     this.iconChange()
+    this.findBag()
   }
   
   iconChange(){
@@ -63,7 +72,6 @@ export class ProductDetailsComponent implements OnInit {
       datas.forEach(data => {
         let val = data.payload.val();
         if(this.product[0].productId == val.productId){
-          console.log("found");
           this.favIcon = true;
           this.lat = true;
         }
@@ -71,14 +79,127 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
+  findBag(){
+    this.service2.getBag()?.snapshotChanges().forEach(datas => {
+      datas.forEach(data => {
+        let val = data.payload.val()
+        // console.log(val);
+        this.bag.push(val)
+      })
+    })
+  }
+
   addToWish(data:any){
-    // console.log(data);
+    this.favIcon = true;
+    this.aWish(data.gender, data)
     delete data.key
-    // console.log(data);
     
     if(this.lat == false){
       this.service.setWish(data);
     }
+  }
+
+  aWish(val:any, obj:any){
+    let path:any;
+    let key:any;
+    if(val == "Men"){
+      path = '/data';
+      this.service3.getMenProducts().forEach(datas => {
+        datas.forEach(data => {
+          if(data.productId == obj.productId){
+            // console.log(data.key);
+            key = data.key
+          }
+        })
+      })
+    this.db.database.ref(path+'/'+key).update({wishProd:true})
+
+    } else if(val == "Women"){
+      path = '/women';
+      this.service3.getWomenProducts().forEach(datas => {
+        datas.forEach(data => {
+          if(data.productId == obj.productId){
+            // console.log(data.key);
+            key = data.key
+          }
+        })
+      })
+    this.db.database.ref(path+'/'+key).update({wishProd:true})
+
+    } else {
+      path = '/kids'
+      this.service3.getKidsProducts().forEach(datas => {
+        datas.forEach(data => {
+          if(data.productId == obj.productId){
+            // console.log(data.key);
+            key = data.key
+          }
+        })
+      })
+    this.db.database.ref(path+'/'+key).update({wishProd:true})
+
+    }
+    // this.db.database.ref(path+'/'+key).update({wishProd:true})
+  }
+
+  removeFromWish(data:any){
+    this.favIcon = false;
+    let arr = data;
+    let path:any;
+    this.service.getWish()?.snapshotChanges().forEach(datas => {
+      datas.forEach(data => {
+        let val = data.payload.val();
+        // this.rmvWish(val.gender,arr)
+        if(this.product[0].productId == val.productId){
+          this.service.deleteWish(data.key)
+        }
+      })
+    })
+    this.lat = false;
+    this.favIcon = false;
+  }
+
+  rmvWish(value:any, obj:any){
+    let path:any;
+    let key:any;
+    if(value == "Men"){
+      path = '/data';
+      this.service3.getMenProducts().forEach(datas => {
+        datas.forEach(data => {
+          if(data.productId == obj.productId){
+            // console.log(data.key);
+            key = data.key
+          }
+        })
+      })
+    this.db.database.ref(path+'/'+key).update({wishProd:false})
+
+    } else if(value == "Women"){
+      path = '/women';
+      this.service3.getWomenProducts().forEach(datas => {
+        datas.forEach(data => {
+          if(data.productId == obj.productId){
+            // console.log(data.key);
+            key = data.key
+          }
+        })
+      })
+    this.db.database.ref(path+'/'+key).update({wishProd:false})
+
+    } else {
+      path = '/kid'
+      this.service3.getKidsProducts().forEach(datas => {
+        datas.forEach(data => {
+          if(data.productId == obj.productId){
+            // console.log(data.key);
+            key = data.key
+          }
+        })
+      })
+    this.db.database.ref(path+'/'+key).update({wishProd:false})
+
+    }
+    // this.db.database.ref(path+'/'+key).update({wishProd:false})
   }
 
   getSize(el:number,i:any,num:any){
@@ -100,15 +221,12 @@ export class ProductDetailsComponent implements OnInit {
       discount: elem.discountDisplayLabel,
       qty: 1,
     }
-    let flag;
-    this.bag.forEach((item: { description: any; size: any; }) => {
-      if(item.description == obj.description && item.size == obj.size){
-        flag = true;
-      } else {
-        flag = false;
-      }
-    })
-    if(!flag){
+  
+    const f = this.bag.filter(data => 
+      data.title == obj.title && data.size == obj.size
+    )
+    
+    if(f.length != 1){
       this.service2.setBag(obj);
     }
   }

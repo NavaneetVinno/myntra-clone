@@ -28,10 +28,10 @@ export class MenProductsComponent implements OnInit {
   loader:boolean = false;
   men = "men";
   constructor(private service: DatasService, private el: ElementRef, private router: Router) { 
-    service.getMenProducts().subscribe(data => {
-      console.log(data)
-      this.loader = true
-    })
+    // service.getMenProducts().subscribe(data => {
+    //   console.log(data)
+    //   this.loader = true
+    // })
   }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class MenProductsComponent implements OnInit {
     //     this.loader = true;
     //   }
     // )
-    // this.loader= false;
+    // this.loader=true;
     this.fn();
   }
 
@@ -52,7 +52,7 @@ export class MenProductsComponent implements OnInit {
     // console.log(d);
     this.loader = true;
     d.map(da => {
-      da["wishProd"] = false;
+      // da["wishProd"] = false;
     })
     // console.log(d);
     this.datas = d;
@@ -61,17 +61,17 @@ export class MenProductsComponent implements OnInit {
  }
 
   getVal(event:any){
-    this.loader = true;
+    // this.loader = true;
     this.flag = true;
     this.results = event
-    this.loader = false
+    // this.loader = false
   }
 
   getRange(event:any){
-    this.loader = true;
+    // this.loader = true;
     this.flag = true;
     this.results = event
-    this.loader = false
+    // this.loader = false
   }
 
   selectChange(event: any){

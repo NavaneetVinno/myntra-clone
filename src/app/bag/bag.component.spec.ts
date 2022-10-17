@@ -1,12 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, fakeAsync, inject, TestBed, tick } from "@angular/core/testing";
-import { DataServiceService } from "../data-service.service";
+import { DatasService } from "../services/datas/datas.service";
+// import { DataServiceService } from "../data-service.service";
 import { BagComponent } from "./bag.component"
 
 describe("BagComponent",()=>{
     let component: BagComponent;
     let fixture: ComponentFixture<BagComponent>
-    let service: DataServiceService;
+    let service: DatasService;
     let obj = [{
         id: 1,
         title: "nike",
@@ -31,7 +32,7 @@ describe("BagComponent",()=>{
     beforeEach(async()=>{
         await TestBed.configureTestingModule({
             declarations:[BagComponent],
-            providers: [DataServiceService],
+            providers: [DatasService],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents()
     })

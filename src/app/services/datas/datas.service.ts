@@ -21,7 +21,7 @@ export class DatasService {
         let dataVal:any = da.payload.val()
         let key = da.key
         if(item.productId == dataVal.productId){
-          console.log(key);
+          // console.log(key);
           this.db.object('/data/'+key).update({wishProd:true})
         }
       })
@@ -34,6 +34,7 @@ export class DatasService {
         let key = da.key
         if(item.productId == dataVal.productId){
           this.db.object('/data/'+key).update({wishProd:false})
+          
         }
       })
     })
@@ -53,7 +54,7 @@ export class DatasService {
   // --------------------------------------
 
   setWomenProducts(item:any){
-    this.db.list('/women').snapshotChanges().forEach(datas => {
+    return this.db.list('/women').snapshotChanges().forEach(datas => {
       datas.forEach(da => {
         let dataVal:any = da.payload.val()
         let key = da.key
@@ -65,7 +66,7 @@ export class DatasService {
     })
   }
   removeWomenProducts(item:any){
-    this.db.list('/women').snapshotChanges().forEach(datas => {
+    return this.db.list('/women').snapshotChanges().forEach(datas => {
       datas.forEach(da => {
         let dataVal:any = da.payload.val()
         let key = da.key
@@ -90,7 +91,7 @@ export class DatasService {
   // --------------------------------------
 
   setKidsProducts(item:any){
-    this.db.list('/kids').snapshotChanges().forEach(datas => {
+    return this.db.list('/kids').snapshotChanges().forEach(datas => {
       datas.forEach(da => {
         let dataVal:any = da.payload.val()
         let key = da.key
@@ -102,7 +103,7 @@ export class DatasService {
     })
   }
   removeKidsProducts(item:any){
-    this.db.list('/kids').snapshotChanges().forEach(datas => {
+    return this.db.list('/kids').snapshotChanges().forEach(datas => {
       datas.forEach(da => {
         let dataVal:any = da.payload.val()
         let key = da.key

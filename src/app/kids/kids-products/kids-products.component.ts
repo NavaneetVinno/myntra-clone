@@ -24,14 +24,14 @@ export class KidsProductsComponent implements OnInit {
   
   constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getKidsProducts().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.loader = true
     })
    }
 
   ngOnInit(): void {
     this.products = this.service.getKidsProducts();
-    console.log(this.results);
+    // console.log(this.results);
   }
 
   getVal(event:any){
