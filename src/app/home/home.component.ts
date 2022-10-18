@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.dealsArr = [
       "https://scontent.fblr24-1.fna.fbcdn.net/v/t1.6435-9/123796432_10159307310348221_4351058473770506895_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=3-AihPk8R0AAX_Rsx51&_nc_ht=scontent.fblr24-1.fna&oh=00_AT_jygmIgc0LMX2mtcD0Ki5SV6LxnQYNE7S3k-d1RU8hNA&oe=634E0480",
       "https://www.nepaloffers.com/public/offer/6E7D678F7CA3DC5-offer.jpg",
-      "https://scontent.fblr24-1.fna.fbcdn.net/v/t1.6435-9/50885302_10157048864348221_7221738129537892352_n.jpg?stp=cp0_dst-jpg_e15_p320x320_q65&_nc_cat=106&ccb=1-7&_nc_sid=8024bb&_nc_ohc=zPmrIEuc8JIAX_HHCVD&_nc_ht=scontent.fblr24-1.fna&oh=00_AT_mJVzRHkS4CDJEB5C5RumtX0PMWl_d7PBZ2es0bsj6kg&oe=634D697C",
+      "https://mir-s3-cdn-cf.behance.net/projects/404/61b18b151868897.Y3JvcCwxMjczLDk5Niw2Myww.png",
       "https://www.savemoneyindia.com/wp-content/uploads/2021/12/myntra-pay-300x262.jpg",
       "https://businesswireindia.com/Handler/ThumbNailImage.ashx?imgpath=https://cms.businesswireindia.com/Uploads/news-multimedia/images/myntraimage_73813.png&width=700",
       "https://qph.cf2.quoracdn.net/main-qimg-2fa256dc9106d589463936b68ccabc9d-lq",

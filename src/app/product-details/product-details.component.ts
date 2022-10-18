@@ -6,6 +6,7 @@ import { WishlistService } from '../services/wishlist/wishlist.service';
 import { BagsService } from '../services/bags/bags.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { DatasService } from '../services/datas/datas.service';
+import { ToasterService } from '../services/toaster/toaster.service';
 
 @Component({
   selector: 'app-product-details',
@@ -36,6 +37,7 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private db: AngularFireDatabase,
+    private toast: ToasterService,
     ) {
     config.keyboard = true;
     this.route.params.subscribe((par: any) => {
@@ -65,6 +67,7 @@ export class ProductDetailsComponent implements OnInit {
     this.bag = [];
     this.iconChange()
     this.findBag()
+    window.scroll({top:0,left:0,behavior:'smooth'})
   }
   
   iconChange(){
@@ -90,6 +93,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToWish(data:any){
+    this.toast.successMessage("Item is added to wish list")
     this.favIcon = true;
     this.aWish(data.gender, data)
     delete data.key
@@ -143,6 +147,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   removeFromWish(data:any){
+    this.toast.warningMessage("Item is removed from wish list")
     this.favIcon = false;
     let arr = data;
     let path:any;
@@ -210,6 +215,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addBag(elem:any){
+    this.toast.successMessage("Item is added to Bag")
     let id = (new Date()).getTime().toString()
     const obj = {
       id: id,

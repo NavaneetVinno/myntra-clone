@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-// import { DOCUMENT } from '@angular/common';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { DatasService } from '../services/datas/datas.service';
+import { ToasterService } from '../services/toaster/toaster.service';
 import { WishlistService } from '../services/wishlist/wishlist.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   // foo = false;
   pros:any
 
-  constructor(private router:Router, private service:WishlistService, private service2:DatasService, private db: AngularFireDatabase) { }
+  constructor(private router:Router, private service:WishlistService, private service2:DatasService, private db: AngularFireDatabase, private toast: ToasterService) { }
 
   ngOnInit(): void {
     // this.db.list('/wish').valueChanges().subscribe(data => {
@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
       this.pros = datas.map(data => data.payload.val())
       // console.log(this.pros);
     })
-    // console.log(this.section);
+    window.scroll({top:0,left:0,behavior:'smooth'})
   }
   
   getAll(){
@@ -51,6 +51,7 @@ export class ProductsComponent implements OnInit {
 
 
   addToWish(prod:any){
+    this.toast.successMessage("Item is added to wish list")
     let path:any;
     if(this.section == 'men'){
       path = '/data'
@@ -66,6 +67,7 @@ export class ProductsComponent implements OnInit {
   }
 
   remove(prod:any){
+    this.toast.warningMessage("Item is removed from wishlist")
     let path:any;
     if(this.section == 'men'){
       path = '/data'
@@ -84,6 +86,7 @@ export class ProductsComponent implements OnInit {
       })
     })
     window.location.reload()
+    window.scroll({top:0,left:0,behavior:'smooth'})
   }
 
   details(i:any, productData:any){

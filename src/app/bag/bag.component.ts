@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { reduce } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-// import { DataServiceService } from '../data-service.service';
 import { Router } from '@angular/router';
 import { BagsService } from '../services/bags/bags.service';
 import { OrdersService } from '../services/orders/orders.service';
+import { ToasterService } from '../services/toaster/toaster.service';
 
 @Component({
   selector: 'app-bag',
@@ -26,7 +26,7 @@ export class BagComponent implements OnInit {
   bag!: any[];
   loader:boolean = false;
 
-  constructor(private service: BagsService, private router: Router, private service2:OrdersService) { 
+  constructor(private service: BagsService, private router: Router, private service2:OrdersService, private toast: ToasterService) { 
     service.getBag()
   }
 
@@ -50,13 +50,13 @@ export class BagComponent implements OnInit {
 
     this.stepperForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
-      phone: new FormControl(null, Validators.required),
+      phone: new FormControl(null, [Validators.required, Validators.minLength(10)]),
       address: new FormControl(null, Validators.required),
-      pin: new FormControl(null, Validators.required),
-      cardNum: new FormControl(null, Validators.required),
+      pin: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(6)]),
+      cardNum: new FormControl(null, [Validators.required, Validators.maxLength(12), Validators.minLength(12)]),
       userCard: new FormControl(null, Validators.required),
-      date: new FormControl(null, Validators.required),
-      cvv: new FormControl(null, Validators.required),
+      date: new FormControl(null,[ Validators.required]),
+      cvv: new FormControl(null, [Validators.required, Validators.minLength(3)]),
     })
 
     this.total = this.bagProducts?.pipe(
@@ -91,21 +91,24 @@ export class BagComponent implements OnInit {
       "delivery": delivery,
     }
     this.service2.setOrders(obj);
-    // this.deleteAll();
-    // this.router.navigate(["/"])
+    this.deleteAll();
+    this.router.navigate(["/"])
+    this.toast.successMessage("Order placed successfully")
   }
 
-  submit(data:any){
-    console.log(data);
-    this.service.setDetails(data)
-  }
+  // submit(data:any){
+  //   console.log(data);
+  //   this.service.setDetails(data)
+  // }
 
   deleteItem(key:any){
+    this.toast.errorMessage("This item will be no longer available")
     this.service.deleteBagItem(key)
     console.log(key)
   }
 
   deleteAll(){
+    this.toast.errorMessage("Your bag is fully empty")
     this.service.deleteBag()?.then(data => console.log(data)).catch(err => console.error(err))
   }
 

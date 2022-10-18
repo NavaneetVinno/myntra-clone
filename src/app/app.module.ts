@@ -1,7 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database'
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,9 +61,20 @@ import { SharedModuleModule } from './shared/shared-module/shared-module.module'
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModuleModule
+    SharedModuleModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-center',
+      enableHtml: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule implements OnInit { 
+  constructor(){}
+
+  ngOnInit(): void {}
+
+}

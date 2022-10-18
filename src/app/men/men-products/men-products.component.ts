@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-// import { DataServiceService } from 'src/app/data-service.service';
 import { DatasService } from 'src/app/services/datas/datas.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-men-products',
@@ -27,7 +27,7 @@ export class MenProductsComponent implements OnInit {
   filterPrice = ["Rs. 450 to Rs. 629","Rs. 630 to Rs. 900","Rs. 901 to Rs. 1400"];
   loader:boolean = false;
   men = "men";
-  constructor(private service: DatasService, private el: ElementRef, private router: Router) { 
+  constructor(private service: DatasService, private el: ElementRef, private router: Router, private toast: ToasterService) { 
     // service.getMenProducts().subscribe(data => {
     //   console.log(data)
     //   this.loader = true
@@ -85,7 +85,7 @@ export class MenProductsComponent implements OnInit {
       })
       this.results = data.sort((a,b) => b.price - a.price)
       this.loader = true;
-      console.log(this.results);
+      // console.log(this.results);
      })
     } else if(res === "low"){
       this.service.getMenProducts().subscribe(data => {
@@ -94,10 +94,11 @@ export class MenProductsComponent implements OnInit {
         })
         this.results = data.sort((a,b) => a.price - b.price)
         this.loader = true;
-        console.log(this.results);
+        // console.log(this.results);
       })
     }
     this.loader = false;
+    this.toast.successMessage("Sorted by price successfully")
   }
 
   addWish(i:any,data: any){

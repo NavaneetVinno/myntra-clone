@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-// import { DataServiceService } from '../data-service.service';
+import { ToasterService } from '../services/toaster/toaster.service';
 import { WishlistService } from '../services/wishlist/wishlist.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class WishlistComponent implements OnInit {
   total:any;
   loader:boolean = false;
 
-  constructor(private service: WishlistService, private router: Router) {}
+  constructor(private service: WishlistService, private router: Router, private toast: ToasterService) {}
 
   ngOnInit(): void {
     this.wishProducts = this.service.getWish()?.snapshotChanges().pipe(
@@ -38,11 +38,13 @@ export class WishlistComponent implements OnInit {
   }
 
   deleteItem(key:any){
+    this.toast.errorMessage("Item is removed from the list")
     this.service.deleteWish(key)
     console.log(key);
   }
 
   deleteAll(){
+    this.toast.errorMessage("Your list is empty")
     this.service.deleteAllWish()?.then((data)=> console.log(data)).catch(err => console.log(err)
     )
   }

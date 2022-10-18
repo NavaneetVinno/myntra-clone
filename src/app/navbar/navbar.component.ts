@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-// import { DataServiceService } from '../data-service.service';
 import { BagsService } from '../services/bags/bags.service';
 import { WishlistService } from '../services/wishlist/wishlist.service';
 

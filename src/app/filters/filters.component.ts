@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-// import { DataServiceService } from '../data-service.service';
 import { DatasService } from '../services/datas/datas.service';
+import { ToasterService } from '../services/toaster/toaster.service';
 
 @Component({
   selector: 'app-filters',
@@ -24,7 +24,7 @@ export class FiltersComponent implements OnInit {
   @Output() range = new EventEmitter<any>()
   selectedIndex:any
 
-  constructor(private router: Router, private service:DatasService) { }
+  constructor(private router: Router, private service:DatasService, private toast: ToasterService) { }
 
   ngOnInit(): void {
   }
@@ -183,6 +183,7 @@ export class FiltersComponent implements OnInit {
       })
     }
     }
+    this.toast.successMessage("Filtered items fetched successfully")
   }
 
   findRange(e:any, index:number){
@@ -257,6 +258,7 @@ export class FiltersComponent implements OnInit {
         })
       }
     }
+    this.toast.successMessage("Price filtered items")
   }
 
 }

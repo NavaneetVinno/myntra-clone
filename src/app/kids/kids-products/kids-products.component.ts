@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-// import { DataServiceService } from 'src/app/data-service.service';
 import { DatasService } from 'src/app/services/datas/datas.service';
 
 @Component({
@@ -51,12 +50,12 @@ export class KidsProductsComponent implements OnInit {
     if(res === "high"){
      this.service.getKidsProducts().subscribe(data => {
       this.results = data.sort((a,b) => b.price - a.price)
-      console.log(this.results);
+      // console.log(this.results);
      }) 
     } else if(res === "low"){
       this.service.getKidsProducts().subscribe(data => {
         this.results = data.sort((a,b) => a.price - b.price)
-        console.log(this.results);
+        // console.log(this.results);
       })
     }
   }

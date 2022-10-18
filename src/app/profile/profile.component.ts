@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { OrdersService } from '../services/orders/orders.service';
-// import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-profile',
