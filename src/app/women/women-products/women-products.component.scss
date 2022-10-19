@@ -1,37 +1,39 @@
-.box{
-    position: relative;
-    width: 90%;
-    margin: auto;
+.box {
+  position: relative;
+  width: 90%;
+  margin: auto;
 }
 
-.product--box{
-    overflow-y: auto;
+
+
+.product--box {
+  overflow-y: auto;
 }
 
-.price{
-    font-size: 22px;
-    font-weight: 600;
+.price {
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.original--price{
-    text-decoration: line-through;
-    color: red;
+.original--price {
+  text-decoration: line-through;
+  color: red;
 }
 
-.sort--box{
-    width: 30%;
-    justify-content: center;
+.sort--box {
+  width: 30%;
+  justify-content: center;
 }
 
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
 
-.show{
-    display: block;
+.show {
+  display: block;
 }
 
-.clear{
-    text-decoration: none;
-    color: crimson;
+.clear {
+  text-decoration: none;
+  color: crimson;
 }

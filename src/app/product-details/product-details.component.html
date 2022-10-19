@@ -43,7 +43,10 @@
             <div class="button--box mt-5 mb-2">
                 <button class="btn btn-bag p-2" [disabled]="!flag" (click)="addBag(obj)"><i class="bi bi-bag-fill"></i> Add to bag</button>
                 <button *ngIf="!favIcon" class="btn btn-wish p-2" (click)="addToWish(obj)"><i class="bi bi-heart"></i> Add to wishlist</button>
-                <button *ngIf="favIcon" class="btn btn-wish p-2" (click)="removeFromWish(obj)"><i class="bi bi-heart-fill"></i> Remove from wishlist</button>
+                <button *ngIf="favIcon" class="btn btn-wish p-2 wish--1" (click)="removeFromWish(obj)"><i class="bi bi-heart-fill"></i> Remove from wishlist</button>
+            </div>
+            <div class="my-3">
+                <p class="delivery"><i class="bi bi-truck"></i> Get it before {{delivery}}</p>
             </div>
         </div>
     </div>

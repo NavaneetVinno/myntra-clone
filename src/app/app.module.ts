@@ -64,9 +64,10 @@ import { SharedModuleModule } from './shared/shared-module/shared-module.module'
     SharedModuleModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 3000,
       positionClass: 'toast-top-center',
       enableHtml: true,
+      // toastClass: "my--class"
     })
   ],
   providers: [],

@@ -85,7 +85,6 @@ export class MenProductsComponent implements OnInit {
       })
       this.results = data.sort((a,b) => b.price - a.price)
       this.loader = true;
-      // console.log(this.results);
      })
     } else if(res === "low"){
       this.service.getMenProducts().subscribe(data => {
@@ -94,19 +93,17 @@ export class MenProductsComponent implements OnInit {
         })
         this.results = data.sort((a,b) => a.price - b.price)
         this.loader = true;
-        // console.log(this.results);
       })
     }
     this.loader = false;
     this.toast.successMessage("Sorted by price successfully")
   }
 
-  addWish(i:any,data: any){
-    console.log(data);
-    let datas:any[] = Array.of(data)
-    this.wishArr.push(data)
-    this.wish = this.wish+1;
-    console.log(this.wishArr);
-  }
-
+  // addWish(i:any,data: any){
+  //   console.log(data);
+  //   let datas:any[] = Array.of(data)
+  //   this.wishArr.push(data)
+  //   this.wish = this.wish+1;
+  //   console.log(this.wishArr);
+  // }
 }

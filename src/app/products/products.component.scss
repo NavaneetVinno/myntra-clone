@@ -8,16 +8,6 @@
   overflow-y: auto;
 }
 
-.price {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.original--price {
-  text-decoration: line-through;
-  color: red;
-}
-
 .sort--box {
   width: 30%;
   justify-content: center;
@@ -33,7 +23,6 @@
 
 .bi-heart {
   color: #fd457f;
-  // cursor: pointer;
   font-size: 20px;
 }
 
@@ -52,7 +41,34 @@
 }
 
 .icons{
-  cursor: pointer;
+  margin: 10px;
   top: 2%;
   right: 5%;
+  z-index: 0;
+  .icn--cl{
+    cursor: pointer;
+    z-index: 100;
+  }
+}
+
+.card{
+  cursor: pointer;
+  .card-body{
+    .card-title{
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .card-text{
+      font-size: 16px;
+      font-weight: 400;
+      .price {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .original--price {
+        text-decoration: line-through;
+        color: rgb(67, 64, 64);
+      }
+    }
+  }
 }

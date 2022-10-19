@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { DataServiceService } from './data-service.service';
+// import { DataServiceService } from './data-service.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      providers: [DataServiceService],
+      // providers: [DataServiceService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });

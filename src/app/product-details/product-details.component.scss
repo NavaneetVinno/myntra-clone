@@ -1,5 +1,5 @@
 .brand--head{
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -13,7 +13,8 @@
 
 .product--name{
     color: #555;
-    font-size: 20px;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .rate--box{
@@ -36,7 +37,7 @@
     .price--cont{
         display: flex;
         gap: 15px;
-        font-size: 28px;
+        font-size: 24px;
         .price{
             font-weight: 900;
         }
@@ -108,4 +109,21 @@
         object-fit: contain;
         background-color: rgb(156, 151, 151);
     }
+}
+
+.wish--1{
+    background-color: #333;
+    color: #fff;
+}
+
+.delivery{
+    i{
+        font-size: 30px;
+    }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 25px;
+    font-size: 20px;
+    font-weight: 400;
 }

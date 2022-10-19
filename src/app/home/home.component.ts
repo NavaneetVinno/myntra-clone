@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       "https://businesswireindia.com/Handler/ThumbNailImage.ashx?imgpath=https://cms.businesswireindia.com/Uploads/news-multimedia/images/myntraimage_73813.png&width=700",
       "https://qph.cf2.quoracdn.net/main-qimg-2fa256dc9106d589463936b68ccabc9d-lq",
       "https://www.zingoy.com/blog/wp-content/uploads/2021/08/a4b54b6e-0865-45f3-9e0d-5ab4ccb6751d1627557703867-00_header-1.jpg",
-      "https://scontent.fblr24-1.fna.fbcdn.net/v/t1.6435-9/75266141_10157743915918221_6304204261798445056_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=973b4a&_nc_ohc=LVL30y-bFoMAX9SH-iL&_nc_ht=scontent.fblr24-1.fna&oh=00_AT_ecYEFU1k5sAuCOYU5t1uYJtZmJMVKgMhYaQCc-dlLBw&oe=634FC1BD",
+      "http://www.dfupublications.com/images/2021/09/01/Myntra-launches-new-brand-campaign-with-'Samanta-Akkineni'_large.png",
       "https://indiacityblog.com/wp-content/uploads/2021/06/Myntra-400x400.png",
     ]
  

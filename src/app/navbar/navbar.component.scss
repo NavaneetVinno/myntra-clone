@@ -4,13 +4,11 @@
 //   // opacity: 1;
 //   z-index: 100;
 // }
-// .sticky{
-//   position: relative;
-//   top: 0;
-// }
+
 .navbar {
   background-color: rgb(180, 235, 235);
   padding: 5px 0px;
+  font-weight: 500;
   .input-group {
     height: 30px;
     span {
@@ -25,7 +23,7 @@
 
   .nav-item {
     a{
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 
@@ -38,13 +36,13 @@
   }
 }
 
-form{
-  align-items: center;
-}
+// form{
+//   align-items: center;
+// }
 
-.nav-link{
-  font-weight: 600;
-}
+// .nav-link{
+//   font-weight: 600;
+// }
 .nav--m{
   width: 0%;
 }
@@ -58,11 +56,15 @@ form{
   // right: 0;
   left: 80%;
   color: rgb(216, 35, 35);
+  font-size: 10px;
 }
 
 .blink{
+  .nav--pro{
+    font-size: 12px;
+    font-weight: 500;
+  }
   text-decoration: none;
   color: #000;
   text-align: center;
-  
 }

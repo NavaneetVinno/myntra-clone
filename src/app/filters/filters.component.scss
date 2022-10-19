@@ -42,10 +42,26 @@
 }
 
 .clear{
+    font-size: 12px;
     text-decoration: none;
+    text-transform: uppercase;
     color: crimson;
 }
 
 .filter--box{
     position: sticky; 
+}
+
+.radio--box{
+    font-weight: 500;
+}
+
+.radio--box , .check--box, .price--check{
+    font-size: 14px;
+}
+
+.filter--head{
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
 }

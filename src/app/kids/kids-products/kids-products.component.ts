@@ -23,14 +23,12 @@ export class KidsProductsComponent implements OnInit {
   
   constructor(private service: DatasService, private el: ElementRef, private router: Router) {
     service.getKidsProducts().subscribe(data => {
-      // console.log(data)
       this.loader = true
     })
    }
 
   ngOnInit(): void {
     this.products = this.service.getKidsProducts();
-    // console.log(this.results);
   }
 
   getVal(event:any){
@@ -50,12 +48,10 @@ export class KidsProductsComponent implements OnInit {
     if(res === "high"){
      this.service.getKidsProducts().subscribe(data => {
       this.results = data.sort((a,b) => b.price - a.price)
-      // console.log(this.results);
      }) 
     } else if(res === "low"){
       this.service.getKidsProducts().subscribe(data => {
         this.results = data.sort((a,b) => a.price - b.price)
-        // console.log(this.results);
       })
     }
   }

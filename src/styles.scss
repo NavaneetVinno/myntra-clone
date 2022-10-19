@@ -4,7 +4,7 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 // @import ""
-@import '~ngx-toastr/toastr.css';
+@import "~ngx-toastr/toastr.css";
 
 // ngb-carousel .wrapper {
 //   position: relative;
@@ -19,12 +19,21 @@
 //   right: 0;
 // }
 
-body{
-    overflow-x : hidden;
-    font-family: sans-serif;
-    position: relative;
+body {
+  overflow-x: hidden;
+  margin: 0;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+position: relative;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
 
-
+.toast-top-center {
+  margin-top: 10vh !important;
+  position: fixed;
+//   position: sticky !important;
+//   z-index: 5 !important;
+}

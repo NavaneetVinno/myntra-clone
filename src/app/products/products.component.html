@@ -1,20 +1,20 @@
 
 <div class="row g-4">
 <div class="col-md-3 col-sm-4 box--{{class}} {{cls}} {{boo ? 'hide': ''}}" *ngFor="let product of products; let i = index">
-    <div class="card">
-        <img [src]="product.images?.[0]?.src" class="card-img-top position-relative" alt="...">
-        <div class="position-absolute icons">
-            <a *ngIf="!product.wishProd" (click)="addToWish(product)">
+    <div class="card position-relative" (click)="details(i,product)">
+        <img [src]="product.images?.[0]?.src" class="card-img-top " alt="...">
+        <div class="position-absolute icons" (click)="$event.stopPropagation()">
+            <a class="icn--cl" *ngIf="!product.wishProd" (click)="addToWish(product)">
                 <i class="bi bi-heart"></i>
             </a>
-            <a *ngIf="product.wishProd" (click)="remove(product)">
+            <a class="icn--cl" *ngIf="product.wishProd" (click)="remove(product)">
                 <i class="bi bi-heart-fill"></i>
             </a>
         </div>
-        <div class="card-body"  (click)="details(i,product)">
+        <div class="card-body">
             <h5 class="card-title">{{product.brand}}</h5>
             <p class="card-text">{{product.additionalInfo}}</p>
-            <p class="card-text"><span class="price">₹ {{product.price}} </span><span class="original--price">{{product.mrp}}</span></p>
+            <p class="card-text"><span class="price">₹ {{product.price}} </span><span class="original--price">₹{{product.mrp}}</span></p>
         </div>
     </div>
 </div>
