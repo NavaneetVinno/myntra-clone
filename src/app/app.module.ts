@@ -29,6 +29,8 @@ import { ProductsComponent } from './products/products.component';
 import { FiltersComponent } from './filters/filters.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SharedModuleModule } from './shared/shared-module/shared-module.module';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { SharedModuleModule } from './shared/shared-module/shared-module.module'
     ProductsComponent,
     FiltersComponent,
     LoaderComponent,
+    AuthenticationComponent,
     
   ],
   imports: [
@@ -68,7 +71,8 @@ import { SharedModuleModule } from './shared/shared-module/shared-module.module'
       positionClass: 'toast-top-center',
       enableHtml: true,
       // toastClass: "my--class"
-    })
+    }),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent],

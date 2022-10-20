@@ -11,9 +11,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { BagComponent } from './bag/bag.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  // { path: '', component: HomeComponent },
+  { path: '', component: AuthenticationComponent },
   { path: 'men', component: MenComponent},
   {path: 'men/products', component: MenProductsComponent},
   { path: 'women', component: WomenComponent },
