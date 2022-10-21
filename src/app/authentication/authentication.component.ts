@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth/auth.service';
+// import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-authentication',
@@ -12,8 +14,8 @@ export class AuthenticationComponent implements OnInit {
   isActive = false;
   logInForm!: FormGroup;
   signUpForm!:FormGroup;
-  constructor() { 
-
+  constructor(private service:AuthService) { 
+    
   }
 
   ngOnInit(): void {
@@ -27,8 +29,11 @@ export class AuthenticationComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       gender: new FormControl(null, Validators.required),
       dob: new FormControl(null, Validators.required),
-      location: new FormControl(null, Validators.required)
+      location: new FormControl(null, Validators.required),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
+
+   
   }
 
   openLogIn(){
@@ -43,10 +48,16 @@ export class AuthenticationComponent implements OnInit {
 
   onLogIn(){
     console.log(this.logInForm.value);
+    this.service.SignIn(this.logInForm.value)
   }
 
   onSignUp(){
     console.log(this.signUpForm.value);
+    // this.service.signUpData(this.signUpForm.value)
+    // this.service.SignUp(this.signUpForm.value)
+    this.service.SignUp(this.signUpForm.value)
+    this.isSignUp = false;
+    this.isActive = false;
   }
 
 }

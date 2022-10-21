@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.dealsArr = [
-      "https://scontent.fblr24-1.fna.fbcdn.net/v/t1.6435-9/123796432_10159307310348221_4351058473770506895_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=3-AihPk8R0AAX_Rsx51&_nc_ht=scontent.fblr24-1.fna&oh=00_AT_jygmIgc0LMX2mtcD0Ki5SV6LxnQYNE7S3k-d1RU8hNA&oe=634E0480",
+      "https://previews.123rf.com/images/kho/kho1305/kho130500329/19758746-beautiful-happy-teen-girls-with-colored-shopping-sale-bags-over-white.jpg",
       "https://www.nepaloffers.com/public/offer/6E7D678F7CA3DC5-offer.jpg",
       "https://mir-s3-cdn-cf.behance.net/projects/404/61b18b151868897.Y3JvcCwxMjczLDk5Niw2Myww.png",
       "https://www.savemoneyindia.com/wp-content/uploads/2021/12/myntra-pay-300x262.jpg",

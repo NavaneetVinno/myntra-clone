@@ -47,6 +47,10 @@
           <label>Your current location</label>
           <input type="text" class="form-control" placeholder="Enter your current location" formControlName="location">
         </div>
+        <div class="input-box">
+          <label>Set your password</label>
+          <input type="text" class="form-control" placeholder="Enter your current location" formControlName="password">
+        </div>
         <button class="btn btn-primary input-box" (click)="onSignUp()" [disabled]="!signUpForm.valid">Sign Up</button>
       </form>
     </div>

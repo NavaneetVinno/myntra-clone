@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service';
 import { BagsService } from '../services/bags/bags.service';
 import { WishlistService } from '../services/wishlist/wishlist.service';
 
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   bagProducts!: Observable<any>;
   data:any;
   wish:any;
-  constructor(private service: WishlistService,private router:Router, private service2:BagsService) {
+  constructor(private service: WishlistService,private router:Router, private service2:BagsService, private service3: AuthService) {
     // service.getTotalItem()
    }
 
@@ -28,6 +29,11 @@ export class NavbarComponent implements OnInit {
   }
   getoHome(){
     // console.log("get");
+    this.router.navigate(['/'])
+  }
+
+  logout(){
+    this.service3.SignOut()
     this.router.navigate(['/'])
   }
 }

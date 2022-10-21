@@ -72,7 +72,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
       enableHtml: true,
       // toastClass: "my--class"
     }),
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
