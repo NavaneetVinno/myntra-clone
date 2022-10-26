@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Router } from '@angular/router';
+import { User } from 'firebase/auth';
+import * as firebase from 'firebase/compat';
 import { map, Observable } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service';
 import { OrdersService } from '../services/orders/orders.service';
 
 @Component({
@@ -9,10 +15,13 @@ import { OrdersService } from '../services/orders/orders.service';
 })
 export class ProfileComponent implements OnInit {
   ordersProduct:Observable<any> | undefined
+  userData:any
   flag = false;
   full:any;
   loader:boolean = false;
-  constructor(private service: OrdersService) {
+  userMail:any;
+  currentUser:any
+  constructor(private service: OrdersService, private userService:AuthService, private afDatabase:AngularFireDatabase, private af:AngularFireAuth, private router:Router) {
     service.getOrders()?.valueChanges().subscribe((data:any) => {
       this.loader = true;
     })
@@ -26,7 +35,26 @@ export class ProfileComponent implements OnInit {
         return <any>{key, ...payload}
       }))
     )
+    this.af.authState.subscribe(data => {
+      // console.log(data?.email);
+      this.userMail = data?.email
+      this.findUser(data?.email)
+    })
     this.loader = false;
+  }
+
+  findUser(email:any){
+    this.userService.listArr?.snapshotChanges().subscribe(datas => {
+      datas.forEach(data => {
+        // console.log(data.payload.val());
+        // console.log(data.payload.val().email);
+        const pay = data.payload.val().email
+        if(pay == email){
+          this.currentUser = data.payload.val()
+          // console.log(true);
+        }
+      })
+    })
   }
 
   gotoDiv(n:number){
@@ -58,5 +86,10 @@ export class ProfileComponent implements OnInit {
       "image": data.image,
     }
     this.full = details
+  }
+
+  logout(){
+    this.userService.SignOut()
+    this.router.navigate(['/'])
   }
 }

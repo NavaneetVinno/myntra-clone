@@ -14,7 +14,7 @@ export class WishlistComponent implements OnInit {
   wishProducts:Observable<any> | undefined;
   isEmpty: any = false;
   arr : any;
-  products:any = [];
+  products:any = []
   boxes: any;
   total:any;
   loader:boolean = false;
@@ -30,6 +30,7 @@ export class WishlistComponent implements OnInit {
         return <any>{ key, ...payload };
       }))
     )
+   
     console.log(this.wishProducts);
     // this.service.getDatas()
     this.service.getWish()?.valueChanges().subscribe(data => {

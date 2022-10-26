@@ -1,3 +1,4 @@
+<app-navbar class="sticky"></app-navbar>
 <div class="container my-4">
     <div>
         <h3>Account</h3>
@@ -18,30 +19,31 @@
                         <tbody>
                             <tr>
                                 <td>Full name</td>
-                                <td>User</td>
+                                <td>{{currentUser.username }}</td>
                             </tr>
                             <tr>
                                 <td>Mobile number</td>
-                                <td>1234567890</td>
+                                <td>{{currentUser.phone}}</td>
                             </tr>
                             <tr>
                                 <td>Email ID</td>
-                                <td>user@test.com</td>
+                                <td>{{currentUser.email}}</td>
                             </tr>
                             <tr>
                                 <td>Gender</td>
-                                <td>Male</td>
+                                <td>{{currentUser.gender}}</td>
                             </tr>
                             <tr>
                                 <td>Date of Birth</td>
-                                <td>12/02/1999</td>
+                                <td>{{currentUser.dob}}</td>
                             </tr>
                             <tr>
                                 <td>Location</td>
-                                <td>User</td>
+                                <td>{{currentUser.location}}</td>
                             </tr>
                         </tbody>
                     </table>
+                    <button class="btn btn-danger" (click)="logout()">Logout</button>
                 </div>
             </div>
             <div class="orders--box {{flag == false ? 'hide' : ''}}" >
@@ -108,6 +110,6 @@
       </div>
     </div>
   </div>
-  
+  <app-footer></app-footer>
   
   

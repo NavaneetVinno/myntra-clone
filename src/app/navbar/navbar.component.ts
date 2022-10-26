@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   }
   getoHome(){
     // console.log("get");
-    this.router.navigate(['/'])
+    this.router.navigate(['/home'])
   }
 
   logout(){
