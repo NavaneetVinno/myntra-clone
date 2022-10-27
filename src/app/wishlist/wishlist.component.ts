@@ -14,7 +14,7 @@ export class WishlistComponent implements OnInit {
   wishProducts:Observable<any> | undefined;
   isEmpty: any = false;
   arr : any;
-  products:any = []
+  products:Observable<any> | undefined;
   boxes: any;
   total:any;
   loader:boolean = false;
@@ -25,15 +25,22 @@ export class WishlistComponent implements OnInit {
     this.wishProducts = this.service.getWish()?.snapshotChanges().pipe(
       map((products: any[]) => products.map(prod => {
         const payload = prod.payload.val();
+        // console.log(payload);
         this.isEmpty = true;
         const key = prod.payload.key;
         return <any>{ key, ...payload };
       }))
     )
-   
-    console.log(this.wishProducts);
+    // this.wishProducts = this.service.getWish()
+    
+    // console.log(this.products);
     // this.service.getDatas()
-    this.service.getWish()?.valueChanges().subscribe(data => {
+    this.service.getWish()?.valueChanges().subscribe(datas => {
+      // this.products = datas
+      this.isEmpty = true;
+      datas.forEach(data => {
+        // console.log(data);
+      })
       this.loader = true;
     })
   }

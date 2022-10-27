@@ -16,10 +16,10 @@ import { ToasterService } from '../services/toaster/toaster.service';
 })
 export class BagComponent implements OnInit {
 [x: string]: any;
-  bagProducts:Observable<any> | undefined;
+  bagProducts:Observable<any[]> | undefined;
   isEmpty = false;
   total: Observable<Number> | undefined
-  itemTotal!: Observable<Number>;
+  itemTotal:any;
   steps: any = 1;
   num: any = 0;
   stepperForm!: FormGroup;

@@ -4,6 +4,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Route, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { ReturnStatement } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class AuthService {
   dbPath = '/user';
   listArr: AngularFireList<any> | undefined;
   currentUser:any;
+  userCurrMail:any;
+  userId:any
+  user:any
+  idUser: Observable<any> | undefined
+  private userMail:any
 
   constructor(private angularFireAuth: AngularFireAuth, private db: AngularFireDatabase, private route:Router) {
     this.userData = angularFireAuth.authState;
@@ -27,7 +33,13 @@ export class AuthService {
         }
       })
     )
-    
+    angularFireAuth.authState.subscribe(data => {
+      this.userCurrMail = data
+    })
+  }
+  
+  getUser(){
+    return this.userCurrMail.email
   }
 
   /* Sign up */
@@ -36,6 +48,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(data.email, data.password)
       .then(res => {
         console.log('You are Successfully signed up!', res);
+        alert("Your account is created")
         this.listArr?.push(data)
       })
       .catch(error => {
