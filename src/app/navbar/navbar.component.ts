@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
     this.service2.getBag()?.valueChanges().subscribe(data =>{
       this.data = data
     })
-    this.service.getWish()?.valueChanges().subscribe(data => {
+    this.service.getWish()?.valueChanges().subscribe((data: any) => {
       this.wish = data;
     })
   }

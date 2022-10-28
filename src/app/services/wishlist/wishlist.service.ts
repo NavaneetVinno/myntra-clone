@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Injectable, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   AngularFireDatabase,
@@ -11,7 +11,7 @@ import { AuthService } from '../auth/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class WishlistService implements OnInit {
+export class WishlistService {
   public wishlist: any = [];
   num: any;
   dbPath = '/wish';
@@ -21,58 +21,65 @@ export class WishlistService implements OnInit {
   newArr: AngularFireList<any> | undefined;
   path:any
   getKey:any;
+  arr:AngularFireList<any> | undefined;
+  arr2:any
+  data:any;
 
   constructor(private db: AngularFireDatabase, private af:AngularFireAuth, private service:AuthService) {
     this.listArr = db.list(this.dbPath);
     this.af.authState.subscribe(data => {
-      // console.log(data?.email);
-  
-      this.findUserObject(data?.email)
+      this.newArr = this.db.list('user/'+ data?.uid + this.dbPath)
+      console.log( this.newArr);
     })
-  }
-  
-  ngOnInit(): void {
-    this.af.authState.subscribe(data => {
-      // console.log(data?.email);
-  
-      this.findUserObject(data?.email)
+    // this.newArr = this.getWish()
+    af.currentUser.then(item => {
+      console.log(item);
     })
+    service.userUid.asObservable().subscribe(d => {
+      this.arr2 = d
+      // this.arr = this.db.list('user/'+data+this.dbPath)
+    })
+    // service.listArr?.snapshotChanges().subscribe(datas => {
+    //   console.log(this.arr2);
+    //   this.data = this.arr2
+    //   // datas.forEach(data => {
+    //   //   if(data.key == d){
+    //   //     this.arr2 = 
+    //   //   }
+    //   // })
+    // })
+    // service.getUserId()
+    service.currentUserId
   }
-  
-  findUserObject(mail:any){
-    // console.log(this.service.getUser());
+
+  newGetWish(){
+    let wishlist: any= []
+    this.af.authState.subscribe(async data => {
+      wishlist = this.db.list('user/' + data?.uid + this.dbPath)
+    })
     
-    this.service.listArr?.snapshotChanges().subscribe(datas => {
-      datas.forEach(data => {
-        const pay = data.payload.val().email;
-        if(pay === mail){
-          // console.log(data);
-          this.currObj = data.key
-          // this.path = 'user/' + data.key + this.dbPath
-          this.newArr = this.db.list('user/'+ data.key + this.dbPath)
-        }
-      })
-    })
   }
 
   getWish() {
+    // this.listArr = this.db.list(this.dbPath);
+
+    let wishlist: any= []
+    this.af.authState.subscribe(data => {
+      // console.log('user/'+ data?.uid + this.dbPath);
+      
+      wishlist = this.db.list('user/'+ data?.uid + this.dbPath)
+    })
+    console.log(wishlist);
+    // const arr = this.db.list('user/'+this.arr2+this.dbPath)
+    // return wishlist
     return this.listArr
-    // this.getObj(this.newArr)
+
   }
 
-  getAll(){
-    // return this.db.list('user/' + this.currObj + this.dbPath).snapshotChanges().pipe(
-    //   map((products: any[]) => products.map(prod => {
-    //     const payload = prod.payload.val();
-    //     const key = prod.key;
-    //     return <any>{ key, ...payload };
-    //   })),
-    // );
-    
-  }
 
   setWish(data: any) {
-    return this.newArr?.push(data);
+    // return this.newArr?.push(data);
+    return this.newArr?.push(data)
   }
 
   deleteWish(key: any) {

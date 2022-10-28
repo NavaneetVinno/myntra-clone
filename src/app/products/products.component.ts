@@ -34,16 +34,16 @@ export class ProductsComponent implements OnInit {
     //   })
     // });
     // this.getAll()
-    this.service.getWish()?.snapshotChanges().subscribe(datas => {
-      this.pros = datas.map(data => data.payload.val())
+    this.service.getWish()?.snapshotChanges().subscribe((datas:any)  => {
+      this.pros = datas.map((data:any)  => data.payload.val())
       // console.log(this.pros);
     })
     window.scroll({top:0,left:0,behavior:'smooth'})
   }
   
   getAll(){
-    this.service.getWish()?.snapshotChanges().subscribe(datas => {
-      datas.map(data => {
+    this.service.getWish()?.snapshotChanges().subscribe((datas:any)  => {
+      datas.map((data:any)  => {
         console.log(data.payload.val());
       })
     })
@@ -77,8 +77,8 @@ export class ProductsComponent implements OnInit {
       path = '/kids'
     }
     this.db.database.ref(path+'/'+prod.key).update({wishProd: false})
-    this.service.getWish()?.snapshotChanges().forEach(datas => {
-      datas.forEach(data => {
+    this.service.getWish()?.snapshotChanges().forEach((datas:any) => {
+      datas.forEach((data:any) => {
         let val = data.payload.val();
         if(prod.productId == val.productId){
           this.service.deleteWish(data.key)

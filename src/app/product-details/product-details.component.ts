@@ -60,7 +60,7 @@ export class ProductDetailsComponent implements OnInit {
     this.service
       .getWish()
       ?.snapshotChanges()
-      .subscribe((datas) => {
+      .subscribe((datas: any[]) => {
         datas.forEach((data) => {
           let val = data.payload.val();
           if (this.product[0].productId == val.productId) {
@@ -72,7 +72,7 @@ export class ProductDetailsComponent implements OnInit {
     this.service
       .getWish()
       ?.snapshotChanges()
-      .forEach((datas) => {
+      .forEach((datas: any[]) => {
         datas.forEach((data) => {
           let d = data.payload.toJSON();
           this.lists.push(d);
@@ -88,7 +88,7 @@ export class ProductDetailsComponent implements OnInit {
     this.service
       .getWish()
       ?.snapshotChanges()
-      .forEach((datas) => {
+      .forEach((datas: any[]) => {
         datas.forEach((data) => {
           let val = data.payload.val();
           if (this.product[0].productId == val.productId) {
@@ -175,7 +175,7 @@ export class ProductDetailsComponent implements OnInit {
     this.service
       .getWish()
       ?.snapshotChanges()
-      .forEach((datas) => {
+      .forEach((datas: any[]) => {
         datas.forEach((data) => {
           let val = data.payload.val();
           // this.rmvWish(val.gender,arr)

@@ -26,8 +26,14 @@ export class BagsService {
   constructor(private db: AngularFireDatabase, private service:AuthService, private af:AngularFireAuth) {
     this.bagArr = db.list(this.bagPath);
     this.addArr = db.list(this.addressPath);
+    const id = service.getUser()
+    console.log(id);
     af.authState.subscribe(data => {
-      this.findUser(data?.email)
+      const id = data?.uid
+      console.log(id);
+      this.newBag = this.db.list('user/'+ data?.uid + this.bagPath)
+      this.newAdd = this.db.list('user/' + data?.uid + this.addressPath)
+      // this.findUser(data?.email)
     })
   }
 
