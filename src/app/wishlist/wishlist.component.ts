@@ -24,7 +24,7 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit(): void {
     // this.service.ngOnInit()
-    this.service.newGetWish()
+    // this.service.newGetWish()
     this.wishProducts = this.service.getWish()?.snapshotChanges().pipe(
       map((products: any[]) => products.map(prod => {
         const payload = prod.payload.val();
@@ -34,9 +34,7 @@ export class WishlistComponent implements OnInit {
         return <any>{ key, ...payload };
       }))
     )
-    // this.wishProducts = this.service.getWish()
-    
-    console.log(this.newWish);
+    // console.log(this.newWish);
     // this.service.getDatas()
     this.service.getWish()?.valueChanges().subscribe((datas:any) => {
       // this.products = datas

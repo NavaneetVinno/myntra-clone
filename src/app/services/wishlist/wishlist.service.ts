@@ -27,58 +27,24 @@ export class WishlistService {
 
   constructor(private db: AngularFireDatabase, private af:AngularFireAuth, private service:AuthService) {
     this.listArr = db.list(this.dbPath);
-    this.af.authState.subscribe(data => {
-      this.newArr = this.db.list('user/'+ data?.uid + this.dbPath)
-      console.log( this.newArr);
-    })
-    // this.newArr = this.getWish()
-    af.currentUser.then(item => {
-      console.log(item);
-    })
+    let uid = service.getUser()
+    let id = uid?.slice(1,-1)
+    // console.log(id);
+    this.newArr = this.db.list('user/'+ id + this.dbPath)
+   
     service.userUid.asObservable().subscribe(d => {
       this.arr2 = d
       // this.arr = this.db.list('user/'+data+this.dbPath)
-    })
-    // service.listArr?.snapshotChanges().subscribe(datas => {
-    //   console.log(this.arr2);
-    //   this.data = this.arr2
-    //   // datas.forEach(data => {
-    //   //   if(data.key == d){
-    //   //     this.arr2 = 
-    //   //   }
-    //   // })
-    // })
-    // service.getUserId()
-    service.currentUserId
-  }
-
-  newGetWish(){
-    let wishlist: any= []
-    this.af.authState.subscribe(async data => {
-      wishlist = this.db.list('user/' + data?.uid + this.dbPath)
     })
     
   }
 
   getWish() {
-    // this.listArr = this.db.list(this.dbPath);
-
-    let wishlist: any= []
-    this.af.authState.subscribe(data => {
-      // console.log('user/'+ data?.uid + this.dbPath);
-      
-      wishlist = this.db.list('user/'+ data?.uid + this.dbPath)
-    })
-    console.log(wishlist);
-    // const arr = this.db.list('user/'+this.arr2+this.dbPath)
-    // return wishlist
-    return this.listArr
-
+    return this.newArr
   }
 
 
   setWish(data: any) {
-    // return this.newArr?.push(data);
     return this.newArr?.push(data)
   }
 

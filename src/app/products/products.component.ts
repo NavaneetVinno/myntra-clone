@@ -20,35 +20,51 @@ export class ProductsComponent implements OnInit {
   @Input() section!:string;
   wishBtn:any;
   // foo = false;
+  favLogo:boolean = false;
   pros:any
+  items:any;
+  keys:any[] = []
 
-  constructor(private router:Router, private service:WishlistService, private service2:DatasService, private db: AngularFireDatabase, private toast: ToasterService) { }
+  constructor(private router:Router, private service:WishlistService, private service2:DatasService, private db: AngularFireDatabase, private toast: ToasterService) {}
 
   ngOnInit(): void {
-    // this.db.list('/wish').valueChanges().subscribe(data => {
-    //   // console.log(data);
-    //   this.wishBtn = data
-    //   this.wishBtn.map((data: any) => {
-    //     console.log(data);
-    //     data.wishProd = true;
-    //   })
-    // });
-    // this.getAll()
+    this.getAll()
+    
     this.service.getWish()?.snapshotChanges().subscribe((datas:any)  => {
       this.pros = datas.map((data:any)  => data.payload.val())
-      // console.log(this.pros);
     })
     window.scroll({top:0,left:0,behavior:'smooth'})
   }
   
   getAll(){
-    this.service.getWish()?.snapshotChanges().subscribe((datas:any)  => {
-      datas.map((data:any)  => {
-        console.log(data.payload.val());
+    if(this.section == 'men'){
+      this.items = this.service2.getMenProducts().forEach(datas => {
+        datas.forEach(data => {
+          this.service.getWish()?.valueChanges().subscribe(items => {
+            items.forEach(item => {
+              if(item.productId == data.productId){
+                const k = data.key
+                this.keys.push(data.key)
+                this.favLogo = true
+                
+                // this.addLogo(this.keys)
+              } else {
+                this.favLogo = false
+              }
+            })
+          })
+        })
       })
-    })
+    } else if (this.section == 'women'){
+      this.items = this.service2.getWomenProducts()
+    } else if(this.section == 'kids'){
+      this.items = this.service2.getKidsProducts()
+    }
   }
-
+  addLogo(data:any){
+    let id = data
+    console.log(id);
+  }
 
   addToWish(prod:any){
     this.toast.successMessage("Item is added to wish list")

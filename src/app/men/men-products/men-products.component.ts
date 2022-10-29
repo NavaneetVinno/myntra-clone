@@ -28,50 +28,30 @@ export class MenProductsComponent implements OnInit {
   loader:boolean = false;
   men = "men";
   constructor(private service: DatasService, private el: ElementRef, private router: Router, private toast: ToasterService) { 
-    // service.getMenProducts().subscribe(data => {
-    //   console.log(data)
-    //   this.loader = true
-    // })
   }
 
   ngOnInit(): void {
     this.products = this.service.getMenProducts()
     
-    // this.service.getWish()?.snapshotChanges().subscribe(
-    //   data => {
-    //     this.datas = data;
-    //     this.loader = true;
-    //   }
-    // )
-    // this.loader=true;
+   
     this.fn();
   }
 
  fn(){
   this.service.getMenProducts().subscribe(d => {
-    // console.log(d);
     this.loader = true;
-    d.map(da => {
-      // da["wishProd"] = false;
-    })
-    // console.log(d);
     this.datas = d;
-    // console.log(this.datas);
   })
  }
 
   getVal(event:any){
-    // this.loader = true;
     this.flag = true;
     this.results = event
-    // this.loader = false
   }
 
   getRange(event:any){
-    // this.loader = true;
     this.flag = true;
     this.results = event
-    // this.loader = false
   }
 
   selectChange(event: any){
@@ -99,11 +79,4 @@ export class MenProductsComponent implements OnInit {
     this.toast.successMessage("Sorted by price successfully")
   }
 
-  // addWish(i:any,data: any){
-  //   console.log(data);
-  //   let datas:any[] = Array.of(data)
-  //   this.wishArr.push(data)
-  //   this.wish = this.wish+1;
-  //   console.log(this.wishArr);
-  // }
 }

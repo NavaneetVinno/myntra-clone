@@ -3,6 +3,7 @@ import {
   AngularFireDatabase,
   AngularFireList,
 } from '@angular/fire/compat/database';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -12,35 +13,30 @@ export class OrdersService {
   public prod: any;
   public wishlist: any = [];
   num: any;
-  dbPath = '/wish';
-  listArr: AngularFireList<any> | undefined;
-  bagPath = '/bags';
-  bagArr: AngularFireList<any> | undefined;
-  addressPath = '/address';
-  addArr: AngularFireList<any> | undefined;
   ordersPath = '/orders';
   ordersArr: AngularFireList<any> | undefined;
+  newOrders:AngularFireList<any> | undefined;
 
-  constructor(private db: AngularFireDatabase) {
-    this.listArr = db.list(this.dbPath);
-    this.bagArr = db.list(this.bagPath);
-    this.addArr = db.list(this.addressPath);
+  constructor(private db: AngularFireDatabase, private service:AuthService) {
     this.ordersArr = db.list(this.ordersPath);
+    let uid = service.getUser()
+    let id = uid?.slice(1,-1)
+    this.newOrders = db.list('user/' + id + this.ordersPath)
   }
 
   setOrders(data: any) {
-    return this.ordersArr?.push(data);
+    return this.newOrders?.push(data);
   }
 
   getOrders() {
-    return this.ordersArr;
+    return this.newOrders;
   }
 
   deleteOrder(id: any) {
-    return this.ordersArr?.remove(id);
+    return this.newOrders?.remove(id);
   }
 
   deleteAllOrder() {
-    return this.ordersArr?.remove();
+    return this.newOrders?.remove();
   }
 }
