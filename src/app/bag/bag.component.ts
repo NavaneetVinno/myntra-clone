@@ -109,7 +109,7 @@ export class BagComponent implements OnInit {
 
   deleteAll(){
     this.toast.errorMessage("Your bag is fully empty")
-    this.service.deleteBag()?.then(data => console.log(data)).catch(err => console.error(err))
+    this.service.deleteBag()
   }
 
   prevBtn() {

@@ -29,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   lat = false;
   flag2 = false;
   delivery: any;
+  dbPath:any;
 
   constructor(
     private service: WishlistService,
@@ -49,7 +50,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.product = Array(this.service.getProduct());
     let text = this.product[0].productId;
-
+    this.dbPath = this.service3.path
     let deliveryDay: Date = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);
     let da = String(deliveryDay.getDate()).padStart(2, '0');
     let mo = String(deliveryDay.getMonth() + 1).padStart(2, '0');
@@ -127,7 +128,7 @@ export class ProductDetailsComponent implements OnInit {
     let path: any;
     let key: any;
     if (val == 'Men') {
-      path = '/data';
+      path = this.dbPath + '/data';
       this.service3.getMenProducts().forEach((datas) => {
         datas.forEach((data) => {
           if (data.productId == obj.productId) {
@@ -140,7 +141,7 @@ export class ProductDetailsComponent implements OnInit {
         });
       });
     } else if (val == 'Women') {
-      path = '/women';
+      path = this.dbPath + '/women';
       this.service3.getWomenProducts().forEach((datas) => {
         datas.forEach((data) => {
           if (data.productId == obj.productId) {
@@ -152,7 +153,7 @@ export class ProductDetailsComponent implements OnInit {
         });
       });
     } else {
-      path = '/kids';
+      path = this.dbPath + '/kids';
       this.service3.getKidsProducts().forEach((datas) => {
         datas.forEach((data) => {
           if (data.productId == obj.productId) {
@@ -193,7 +194,7 @@ export class ProductDetailsComponent implements OnInit {
     let path: any;
     let key: any;
     if (value == 'Men') {
-      path = '/data';
+      path = this.dbPath + '/data';
       this.service3.getMenProducts().forEach((datas) => {
         datas.forEach((data) => {
           if (data.productId == obj.productId) {
@@ -205,7 +206,7 @@ export class ProductDetailsComponent implements OnInit {
         });
       });
     } else if (value == 'Women') {
-      path = '/women';
+      path = this.dbPath + '/women';
       this.service3.getWomenProducts().forEach((datas) => {
         datas.forEach((data) => {
           if (data.productId == obj.productId) {
@@ -217,7 +218,7 @@ export class ProductDetailsComponent implements OnInit {
         });
       });
     } else {
-      path = '/kid';
+      path = this.dbPath + '/kids';
       this.service3.getKidsProducts().forEach((datas) => {
         datas.forEach((data) => {
           if (data.productId == obj.productId) {

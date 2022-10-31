@@ -39,4 +39,5 @@ export class OrdersService {
   deleteAllOrder() {
     return this.newOrders?.remove();
   }
+
 }

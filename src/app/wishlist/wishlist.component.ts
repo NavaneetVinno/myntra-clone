@@ -1,6 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service';
+import { DatasService } from '../services/datas/datas.service';
 import { ToasterService } from '../services/toaster/toaster.service';
 import { WishlistService } from '../services/wishlist/wishlist.service';
 
@@ -18,9 +21,10 @@ export class WishlistComponent implements OnInit {
   boxes: any;
   total:any;
   loader:boolean = false;
-  newWish:any
+  newWish:any;
+  dbPath:any;
 
-  constructor(private service: WishlistService, private router: Router, private toast: ToasterService) {}
+  constructor(private service: WishlistService, private router: Router, private toast: ToasterService, private auth: AuthService, private db: AngularFireDatabase, private srvc:DatasService) {}
 
   ngOnInit(): void {
     // this.service.ngOnInit()
@@ -45,6 +49,7 @@ export class WishlistComponent implements OnInit {
       this.loader = true;
       // this._changeDetectionRef.detectChanges();
     })
+    this.dbPath = this.srvc.path
   }
 
   deleteItem(key:any){

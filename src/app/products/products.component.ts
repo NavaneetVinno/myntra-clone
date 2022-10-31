@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
   pros:any
   items:any;
   keys:any[] = []
+  dbPath:any;
 
   constructor(private router:Router, private service:WishlistService, private service2:DatasService, private db: AngularFireDatabase, private toast: ToasterService) {}
 
@@ -34,6 +35,7 @@ export class ProductsComponent implements OnInit {
       this.pros = datas.map((data:any)  => data.payload.val())
     })
     window.scroll({top:0,left:0,behavior:'smooth'})
+    this.dbPath = this.service2.path
   }
   
   getAll(){
@@ -44,14 +46,16 @@ export class ProductsComponent implements OnInit {
             items.forEach(item => {
               if(item.productId == data.productId){
                 const k = data.key
-                this.keys.push(data.key)
                 this.favLogo = true
+                // this.keys.push(true,k)
                 
-                // this.addLogo(this.keys)
               } else {
+                const k = data.key
                 this.favLogo = false
+                // this.keys.push(false,k)
               }
             })
+            // console.log(this.keys);
           })
         })
       })
@@ -60,21 +64,18 @@ export class ProductsComponent implements OnInit {
     } else if(this.section == 'kids'){
       this.items = this.service2.getKidsProducts()
     }
-  }
-  addLogo(data:any){
-    let id = data
-    console.log(id);
+    
   }
 
   addToWish(prod:any){
     this.toast.successMessage("Item is added to wish list")
     let path:any;
     if(this.section == 'men'){
-      path = '/data'
+      path = this.dbPath + '/data'
     } else if (this.section == 'women'){
-      path = '/women'
+      path = this.dbPath + '/women'
     } else if(this.section == 'kids'){
-      path = '/kids'
+      path = this.dbPath + '/kids'
     }
     this.db.database.ref(path+'/'+prod.key).update({wishProd: true})
     delete prod.key;
@@ -86,11 +87,11 @@ export class ProductsComponent implements OnInit {
     this.toast.warningMessage("Item is removed from wishlist")
     let path:any;
     if(this.section == 'men'){
-      path = '/data'
+      path = this.dbPath + '/data'
     } else if (this.section == 'women'){
-      path = '/women'
+      path = this.dbPath + '/women'
     } else if(this.section == 'kids'){
-      path = '/kids'
+      path = this.dbPath + '/kids'
     }
     this.db.database.ref(path+'/'+prod.key).update({wishProd: false})
     this.service.getWish()?.snapshotChanges().forEach((datas:any) => {

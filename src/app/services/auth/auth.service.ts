@@ -1,11 +1,14 @@
 import { EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { authState, Auth } from '@angular/fire/auth';
+import { authState, Auth, UserInfo } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Route, Router } from '@angular/router';
-import { BehaviorSubject, map, Observable, Subject, switchMap, of, first } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, switchMap, of, first, concatMap } from 'rxjs';
 import { ReturnStatement } from '@angular/compiler';
+import menData from "../../men-products.json";
+import womenData from "../../women-products.json";
+import kidsData from "../../kids-products.json"
 
 @Injectable({
   providedIn: 'root'
@@ -32,18 +35,7 @@ export class AuthService implements OnInit {
     this.userData = angularFireAuth.authState;
     
     this.listArr = db.list(this.dbPath)
-    // this.currentUser = angularFireAuth.authState.pipe(
-    //   map( user => {
-    //     this.userId = user?.uid
-    //     if (user) {
-    //       return this.db.list<any>(`user/${user.uid}`).valueChanges();
-    //     } else {
-    //       return null
-    //     }
-    //   })
-    // )
-
-    // console.log(this.currentUser);
+    
     this.angularFireAuth.authState.subscribe(data => {
       this.userCurrMail = data?.uid
     })
@@ -57,8 +49,6 @@ export class AuthService implements OnInit {
    
   }
 
- 
-  
   getUser(){
     return localStorage.getItem("currentUser")
   }
@@ -71,8 +61,12 @@ export class AuthService implements OnInit {
         console.log('You are Successfully signed up!', res);
         alert("Your account is created")
         const key = res.user?.uid
-        // this.listArr?.push({key, ...data})
         this.db.object(`user/${key}`).set(data)
+        this.db.object(`user/${key}`).update({
+          "data": menData,
+          "women": womenData,
+          "kids": kidsData
+        })
       })
       .catch(error => {
         console.log('Something is wrong:', error.message);
@@ -97,5 +91,14 @@ export class AuthService implements OnInit {
   SignOut() {
     this.angularFireAuth.signOut();
   } 
+
+  // updateProfileData(_profileData: Partial<UserInfo>){
+  //   const user = this.angularFireAuth.currentUser
+  //   return of (user).pipe(
+  //     concatMap( user => {
+  //       if(!user) throw new Error("User is not authenticated")
+  //     })
+  //   )
+  // }
 
 }

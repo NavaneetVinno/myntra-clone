@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
+import { DatasService } from '../services/datas/datas.service';
+
 // import { AuthService } from '../services/auth/auth.service';
 
 @Component({
@@ -9,12 +11,12 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
-
+  data!: any[];
   isSignUp = false;
   isActive = false;
   logInForm!: FormGroup;
   signUpForm!:FormGroup;
-  constructor(private service:AuthService) { 
+  constructor(private service:AuthService, private service2:DatasService) { 
     
   }
 
@@ -30,10 +32,12 @@ export class AuthenticationComponent implements OnInit {
       gender: new FormControl(null, Validators.required),
       dob: new FormControl(null, Validators.required),
       location: new FormControl(null, Validators.required),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      // data: this.service2.getMenProducts()
+      
     })
-
-   
+    // const data = this.service2.getMenProducts()
+    // console.log(data);
   }
 
   openLogIn(){

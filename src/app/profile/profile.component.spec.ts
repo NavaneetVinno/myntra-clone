@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
 import { ComponentFixture, TestBed } from "@angular/core/testing"
-import { DataServiceService } from "../data-service.service"
+import { DatasService } from "../services/datas/datas.service"
 import { ProfileComponent } from "./profile.component"
 
 describe("Profile Component",()=>{
@@ -8,7 +8,7 @@ describe("Profile Component",()=>{
     beforeEach(()=>{
         TestBed.configureTestingModule({
             declarations:[ProfileComponent],
-            providers:[DataServiceService],
+            providers:[DatasService],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents()
     })

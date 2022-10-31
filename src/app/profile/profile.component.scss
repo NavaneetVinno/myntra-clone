@@ -13,10 +13,20 @@
     
 }
 
+.bi-pencil-square{
+    color: blue;
+    font-size: 22px;
+}
+
 .orders--box{
     border: 1px solid #333;
     display: flex;
     flex-direction: column;
+    .ord--none{
+        color: rgb(241, 73, 73);
+        font-size: 20px;
+        margin: auto;
+    }
     .order--head{
         margin: auto;
     }
@@ -44,4 +54,19 @@
 
 .hide{
     display: none;
+}
+
+.profile-img{
+    position: relative;
+    img{
+        border-radius: 100%;
+    }
+    button{
+        position: absolute;
+        bottom: 1px;
+        border-radius: 100%;
+        background-color: rgb(237, 35, 102);
+        color: rgb(246, 246, 248);
+        left: 100px;
+    }
 }
