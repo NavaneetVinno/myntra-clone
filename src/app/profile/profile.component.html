@@ -1,12 +1,13 @@
 <app-navbar class="sticky"></app-navbar>
-<div class="container my-4">
+<app-loader *ngIf="!loader"></app-loader>
+<div class="container my-4" *ngIf="loader">
     <div>
         <h3>Account</h3>
-        <p>Myntra user</p>
+        <p>Myntra user <span class="user--name"> {{currentUser?.username}}</span></p>
         <div *ngIf="userData" class="profile-img">
-            <img [src]="userData.photoURL ?? 'assets/placeholder.webp'" alt="" width="120" height="120">
+            <img [src]="currentUser?.photoURL ? currentUser.photoURL : '../../assets/placeholder.webp'" alt="" width="120" height="120">
             <button class="btn" (click)="profile.click()"><i class="bi bi-pencil-fill"></i></button>
-            <input #profile type="file" hidden>
+            <input #profile type="file" hidden (change)="onPhotoSelect($event, userData)">
         </div>
         <hr>
     </div>
@@ -27,27 +28,27 @@
                         <tbody>
                             <tr>
                                 <td>Full name</td>
-                                <td>{{currentUser?.username }}</td>
+                                <td>:-  {{userName }}</td>
                             </tr>
                             <tr>
                                 <td>Mobile number</td>
-                                <td>{{currentUser?.phone}}</td>
+                                <td>:-  {{userPhone}}</td>
                             </tr>
                             <tr>
                                 <td>Email ID</td>
-                                <td>{{currentUser?.email}}</td>
+                                <td>:-  {{userEmail}}</td>
                             </tr>
                             <tr>
                                 <td>Gender</td>
-                                <td>{{currentUser?.gender}}</td>
+                                <td>:-  {{userGender}}</td>
                             </tr>
                             <tr>
                                 <td>Date of Birth</td>
-                                <td>{{currentUser?.dob}}</td>
+                                <td>:-  {{userDOB}}</td>
                             </tr>
                             <tr>
                                 <td>Location</td>
-                                <td>{{currentUser?.location}}</td>
+                                <td>:-  {{userLocation}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -132,15 +133,15 @@
         <div class="modal-body">
             <div class="mb-3">
                 <label>User Name</label>
-                <input class="form-control" type="text" formControlName="username" [value]="currentUser?.username">
+                <input class="form-control" type="text" formControlName="username" [value]="userName">
             </div>
             <div class="mb-3">
                 <label>Phone</label>
-                <input class="form-control" type="number" [value]="currentUser?.phone" formControlName="phone">
+                <input class="form-control" type="number" [value]="userPhone" formControlName="phone">
             </div>
             <div class="mb-3">
                 <label>Gender</label>
-                <select class="form-select" [value]="currentUser?.gender" formControlName="gender">
+                <select class="form-select" [value]="userGender" formControlName="gender">
                     <option selected>Select your gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -149,16 +150,16 @@
             </div>
             <div class="mb-3">
                 <label>Date of Birth</label>
-                <input class="form-control" type="date" [value]="currentUser?.dob" formControlName="dob">
+                <input class="form-control" type="date" [value]="userDOB" formControlName="dob">
             </div>
             <div class="mb-3">
                 <label>Location</label>
-                <input class="form-control" type="text" [value]="currentUser?.location" formControlName="location">
+                <input class="form-control" type="text" [value]="userLocation" formControlName="location">
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid" data-bs-dismiss="modal">Save changes</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
         </div>
     </div>
     </div>

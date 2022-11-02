@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { authState, Auth, UserInfo } from '@angular/fire/auth';
+import { authState, Auth, UserInfo, updateProfile } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Route, Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, Subject, switchMap, of, first, concatMap } from 'rxjs';
@@ -9,6 +9,7 @@ import { ReturnStatement } from '@angular/compiler';
 import menData from "../../men-products.json";
 import womenData from "../../women-products.json";
 import kidsData from "../../kids-products.json"
+import { ToasterService } from '../toaster/toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class AuthService implements OnInit {
   @Output() userUid = new EventEmitter<any>()
   
 
-  constructor(private angularFireAuth: AngularFireAuth, private db: AngularFireDatabase, private route:Router) {
+  constructor(private angularFireAuth: AngularFireAuth, private db: AngularFireDatabase, private route:Router, private toast:ToasterService) {
     this.userData = angularFireAuth.authState;
     
     this.listArr = db.list(this.dbPath)
@@ -65,11 +66,14 @@ export class AuthService implements OnInit {
         this.db.object(`user/${key}`).update({
           "data": menData,
           "women": womenData,
-          "kids": kidsData
+          "kids": kidsData,
+          "photoURL": '../../../assets/placeholder.webp',
         })
+        this.toast.successMessage("Your account is created successfully")
       })
       .catch(error => {
         console.log('Something is wrong:', error.message);
+        this.toast.errorMessage(`Error occurred of ${error}`)
       });    
   }
 
@@ -81,22 +85,48 @@ export class AuthService implements OnInit {
         console.log('You are Successfully logged in!');
         localStorage.setItem("currentUser", JSON.stringify(res.user?.uid))
         this.route.navigate(['/home'])
+        this.toast.successMessage("Successfully logged in your account")
       })
       .catch(err => {
         console.log('Something is wrong:',err.message);
+        this.toast.errorMessage(`Error occurred due to ${err}`)
       });
   }
 
   /* Sign out */
   SignOut() {
     this.angularFireAuth.signOut();
+    localStorage.removeItem("currentUser")
+    this.toast.warningMessage("You have logged out")
   } 
+
+  // UPDATE USER
+  updateUser(data:any){
+    this.db.object('user/'+ this.getUser()).update({
+      username: data.username,
+      phone: data.phone,
+      gender: data.gender,
+      dob: data.dob,
+      location: data.location,
+    })
+  }
 
   // updateProfileData(_profileData: Partial<UserInfo>){
   //   const user = this.angularFireAuth.currentUser
   //   return of (user).pipe(
   //     concatMap( user => {
   //       if(!user) throw new Error("User is not authenticated")
+  //     })
+  //   )
+  // }
+
+  // updateProfileData(profileData: Partial<UserInfo>):Observable<any>{
+  //   const users = this.angularFireAuth.currentUser
+  //   return of(users).pipe(
+  //     concatMap(user => {
+  //       if(!user) throw new Error('not authenticated')
+
+  //       return updateProfile(users, profileData)
   //     })
   //   )
   // }

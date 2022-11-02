@@ -4,6 +4,11 @@
     color: #555;
 }
 
+.user--name{
+    font-size: 18px;
+    font-weight: 500;
+}
+
 .set--point:hover{
     color: #000;
 }
@@ -65,7 +70,7 @@
         position: absolute;
         bottom: 1px;
         border-radius: 100%;
-        background-color: rgb(237, 35, 102);
+        background-color: #084093fa;
         color: rgb(246, 246, 248);
         left: 100px;
     }
