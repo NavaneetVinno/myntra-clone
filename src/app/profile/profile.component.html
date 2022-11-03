@@ -32,7 +32,7 @@
                             </tr>
                             <tr>
                                 <td>Mobile number</td>
-                                <td>:-  {{userPhone}}</td>
+                                <td>:- {{userCountry}}  {{userPhone}}</td>
                             </tr>
                             <tr>
                                 <td>Email ID</td>
@@ -133,11 +133,19 @@
         <div class="modal-body">
             <div class="mb-3">
                 <label>User Name</label>
-                <input class="form-control" type="text" formControlName="username" [value]="userName">
+                <input class="form-control" type="text" formControlName="username" [value]="userName" minlength="1">
+                <p class="error--line" *ngIf="userForm.get('username')?.invalid">Enter user name</p>
             </div>
             <div class="mb-3">
                 <label>Phone</label>
-                <input class="form-control" type="number" [value]="userPhone" formControlName="phone">
+                <div class="input-group">
+                    <select class="form-select" [value]="userCountry" formControlName="country">
+                        <option *ngFor="let item of country" value="{{item.code}}">{{item.code}} ({{item.name}})</option>
+                        <!-- <option value="{{userCountry}}" selected>{{userCountry}}</option> -->
+                    </select>
+                    <input class="form-control" type="number" [value]="userPhone" formControlName="phone" maxlength="10">
+                </div>
+                <p class="error--line" *ngIf="userForm.get('phone')?.invalid">Invalid phone number</p>
             </div>
             <div class="mb-3">
                 <label>Gender</label>
@@ -147,19 +155,22 @@
                     <option value="female">Female</option>
                     <option value="others">Others</option>
                 </select>
+                <p class="error--line" *ngIf="userForm.get('gender')?.invalid">Enter gender</p>
             </div>
             <div class="mb-3">
                 <label>Date of Birth</label>
                 <input class="form-control" type="date" [value]="userDOB" formControlName="dob">
+                <p class="error--line" *ngIf="userForm.get('dob')?.invalid">Enter date of birth</p>
             </div>
             <div class="mb-3">
                 <label>Location</label>
-                <input class="form-control" type="text" [value]="userLocation" formControlName="location">
+                <input class="form-control" type="text" [value]="userLocation" formControlName="location" minlength="1">
+                <p class="error--line" *ngIf="userForm.get('location')?.invalid">Enter the location</p>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!userForm.valid">Save changes</button>
         </div>
     </div>
     </div>

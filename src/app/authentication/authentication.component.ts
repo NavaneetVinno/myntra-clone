@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 import { DatasService } from '../services/datas/datas.service';
+import countryData from "../phone-codes.json"
 
 // import { AuthService } from '../services/auth/auth.service';
 
@@ -16,23 +17,26 @@ export class AuthenticationComponent implements OnInit {
   isActive = false;
   logInForm!: FormGroup;
   signUpForm!:FormGroup;
+  country:any;
   constructor(private service:AuthService, private service2:DatasService) { 
     
   }
 
   ngOnInit(): void {
+    this.country = countryData
     this.logInForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
     this.signUpForm = new FormGroup({
       username : new FormControl(null, Validators.required),
-      phone: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+      phone: new FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?) |0)?[0-9]{10}$")]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       gender: new FormControl(null, Validators.required),
       dob: new FormControl(null, Validators.required),
       location: new FormControl(null, Validators.required),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      country: new FormControl(null, Validators.required),
       // data: this.service2.getMenProducts()
       
     })

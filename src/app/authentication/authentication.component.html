@@ -14,10 +14,12 @@
         <div class="input-box">
           <label>Email</label>
           <input type="email" class="form-control" placeholder="Enter your email" formControlName="email">
+          <p class="error--line" *ngIf="logInForm.get('email')?.invalid && logInForm.get('email')?.touched">Invalid email id</p>
         </div>
         <div class="input-box">
           <label>Password</label>
           <input type="password" class="form-control" placeholder="Enter your Password" formControlName="password">
+          <p class="error--line" *ngIf="logInForm.get('password')?.invalid && logInForm.get('password')?.touched">Invalid password</p>
         </div>
         <p class="input-box">If you don't have account then Sign up</p>
         <button class="btn btn-primary input-box" (click)="onLogIn()" [disabled]="!logInForm.valid">Log In</button>
@@ -29,11 +31,20 @@
         </div>
         <div class="input-box">
           <label>Phone</label>
-          <input type="number" class="form-control" placeholder="Enter your Phone number" formControlName="phone">
+          <div class="input-group">
+            <select class="form-select" formControlName="country">
+              <option selected>select country</option>
+              <option value="{{item.code}}" *ngFor="let item of country">{{item.code}} ({{item.name}})</option>
+            </select>
+            <input type="number" class="form-control" placeholder="Enter your Phone number" formControlName="phone" maxlength="10">
+          </div>
+          <p class="error--line" *ngIf="signUpForm.get('country')?.invalid && signUpForm.get('country')?.touched">Select a country</p>
+          <p class="error--line" *ngIf="signUpForm.get('phone')?.invalid && signUpForm.get('phone')?.touched">Enter valid phone number</p>
         </div>
         <div class="input-box">
           <label>Email</label>
           <input type="email" class="form-control" placeholder="Enter your Email" formControlName="email">
+          <p class="error--line" *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched">Enter valid email id</p>
         </div>
         <div class="input-box">
           <label>Gender</label>
@@ -43,18 +54,22 @@
             <option value="female">Female</option>
             <option value="others">Others</option>
           </select>
+          <p class="error--line" *ngIf="signUpForm.get('gender')?.invalid && signUpForm.get('gender')?.touched">Select any one option</p>
         </div>
         <div class="input-box">
           <label>Date of birth</label>
           <input type="date" class="form-control" placeholder="Enter your DOB" formControlName="dob">
+          <p class="error--line" *ngIf="signUpForm.get('dob')?.invalid && signUpForm.get('dob')?.touched">Enter the date of birth</p>
         </div>
         <div class="input-box">
           <label>Your current location</label>
           <input type="text" class="form-control" placeholder="Enter your current location" formControlName="location">
+          <p class="error--line" *ngIf="signUpForm.get('location')?.invalid && signUpForm.get('location')?.touched">Enter the location</p>
         </div>
         <div class="input-box">
           <label>Set your password</label>
           <input type="text" class="form-control" placeholder="Enter your current location" formControlName="password">
+          <p class="error--line" *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">Enter the valid password</p>
         </div>
         <button class="btn btn-primary input-box" (click)="onSignUp()" [disabled]="!signUpForm.valid">Sign Up</button>
       </form>

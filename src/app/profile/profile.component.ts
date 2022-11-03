@@ -9,9 +9,9 @@ import * as firebase from 'firebase/compat';
 import { finalize, map, Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { DatasService } from '../services/datas/datas.service';
-// import { ImageService } from '../services/image/image.service';
 import { OrdersService } from '../services/orders/orders.service';
 import { ToasterService } from '../services/toaster/toaster.service';
+import countryCode from "../phone-codes.json"
 
 @Component({
   selector: 'app-profile',
@@ -37,9 +37,11 @@ export class ProfileComponent implements OnInit {
   userGender:any;
   userDOB:any;
   userLocation:any;
+  userCountry:any;
   userEmail:any;
   firstUser:any;
   datas:any
+  country:any;
 
   constructor(
     private service: OrdersService,
@@ -49,22 +51,15 @@ export class ProfileComponent implements OnInit {
      private router:Router, 
      private service2:DatasService,
      private toast: ToasterService,
-    //  private imgService: ImageService,
      private storage: AngularFireStorage
      ) {
-    // service.getOrders()?.valueChanges().subscribe((data:any) => {
-    //   this.loader = true;
-    // })
-    // this.userForm = new FormGroup({
-    //   username: new FormControl(this.userName),
-    //   phone: new FormControl(this.userPhone),
-    //   gender: new FormControl(this.userGender),
-    //   dob: new FormControl(this.userDOB),
-    //   location : new FormControl(this.userLocation)
-    // })
+    service.getOrders()?.valueChanges().subscribe((data:any) => {
+      this.loader = true;
+    })
    }
 
   ngOnInit(): void {
+    this.country = countryCode
     this.ordersProduct = this.service.getOrders()?.snapshotChanges().pipe(
       map((products:any []) => products.map(prod => {
         const payload = prod.payload.val();
@@ -73,66 +68,47 @@ export class ProfileComponent implements OnInit {
       }))
     )
     this.af.authState.subscribe(data => {
-      // console.log(data?.email);
       this.userData = data
-      // console.log(data);
       this.userMail = data?.email
       this.findUser(data?.email)
       this.loader = true;
     })
-    // this.loader = false
     this.service.getOrders()?.valueChanges().subscribe((data:any) => {
       this.orderLength = data
       this.loader = true;
     })
-    // this.loader = false
     this.dbPath = this.service2.path
-    // let arr:any = []
     
-    
-    // this.userForm = new FormGroup({
-    //   username: new FormControl(this.datas[9]),
-    //   phone: new FormControl(this.datas[7]),
-    //   gender: new FormControl(this.datas[3]),
-    //   dob: new FormControl(this.datas[1]),
-    //   location : new FormControl(this.datas[5])
-    // })
     this.userForm = new FormGroup({
-      username: new FormControl(),
-      phone: new FormControl(),
-      gender: new FormControl(),
-      dob: new FormControl(),
-      location : new FormControl()
+      username: new FormControl('', Validators.required),
+      phone: new FormControl('',[Validators.pattern("^((\\+91-?) |0)?[0-9]{10}$"), Validators.minLength(10), Validators.maxLength(10), Validators.required]),
+      gender: new FormControl('', Validators.required),
+      dob: new FormControl('', Validators.required),
+      location : new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
     })
+
     this.afDatabase.list(this.dbPath).valueChanges().subscribe(datas => {
-      // arr.push(datas)
-      // console.log(datas[1]);
-      this.userName = datas[9]
-      // console.log(datas[3]);
-      this.userPhone = datas[7]
-      // console.log(datas[5]);
-      this.userGender = datas[3]
-      // console.log(datas[7]);
-      this.userDOB = datas[1]
-      // console.log(datas[9]);
-      this.userLocation = datas[5]
-      // this.firstUser = datas
-      // console.log(datas);
-      // this.datas = datas
+      console.log(datas);
+      this.userName = datas[10]
+      this.userPhone = datas[8]
+      this.userGender = datas[4]
+      this.userDOB = datas[2]
+      this.userLocation = datas[6]
+      this.userCountry = datas[0]
+
       this.userForm.patchValue({
         username : this.userName,
         phone : this.userPhone,
         gender: this.userGender,
         dob : this.userDOB,
-        location: this.userLocation
+        location: this.userLocation,
+        country: this.userCountry
       })
     })
-    // console.log(arr);
-    
   }
 
   onPhotoSelect(e:any, user:any){
-    // console.log(e.target.files[0]);
     const file = e.target.files[0];
     const filePath = this.dbPath + '/photoURL';
     const fileRef = this.storage.ref(filePath)
@@ -147,29 +123,25 @@ export class ProfileComponent implements OnInit {
           this.afDatabase.object(this.dbPath).update({
             photoURL: this.fb,
           })
-          // console.log(this.fb);
           this.toast.successMessage("Photo is uploaded successfully")
         })
       })
     ).subscribe(url => {
       if (url) {
-        // console.log(url);
       }
     })
-    // console.log(user);
     
     this.userPhoto = fileRef
   }
 
   editUser(data:any){
-    // console.log(data.username);
-    // this.userService.updateUser(data)
     this.afDatabase.object(this.dbPath).update({
       username : data.username,
       phone : data.phone,
       gender : data.gender,
       dob : data.dob,
       location : data.location,
+      country: data.country,
     })
     this.toast.successMessage("User successfully updated")
   }
@@ -177,8 +149,6 @@ export class ProfileComponent implements OnInit {
   findUser(email:any){
     this.userService.listArr?.snapshotChanges().subscribe(datas => {
       datas.forEach(data => {
-        // console.log(data.payload.val());
-        // console.log(data.payload.val().email);
         const pay = data.payload.val().email
         if(pay == email){
           this.currentUser = data.payload.val()
@@ -187,8 +157,9 @@ export class ProfileComponent implements OnInit {
           this.userPhone = data.payload.val().phone;
           this.userDOB = data.payload.val().dob;
           this.userLocation = data.payload.val().location;
-          this.userEmail = data.payload.val().email
-          // console.log(true);
+          this.userEmail = data.payload.val().email;
+          this.userCountry = data.payload.val().country;
+
           this.firstUser = {
             username: this.userName,
             phone: this.userPhone,

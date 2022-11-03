@@ -72,19 +72,23 @@
         <h3 class="tab--head">Address Details</h3>
             <div class="my-2 form-group">
                 <label for="">Name</label>
-                <input type="text" class="form-control" formControlName="userName">
+                <input type="text" class="form-control" formControlName="userName" placeholder="Enter the person name">
+                <p class="error--line" *ngIf="stepperForm.get('userName')?.invalid && stepperForm.get('userName')?.touched">Enter valid user name</p>
             </div>
             <div class="my-2 form-group">
                 <label for="">Phone</label>
-                <input type="number" class="form-control" formControlName="phone">
+                <input type="number" class="form-control" formControlName="phone" placeholder="Enter the phone number">
+                <p class="error--line" *ngIf="stepperForm.get('phone')?.invalid && stepperForm.get('phone')?.touched">Enter valid phone</p>
             </div>
             <div class="my-2 form-group">
                 <label for="">Address</label>
-                <input type="text" class="form-control" formControlName="address">
+                <input type="text" class="form-control" formControlName="address" placeholder="Enter your address">
+                <p class="error--line" *ngIf="stepperForm.get('address')?.invalid && stepperForm.get('address')?.touched">Enter valid address</p>
             </div>
             <div class="my-2 form-group">
                 <label for="">PIN code</label>
-                <input type="number" class="form-control" formControlName="pin">
+                <input type="number" class="form-control" formControlName="pin" placeholder="Enter the PIN code">
+                <p class="error--line" *ngIf="stepperForm.get('pin')?.invalid && stepperForm.get('pin')?.touched">Enter valid pin</p>
             </div>
         
     </div>
@@ -92,19 +96,23 @@
         <h3 class="tab--head">Payment</h3>
             <div class="form-group">
                 <label>Card number</label>
-                <input type="number" name="" id="" class="form-control" formControlName="cardNum">
+                <input type="number" name="" id="" class="form-control" formControlName="cardNum" placeholder="Enter the card number">
+                <p class="error--line" *ngIf="stepperForm.get('cardNum')?.invalid && stepperForm.get('cardNum')?.touched">Enter valid card number</p>
             </div>
             <div class="form-group">
                 <label>Name on Card</label>
-                <input type="text" name="" id="" class="form-control" formControlName="userCard">
+                <input type="text" name="" id="" class="form-control" formControlName="userCard" placeholder="Enter the name on card">
+                <p class="error--line" *ngIf="stepperForm.get('userCard')?.invalid && stepperForm.get('userCard')?.touched">Enter valid name on card</p>
             </div>
             <div class="form-group">
-                <label>Expiry Date</label>
-                <input type="number" name="" id="" class="form-control" formControlName="date">
+                <label>Expiry Month</label>
+                <input type="month" name="" id="" class="form-control" formControlName="date" placeholder="Enter the expiry month on card">
+                <p class="error--line" *ngIf="stepperForm.get('date')?.invalid && stepperForm.get('date')?.touched">Enter valid expiry date</p>
             </div>
             <div class="form-group">
                 <label>CVV</label>
-                <input type="number" name="" id="" class="form-control" formControlName="cvv">
+                <input type="number" name="" id="" class="form-control" formControlName="cvv" placeholder="Enter the cvv of card">
+                <p class="error--line" *ngIf="stepperForm.get('cvv')?.invalid && stepperForm.get('cvv')?.touched">Enter valid cvv</p>
             </div>
     </div>
     <div style="overflow: auto">

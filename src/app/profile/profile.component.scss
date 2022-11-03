@@ -22,6 +22,11 @@
     color: blue;
     font-size: 22px;
 }
+.bi-plus-lg{
+    color: #fff;
+    // font-size: 22px;
+    // font-weight: 700;
+}
 
 .orders--box{
     border: 1px solid #333;
@@ -74,4 +79,9 @@
         color: rgb(246, 246, 248);
         left: 100px;
     }
+}
+
+.error--line{
+    color: red;
+    font-size: 14px;
 }

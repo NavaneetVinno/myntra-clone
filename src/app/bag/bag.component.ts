@@ -50,13 +50,13 @@ export class BagComponent implements OnInit {
 
     this.stepperForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
-      phone: new FormControl(null, [Validators.required, Validators.minLength(10)]),
+      phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.pattern("^((\\+91-?) |0)?[0-9]{10}$")]),
       address: new FormControl(null, Validators.required),
       pin: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(6)]),
       cardNum: new FormControl(null, [Validators.required, Validators.maxLength(12), Validators.minLength(12)]),
       userCard: new FormControl(null, Validators.required),
       date: new FormControl(null,[ Validators.required]),
-      cvv: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      cvv: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(3)]),
     })
 
     this.total = this.bagProducts?.pipe(
