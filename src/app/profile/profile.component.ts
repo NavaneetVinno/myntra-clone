@@ -55,13 +55,13 @@ export class ProfileComponent implements OnInit {
     // service.getOrders()?.valueChanges().subscribe((data:any) => {
     //   this.loader = true;
     // })
-    this.userForm = new FormGroup({
-      username: new FormControl(this.userName),
-      phone: new FormControl(this.userPhone),
-      gender: new FormControl(this.userGender),
-      dob: new FormControl(this.userDOB),
-      location : new FormControl(this.userLocation)
-    })
+    // this.userForm = new FormGroup({
+    //   username: new FormControl(this.userName),
+    //   phone: new FormControl(this.userPhone),
+    //   gender: new FormControl(this.userGender),
+    //   dob: new FormControl(this.userDOB),
+    //   location : new FormControl(this.userLocation)
+    // })
    }
 
   ngOnInit(): void {
@@ -88,22 +88,8 @@ export class ProfileComponent implements OnInit {
     // this.loader = false
     this.dbPath = this.service2.path
     // let arr:any = []
-    this.afDatabase.list(this.dbPath).valueChanges().subscribe(datas => {
-      // arr.push(datas)
-      // console.log(datas[1]);
-      // this.userName = datas[1]
-      // console.log(datas[3]);
-      // this.userPhone = datas[3]
-      // console.log(datas[5]);
-      // this.userGender = datas[5]
-      // console.log(datas[7]);
-      // this.userDOB = datas[7]
-      // console.log(datas[9]);
-      // this.userLocation = datas[9]
-      // this.firstUser = datas
-      console.log(datas);
-      this.datas = datas
-    })
+    
+    
     // this.userForm = new FormGroup({
     //   username: new FormControl(this.datas[9]),
     //   phone: new FormControl(this.datas[7]),
@@ -111,6 +97,36 @@ export class ProfileComponent implements OnInit {
     //   dob: new FormControl(this.datas[1]),
     //   location : new FormControl(this.datas[5])
     // })
+    this.userForm = new FormGroup({
+      username: new FormControl(),
+      phone: new FormControl(),
+      gender: new FormControl(),
+      dob: new FormControl(),
+      location : new FormControl()
+    })
+    this.afDatabase.list(this.dbPath).valueChanges().subscribe(datas => {
+      // arr.push(datas)
+      // console.log(datas[1]);
+      this.userName = datas[9]
+      // console.log(datas[3]);
+      this.userPhone = datas[7]
+      // console.log(datas[5]);
+      this.userGender = datas[3]
+      // console.log(datas[7]);
+      this.userDOB = datas[1]
+      // console.log(datas[9]);
+      this.userLocation = datas[5]
+      // this.firstUser = datas
+      // console.log(datas);
+      // this.datas = datas
+      this.userForm.patchValue({
+        username : this.userName,
+        phone : this.userPhone,
+        gender: this.userGender,
+        dob : this.userDOB,
+        location: this.userLocation
+      })
+    })
     // console.log(arr);
     
   }
@@ -146,16 +162,16 @@ export class ProfileComponent implements OnInit {
   }
 
   editUser(data:any){
-    console.log(data);
-
-    // this.afDatabase.object(this.dbPath).update({
-    //   username : name,
-    //   phone : phone,
-    //   gender : gender,
-    //   dob : dob,
-    //   location : location,
-    // })
-    // this.toast.successMessage("User successfully updated")
+    // console.log(data.username);
+    // this.userService.updateUser(data)
+    this.afDatabase.object(this.dbPath).update({
+      username : data.username,
+      phone : data.phone,
+      gender : data.gender,
+      dob : data.dob,
+      location : data.location,
+    })
+    this.toast.successMessage("User successfully updated")
   }
 
   findUser(email:any){
