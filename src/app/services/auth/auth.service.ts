@@ -72,8 +72,8 @@ export class AuthService implements OnInit {
         this.toast.successMessage("Your account is created successfully")
       })
       .catch(error => {
-        console.log('Something is wrong:', error.message);
-        this.toast.errorMessage(`Error occurred of ${error}`)
+        // console.log('Something is wrong:', error.message);
+        this.toast.errorMessage(`You cannot log in`)
       });    
   }
 
@@ -82,14 +82,14 @@ export class AuthService implements OnInit {
     this.angularFireAuth
       .signInWithEmailAndPassword(data.email, data.password)
       .then(res => {
-        console.log('You are Successfully logged in!');
+        // console.log('You are Successfully logged in!');
         localStorage.setItem("currentUser", JSON.stringify(res.user?.uid))
         this.route.navigate(['/home'])
         this.toast.successMessage("Successfully logged in your account")
       })
       .catch(err => {
-        console.log('Something is wrong:',err.message);
-        this.toast.errorMessage(`Error occurred due to ${err}`)
+        // console.log('Something is wrong:',err.message);
+        this.toast.errorMessage("You cannot log in")
       });
   }
 

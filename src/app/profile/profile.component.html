@@ -45,28 +45,28 @@
                     <table class="table table-borderless">
                         <tbody>
                             <tr>
-                                <td>Full name</td>
-                                <td>:-  {{userName }}</td>
+                                <td class="table--left">Full name</td>
+                                <td class="table--right">:-  {{userName }}</td>
                             </tr>
                             <tr>
-                                <td>Mobile number</td>
-                                <td>:- {{userCountry}}  {{userPhone}}</td>
+                                <td class="table--left">Mobile number</td>
+                                <td class="table--right">:- {{userCountry}}  {{userPhone}}</td>
                             </tr>
                             <tr>
-                                <td>Email ID</td>
-                                <td>:-  {{userEmail}}</td>
+                                <td class="table--left">Email ID</td>
+                                <td class="table--right">:-  {{userEmail}}</td>
                             </tr>
                             <tr>
-                                <td>Gender</td>
-                                <td>:-  {{userGender}}</td>
+                                <td class="table--left">Gender</td>
+                                <td class="table--right">:-  {{userGender}}</td>
                             </tr>
                             <tr>
-                                <td>Date of Birth</td>
-                                <td>:-  {{userDOB}}</td>
+                                <td class="table--left">Date of Birth</td>
+                                <td class="table--right">:-  {{userDOB}}</td>
                             </tr>
                             <tr>
-                                <td>Location</td>
-                                <td>:-  {{userLocation}}</td>
+                                <td class="table--left">Location</td>
+                                <td class="table--right">:-  {{userLocation}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -105,7 +105,13 @@
                     <h2>Your Saved Cards</h2>
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add card</button>
                 </div>
-                <div class="products--box">
+                <div class="products-card-box">
+                    <div class="card--none" *ngIf="cardsLength == 0">
+                        <div>
+                            <div class="card--icon"><i class="bi bi-wallet2"></i></div>
+                            <div class="card--text">SAVE YOUR CREDIT/DEBIT CARDS DURING PAYMENT</div>
+                        </div>
+                    </div>
                     <div class="card" *ngFor="let item of cardsProduct | async; let i = index">
                         <h4 class="card-header">Card {{i + 1}}</h4>
                         <div class="card-body">
@@ -126,7 +132,13 @@
                     <h2>Your Saved Addresses</h2>
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Add address</button>
                 </div>
-                <div class="products--box">
+                <div class="products-address-box">
+                    <div class="address--none" *ngIf="addressLength == 0">
+                        <div>
+                            <div class="address--icon"><i class="bi bi-person-plus-fill"></i></div>
+                            <div class="address--text">SAVE YOUR ADDRESSES DURING ORDER</div>
+                        </div>
+                    </div>
                     <div class="card" *ngFor="let item of addressProduct | async; let i = index">
                         <h4 class="card-header">Address {{i + 1}}</h4>
                         <div class="card-body">
@@ -163,7 +175,7 @@
             </div>
             <div class="mb-3">
                 <label>Card number</label>
-                <input type="number" class="form-control" placeholder="xxxxxxxxxxxx" formControlName="number">
+                <input type="number" class="form-control" placeholder="xxxxxxxxxxxx" formControlName="number" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!cardForm.get('number')?.valid && cardForm.get('number')?.touched">Enter the valid card number</p>
             </div>
             <div class="mb-3">
@@ -173,7 +185,7 @@
             </div>
             <div class="mb-3">
                 <label>CVV of Card</label>
-                <input type="number" class="form-control" placeholder="xxx" formControlName="cvv">
+                <input type="number" class="form-control" placeholder="xxx" formControlName="cvv" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!cardForm.get('cvv')?.valid && cardForm.get('cvv')?.touched">Enter the valid cvv of card</p>
             </div>
         </div>
@@ -202,7 +214,7 @@
             </div>
             <div class="mb-3">
                 <label>Card number</label>
-                <input type="number" class="form-control" placeholder="xxxxxxxxxxxx" [value]="cardNum" formControlName="number">
+                <input type="number" class="form-control" placeholder="xxxxxxxxxxxx" [value]="cardNum" formControlName="number" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!editCardForm.get('number')?.valid && editCardForm.get('number')?.touched">Enter the valid card number</p>
             </div>
             <div class="mb-3">
@@ -212,7 +224,7 @@
             </div>
             <div class="mb-3">
                 <label>CVV of Card</label>
-                <input type="number" class="form-control" placeholder="xxx" formControlName="cvv" [value]="cardCvv">
+                <input type="number" class="form-control" placeholder="xxx" formControlName="cvv" [value]="cardCvv" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!editCardForm.get('cvv')?.valid && editCardForm.get('cvv')?.touched">Enter the valid cvv of card</p>
             </div>
         </div>
@@ -241,7 +253,7 @@
             </div>
             <div class="mb-3">
                 <label>Enter Phone</label>
-                <input type="number" class="form-control" formControlName="phone" placeholder="xxxxxxxxxx">
+                <input type="number" class="form-control" formControlName="phone" placeholder="xxxxxxxxxx" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!addressForm.get('phone')?.valid && addressForm.get('phone')?.touched">Enter the valid phone number</p>
             </div>
             <div class="mb-3">
@@ -251,7 +263,7 @@
             </div>
             <div class="mb-3">
                 <label>Enter PIN</label>
-                <input type="number" class="form-control" formControlName="pin" placeholder="xxxxxx">
+                <input type="number" class="form-control" formControlName="pin" placeholder="xxxxxx" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!addressForm.get('pin')?.valid && addressForm.get('pin')?.touched">Enter the valid PIN code</p>
             </div>
         </div>
@@ -281,7 +293,7 @@
             </div>
             <div class="mb-3">
                 <label>Enter Phone</label>
-                <input type="number" class="form-control" formControlName="phone" placeholder="xxxxxxxxxx" [value]="addressPhone">
+                <input type="number" class="form-control" formControlName="phone" placeholder="xxxxxxxxxx" [value]="addressPhone" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!editAddressForm.get('phone')?.valid && editAddressForm.get('phone')?.touched">Enter the valid phone number</p>
             </div>
             <div class="mb-3">
@@ -291,7 +303,7 @@
             </div>
             <div class="mb-3">
                 <label>Enter PIN</label>
-                <input type="number" class="form-control" formControlName="pin" placeholder="xxxxxx" [value]="addressPin">
+                <input type="number" class="form-control" formControlName="pin" placeholder="xxxxxx" [value]="addressPin" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="!editAddressForm.get('pin')?.valid && editAddressForm.get('pin')?.touched">Enter the valid PIN code</p>
             </div>
         </div>
@@ -362,7 +374,7 @@
                         <option *ngFor="let item of country" value="{{item.code}}">{{item.code}} ({{item.name}})</option>
                         <!-- <option value="{{userCountry}}" selected>{{userCountry}}</option> -->
                     </select>
-                    <input class="form-control" type="number" [value]="userPhone" formControlName="phone" maxlength="10">
+                    <input class="form-control" type="number" [value]="userPhone" formControlName="phone" maxlength="10" onkeydown="return event.keyCode !== 69">
                 </div>
                 <p class="error--line" *ngIf="userForm.get('phone')?.invalid">Invalid phone number</p>
             </div>

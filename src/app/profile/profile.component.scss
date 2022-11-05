@@ -4,6 +4,11 @@
     color: #555;
 }
 
+h2{
+    text-transform: uppercase;
+    color: #222;
+}
+
 .user--name{
     font-size: 18px;
     font-weight: 500;
@@ -28,6 +33,16 @@
     // font-weight: 700;
 }
 
+.table-box{
+    font-size: 18px;
+    .table--left{
+        color: #555;
+    }
+    .table--right{
+        color: #222;
+    }
+}
+
 .orders--box{
     border: 1px solid rgb(181, 177, 177);
     display: flex;
@@ -36,9 +51,12 @@
         color: rgb(241, 73, 73);
         font-size: 20px;
         margin: auto;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
     }
     .order--head{
-        margin: auto;
+        margin: 25px auto;
     }
     .card{
         margin-left: 15%;
@@ -92,6 +110,46 @@
             margin-top: 8px;
             display: flex;
             gap: 20px;
+        }
+    }
+}
+
+.products-card-box{
+    .card--none{
+        height: 40vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .card--icon{
+            // justify-self: center;
+            color: blue;
+            font-size: 46px;
+        }
+        .card--text{
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(4, 4, 44, 0.57);
+        }
+    }
+}
+
+.products-address-box{
+    .address--none{
+        height: 40vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .address--icon{
+            
+            color: green;
+            font-size: 46px;
+        }
+        .address--text{
+            color: rgba(11, 86, 11, 0.557);
+            font-size: 20px;
+            font-weight: 500;
         }
     }
 }

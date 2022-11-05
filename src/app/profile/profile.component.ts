@@ -63,6 +63,8 @@ export class ProfileComponent implements OnInit {
   country:any;
   cardsProduct: Observable<any> | undefined;
   addressProduct: Observable<any> | undefined;
+  cardsLength:any;
+  addressLength:any;
 
   constructor(
     private service: OrdersService,
@@ -115,6 +117,12 @@ export class ProfileComponent implements OnInit {
     this.service.getOrders()?.valueChanges().subscribe((data:any) => {
       this.orderLength = data
       // this.loader = true;
+    })
+    this.cardService.getCards()?.valueChanges().subscribe(data => {
+      this.cardsLength = data
+    })
+    this.addressService.getAddress()?.valueChanges().subscribe(data => {
+      this.addressLength = data
     })
     this.dbPath = this.service2.path
     this.cardPath = this.cardService.path

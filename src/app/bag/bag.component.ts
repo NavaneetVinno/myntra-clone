@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { BagsService } from '../services/bags/bags.service';
 import { OrdersService } from '../services/orders/orders.service';
 import { ToasterService } from '../services/toaster/toaster.service';
+import { CardsService } from '../services/cards/cards.service';
+import { AddressesService } from '../services/addresses/addresses.service';
 
 @Component({
   selector: 'app-bag',
@@ -26,7 +28,7 @@ export class BagComponent implements OnInit {
   bag!: any[];
   loader:boolean = false;
 
-  constructor(private service: BagsService, private router: Router, private service2:OrdersService, private toast: ToasterService) { 
+  constructor(private service: BagsService, private router: Router, private service2:OrdersService, private toast: ToasterService, private cardService:CardsService, private addService:AddressesService) { 
     service.getBag()
   }
 
@@ -90,6 +92,20 @@ export class BagComponent implements OnInit {
       "time": str,
       "delivery": delivery,
     }
+    const card = {
+      name: arr.userCard,
+      number: arr.cardNum,
+      expiry: arr.date,
+      cvv: arr.cvv,
+    }
+    const add = {
+      name: arr.userName,
+      address: arr.address,
+      phone: arr.phone,
+      pin: arr.pin,
+    }
+    this.cardService.setCard(card);
+    this.addService.setAddress(add)
     this.service2.setOrders(obj);
     this.deleteAll();
     this.router.navigate(["/home"])

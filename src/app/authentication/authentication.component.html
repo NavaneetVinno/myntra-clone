@@ -36,7 +36,7 @@
               <option selected>select country</option>
               <option value="{{item.code}}" *ngFor="let item of country">{{item.code}} ({{item.name}})</option>
             </select>
-            <input type="number" class="form-control" placeholder="Enter your Phone number" formControlName="phone" maxlength="10">
+            <input type="number" class="form-control" placeholder="Enter your Phone number" formControlName="phone" maxlength="10" onkeydown="return event.keyCode !== 69">
           </div>
           <p class="error--line" *ngIf="signUpForm.get('country')?.invalid && signUpForm.get('country')?.touched">Select a country</p>
           <p class="error--line" *ngIf="signUpForm.get('phone')?.invalid && signUpForm.get('phone')?.touched">Enter valid phone number</p>

@@ -61,8 +61,6 @@ export class AuthenticationComponent implements OnInit {
 
   onSignUp(){
     console.log(this.signUpForm.value);
-    // this.service.signUpData(this.signUpForm.value)
-    // this.service.SignUp(this.signUpForm.value)
     this.service.SignUp(this.signUpForm.value)
     this.isSignUp = false;
     this.isActive = false;

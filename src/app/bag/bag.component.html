@@ -79,7 +79,7 @@
             </div>
             <div class="my-2 form-group">
                 <label for="">Phone</label>
-                <input type="number" class="form-control" formControlName="phone" placeholder="Enter the phone number">
+                <input type="number" class="form-control" formControlName="phone" placeholder="Enter the phone number" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="stepperForm.get('phone')?.invalid && stepperForm.get('phone')?.touched">Enter valid phone</p>
             </div>
             <div class="my-2 form-group">
@@ -89,7 +89,7 @@
             </div>
             <div class="my-2 form-group">
                 <label for="">PIN code</label>
-                <input type="number" class="form-control" formControlName="pin" placeholder="Enter the PIN code">
+                <input type="number" class="form-control" formControlName="pin" placeholder="Enter the PIN code" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="stepperForm.get('pin')?.invalid && stepperForm.get('pin')?.touched">Enter valid pin</p>
             </div>
         
@@ -98,7 +98,7 @@
         <h3 class="tab--head">Payment</h3>
             <div class="form-group">
                 <label>Card number</label>
-                <input type="number" name="" id="" class="form-control" formControlName="cardNum" placeholder="Enter the card number">
+                <input type="number" name="" id="" class="form-control" formControlName="cardNum" placeholder="Enter the card number" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="stepperForm.get('cardNum')?.invalid && stepperForm.get('cardNum')?.touched">Enter valid card number</p>
             </div>
             <div class="form-group">
@@ -113,7 +113,7 @@
             </div>
             <div class="form-group">
                 <label>CVV</label>
-                <input type="number" name="" id="" class="form-control" formControlName="cvv" placeholder="Enter the cvv of card">
+                <input type="number" name="" id="" class="form-control" formControlName="cvv" placeholder="Enter the cvv of card" onkeydown="return event.keyCode !== 69">
                 <p class="error--line" *ngIf="stepperForm.get('cvv')?.invalid && stepperForm.get('cvv')?.touched">Enter valid cvv</p>
             </div>
     </div>
