@@ -70,6 +70,7 @@
                 list-style-type : none;
                 flex-direction: row;
                 gap: 10px;
+                
                 .size--circle{
                     color: red;
                     border: 1px solid red;
@@ -78,7 +79,7 @@
                     border: 1px solid #333;
                     padding: 15px;
                     border-radius: 50%;
-                    
+                    cursor: pointer;
                 }
             }
             

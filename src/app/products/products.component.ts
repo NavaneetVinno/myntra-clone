@@ -107,7 +107,9 @@ export class ProductsComponent implements OnInit {
   }
 
   details(i:any, productData:any){
+    // console.log(productData);
     this.service.setProduct(productData);
+    // localStorage.setItem('item', productData)
     this.router.navigate(['/details', productData])
   }
 

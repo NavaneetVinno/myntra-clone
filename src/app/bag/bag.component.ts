@@ -52,7 +52,7 @@ export class BagComponent implements OnInit {
       userName: new FormControl(null, Validators.required),
       phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.pattern("^((\\+91-?) |0)?[0-9]{10}$")]),
       address: new FormControl(null, Validators.required),
-      pin: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(6)]),
+      pin: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
       cardNum: new FormControl(null, [Validators.required, Validators.maxLength(12), Validators.minLength(12)]),
       userCard: new FormControl(null, Validators.required),
       date: new FormControl(null,[ Validators.required]),
@@ -92,7 +92,7 @@ export class BagComponent implements OnInit {
     }
     this.service2.setOrders(obj);
     this.deleteAll();
-    this.router.navigate(["/"])
+    this.router.navigate(["/home"])
     this.toast.successMessage("Order placed successfully")
   }
 
@@ -104,12 +104,14 @@ export class BagComponent implements OnInit {
   deleteItem(key:any){
     this.toast.errorMessage("This item will be no longer available")
     this.service.deleteBagItem(key)
-    console.log(key)
+    window.location.reload()
+    // console.log(key)
   }
 
   deleteAll(){
     this.toast.errorMessage("Your bag is fully empty")
     this.service.deleteBag()
+    this.router.navigate(["/home"])
   }
 
   prevBtn() {

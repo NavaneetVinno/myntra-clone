@@ -12,6 +12,8 @@ import { DatasService } from '../services/datas/datas.service';
 import { OrdersService } from '../services/orders/orders.service';
 import { ToasterService } from '../services/toaster/toaster.service';
 import countryCode from "../phone-codes.json"
+import { CardsService } from '../services/cards/cards.service';
+import { AddressesService } from '../services/addresses/addresses.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,12 +24,29 @@ export class ProfileComponent implements OnInit {
   ordersProduct:Observable<any> | undefined
   userData:any
   flag = false;
+  text:any = 'zero'
   full:any;
   loader:boolean = false;
   userMail:any;
   currentUser:any
   orderLength:any;
   userForm!: FormGroup;
+  cardForm!: FormGroup;
+  editCardForm!: FormGroup;
+  cardPath:any;
+  cardName:any;
+  cardNum:any;
+  cardExp:any;
+  cardCvv:any;
+  cardKey:any;
+  addressForm!: FormGroup;
+  editAddressForm!: FormGroup;
+  addressPath:any;
+  addressName:any;
+  addressPhone:any;
+  addressAdd:any;
+  addressPin:any;
+  addressKey:any;
   dbPath:any;
   fb:any;
   downloadURL!: Observable<string>
@@ -42,6 +61,8 @@ export class ProfileComponent implements OnInit {
   firstUser:any;
   datas:any
   country:any;
+  cardsProduct: Observable<any> | undefined;
+  addressProduct: Observable<any> | undefined;
 
   constructor(
     private service: OrdersService,
@@ -51,11 +72,13 @@ export class ProfileComponent implements OnInit {
      private router:Router, 
      private service2:DatasService,
      private toast: ToasterService,
-     private storage: AngularFireStorage
+     private storage: AngularFireStorage,
+     private cardService: CardsService,
+     private addressService:AddressesService,
      ) {
-    service.getOrders()?.valueChanges().subscribe((data:any) => {
-      this.loader = true;
-    })
+    // service.getOrders()?.valueChanges().subscribe((data:any) => {
+    //   this.loader = true;
+    // })
    }
 
   ngOnInit(): void {
@@ -67,17 +90,35 @@ export class ProfileComponent implements OnInit {
         return <any>{key, ...payload}
       }))
     )
+
+    this.cardsProduct = this.cardService.getCards()?.snapshotChanges().pipe(
+      map((products:any[]) => products.map(prod => {
+        const payload = prod.payload.val();
+        const key = prod.key;
+        return <any>{key, ...payload}
+      }))
+    )
+
+    this.addressProduct = this.addressService.getAddress()?.snapshotChanges().pipe(
+      map((products:any[])=> products.map(prod => {
+        const payload = prod.payload.val();
+        const key = prod.key;
+        return <any>{key, ...payload}
+      }))
+    )
+
     this.af.authState.subscribe(data => {
       this.userData = data
       this.userMail = data?.email
       this.findUser(data?.email)
-      this.loader = true;
     })
     this.service.getOrders()?.valueChanges().subscribe((data:any) => {
       this.orderLength = data
-      this.loader = true;
+      // this.loader = true;
     })
     this.dbPath = this.service2.path
+    this.cardPath = this.cardService.path
+    this.addressPath = this.addressService.path
     
     this.userForm = new FormGroup({
       username: new FormControl('', Validators.required),
@@ -88,14 +129,51 @@ export class ProfileComponent implements OnInit {
       country: new FormControl('', Validators.required),
     })
 
-    this.afDatabase.list(this.dbPath).valueChanges().subscribe(datas => {
-      console.log(datas);
-      this.userName = datas[10]
-      this.userPhone = datas[8]
-      this.userGender = datas[4]
-      this.userDOB = datas[2]
-      this.userLocation = datas[6]
-      this.userCountry = datas[0]
+    this.cardKey = localStorage.getItem('card-key')
+    this.cardForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      number: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern("[0-9]{12}$")]),
+      expiry: new FormControl('', Validators.required),
+      cvv: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern("[0-9]{3}$")]),
+    })
+
+    this.editCardForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      number: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern("[0-9]{12}$")]),
+      expiry: new FormControl('', Validators.required),
+      cvv: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern("[0-9]{3}$")])
+    })
+    this.addressKey = localStorage.getItem('address-key')
+    this.addressForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]{10}$")]),
+      address: new FormControl('', Validators.required),
+      pin: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern("[0-9]{6}$")]),
+    })
+
+    this.editAddressForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]{10}$")]),
+      address: new FormControl('', Validators.required),
+      pin: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern("[0-9]{6}$")]),
+    })
+
+    this.afDatabase.list(this.dbPath).snapshotChanges().subscribe(datas => {
+      datas.forEach((data) => {
+        if(data.key == 'username'){
+          this.userName = data.payload.val();
+        } else if(data.key == 'phone'){
+          this.userPhone = data.payload.val();
+        } else if(data.key == 'gender'){
+          this.userGender = data.payload.val();
+        } else if(data.key == 'dob'){
+          this.userDOB = data.payload.val();
+        } else if(data.key == 'location'){
+          this.userLocation = data.payload.val();
+        } else if(data.key == 'country'){
+          this.userCountry = data.payload.val();
+        }
+      })
 
       this.userForm.patchValue({
         username : this.userName,
@@ -106,7 +184,101 @@ export class ProfileComponent implements OnInit {
         country: this.userCountry
       })
     })
+    
   }
+// ADDRESS SERVICE
+  createAddress(data:any){
+    this.addressService.setAddress(data);
+    this.toast.successMessage("New address created")
+  }
+
+  editOneAddress(key:any){
+    localStorage.setItem('address-key', key);
+    this.afDatabase.list(this.addressPath + '/' + key).snapshotChanges().subscribe(datas => {
+      datas.forEach(data => {
+        if(data.key == 'name'){
+          this.addressName = data.payload.val()
+        } else if(data.key == 'phone'){
+          this.addressPhone = data.payload.val()
+        } else if(data.key == 'address'){
+          this.addressAdd = data.payload.val()
+        } else if(data.key == 'pin'){
+          this.addressPin = data.payload.val()
+        }
+      })
+      this.editAddressForm.patchValue({
+        name: this.addressName,
+        phone: this.addressPhone,
+        address: this.addressAdd,
+        pin: this.addressPin
+      })
+    })
+  }
+
+  editAddress(data:any){
+    this.afDatabase.object(this.addressPath + "/" + this.addressKey).update({
+      name: data.name,
+      phone: data.phone,
+      address: data.address,
+      pin: data.pin,
+    })
+    this.toast.successMessage("Address updated successfully")
+  }
+
+  deleteAddress(key:any){
+    this.addressService.deleteAddressItem(key)
+    this.toast.warningMessage("Address item is deleted")
+  }
+
+  // CARD SERVICE
+
+  createCard(datas:any){
+    // console.log(datas);
+    this.cardService.setCard(datas)
+    this.toast.successMessage("New card created")
+  }
+
+  editOneCard(key:any){
+    // console.log(key);
+    localStorage.setItem('card-key',key)
+    this.afDatabase.list(this.cardPath + '/' + key).snapshotChanges().subscribe(datas => {
+      // console.log(datas);
+      datas.forEach(data => {
+        if(data.key == 'name'){
+          this.cardName = data.payload.val();
+        } else if(data.key == 'number'){
+          this.cardNum = data.payload.val()
+        } else if(data.key == 'expiry'){
+          this.cardExp = data.payload.val()
+        } else if(data.key == 'cvv'){
+          this.cardCvv = data.payload.val()
+        }
+      })
+      this.editCardForm.patchValue({
+        name: this.cardName,
+        number: this.cardNum,
+        expiry: this.cardExp,
+        cvv: this.cardCvv,
+      })
+    })
+  }
+
+  editCard(datas:any){
+    this.afDatabase.object(this.cardPath + "/" + this.cardKey).update({
+      name: datas.name,
+      number: datas.number,
+      expiry: datas.expiry,
+      cvv: datas.cvv,
+    })
+    this.toast.successMessage("Your card updated successfully")
+  }
+
+  deleteCard(key:any){
+    this.cardService.deleteCard(key)
+    this.toast.warningMessage("card is deleted")
+  }
+
+  // USER SERVICE
 
   onPhotoSelect(e:any, user:any){
     const file = e.target.files[0];
@@ -132,6 +304,7 @@ export class ProfileComponent implements OnInit {
     })
     
     this.userPhoto = fileRef
+    
   }
 
   editUser(data:any){
@@ -169,14 +342,24 @@ export class ProfileComponent implements OnInit {
           }
         }
       })
+      this.loader = true;
     })
   }
 
   gotoDiv(n:number){
-    if(n == 1){
-      this.flag = true;
-    } else {
-      this.flag = false;
+    // if(n == 1){
+    //   this.flag = true;
+    // } else {
+    //   this.flag = false;
+    // }
+    if(n == 0){
+      this.text = 'zero'
+    } else if(n == 1){
+      this.text = 'one'
+    } else if(n == 2){
+      this.text = 'two'
+    } else if(n == 3){
+      this.text = 'three'
     }
   }
 

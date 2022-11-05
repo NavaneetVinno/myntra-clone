@@ -1,11 +1,14 @@
 <app-navbar class="sticky"></app-navbar>
 <app-loader *ngIf="!loader"></app-loader>
-<div class="container" *ngIf="loader">
+<div *ngIf="!isEmpty" class="empty">
+  <div>
+    <p>Wish list is empty <i class="bi bi-cart4"></i></p>
+    <a href="/men/products" class="btn btn-info">Continue shopping</a>
+  </div>
+</div>
+<div class="container" *ngIf="isEmpty">
   <h2 class="head my-4">wishlist page</h2>
   <button class="btn btn-danger" (click)="deleteAll()" [disabled]="!isEmpty">Clear All</button>
-  <div *ngIf="!isEmpty" class="empty">
-    Wish list is empty <i class="bi bi-cart4"></i>
-  </div>
   <div class="row">
     <div *ngFor="let product of wishProducts | async; let i = index">
         <div class="card">

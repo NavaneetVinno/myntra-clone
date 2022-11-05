@@ -14,7 +14,7 @@
 }
 
 .overview--box{
-    border: 1px solid #333;
+    border: 1px solid rgb(168, 165, 165);
     
 }
 
@@ -29,7 +29,7 @@
 }
 
 .orders--box{
-    border: 1px solid #333;
+    border: 1px solid rgb(181, 177, 177);
     display: flex;
     flex-direction: column;
     .ord--none{
@@ -58,6 +58,40 @@
         }
         .card-text{
             margin-bottom: 5px;
+        }
+        .card--end{
+            color: blue;
+        }
+    }
+}
+
+.cards--box{
+    border: 1px solid rgb(180, 177, 177);
+    padding: 40px 80px;
+    .card{
+        margin-top: 15px;
+        .card-header{
+            text-transform: uppercase;
+            color: #222;
+            background-color: rgb(220, 202, 202);
+        }
+        .card-text{
+            display: flex;
+            gap: 12px;
+            p{
+                font-size: 20px;
+                font-weight: 500;
+                color: #555;
+            }
+            div{
+                font-size: 20px;
+                font-weight: 400;
+            }
+        }
+        .card-foot{
+            margin-top: 8px;
+            display: flex;
+            gap: 20px;
         }
     }
 }

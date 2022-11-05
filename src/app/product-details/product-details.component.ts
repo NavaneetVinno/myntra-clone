@@ -48,7 +48,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.product = Array(this.service.getProduct());
+    this.product = Array(this.service.getProduct())
     let text = this.product[0].productId;
     this.dbPath = this.service3.path
     let deliveryDay: Date = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);

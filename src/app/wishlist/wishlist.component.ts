@@ -15,7 +15,7 @@ import { WishlistService } from '../services/wishlist/wishlist.service';
 export class WishlistComponent implements OnInit {
   [x: string]: any;
   wishProducts:Observable<any> | undefined;
-  isEmpty: any = false;
+  isEmpty = false;
   arr : any;
   products:Observable<any> | undefined;
   boxes: any;
@@ -23,6 +23,7 @@ export class WishlistComponent implements OnInit {
   loader:boolean = false;
   newWish:any;
   dbPath:any;
+  wish: any;
 
   constructor(private service: WishlistService, private router: Router, private toast: ToasterService, private auth: AuthService, private db: AngularFireDatabase, private srvc:DatasService) {}
 
@@ -33,7 +34,7 @@ export class WishlistComponent implements OnInit {
       map((products: any[]) => products.map(prod => {
         const payload = prod.payload.val();
         // console.log(payload);
-        this.isEmpty = true;
+        // this.isEmpty = true;
         const key = prod.payload.key;
         return <any>{ key, ...payload };
       }))
@@ -42,7 +43,14 @@ export class WishlistComponent implements OnInit {
     // this.service.getDatas()
     this.service.getWish()?.valueChanges().subscribe((datas:any) => {
       // this.products = datas
-      this.isEmpty = true;
+      // this.isEmpty = true;
+      this.wish = datas.length
+      // console.log(this.wish);
+      if(this.wish == 0){
+        this.isEmpty = false
+      } else {
+        this.isEmpty = true
+      }
       datas.forEach((data:any) => {
         // console.log(data);
       })
