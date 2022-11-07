@@ -78,7 +78,7 @@
                 <p *ngIf="orderLength == 0" class="ord--none">You haven't ordered yet</p>
                 <app-loader *ngIf="!loader"></app-loader>
                 <div *ngIf="loader">
-                <div *ngFor="let prod of ordersProduct | async" >
+                <div *ngFor="let prod of ordersProduct | async" style="overflow:scroll; height:45vh; overflow-x: hidden;">
                 <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div class="card mb-3 mt-3" style="max-width: 540px;" *ngFor="let box of prod.datas">
                     <div class="row g-0 boxes open--model" (click)="modalView(prod,box)">
@@ -121,7 +121,7 @@
                             <div class="card-text"><p>CVV of Card:</p> <div>{{item.cvv}}</div></div>
                             <div class="card-foot">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="editOneCard(item.key)">Edit</button>
-                                <button class="btn btn-danger" (click)="deleteCard(item.key)">Delete</button>
+                                <button class="btn btn-danger" (click)="deleteCard(item.key)">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             <div class="card-text"><p>PIN :</p><div>{{item.pin}}</div></div>
                             <div class="card-foot">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal15" (click)="editOneAddress(item.key)">Edit</button>
-                                <button class="btn btn-danger" (click)="deleteAddress(item.key)">Delete</button>
+                                <button class="btn btn-danger" (click)="deleteAddress(item.key)">Remove</button>
                             </div>
                         </div>
                     </div>

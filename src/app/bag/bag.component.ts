@@ -19,6 +19,8 @@ import { AddressesService } from '../services/addresses/addresses.service';
 export class BagComponent implements OnInit {
 [x: string]: any;
   bagProducts:Observable<any[]> | undefined;
+  addressProducts:Observable<any> | undefined;
+  cardsProducts:Observable<any> | undefined;
   isEmpty = false;
   total: Observable<Number> | undefined
   itemTotal:any;
@@ -27,6 +29,11 @@ export class BagComponent implements OnInit {
   stepperForm!: FormGroup;
   bag!: any[];
   loader:boolean = false;
+  booAdd = false;
+  addName:any;
+  addNumber:any;
+  addAddress:any;
+  addPin:any;
 
   constructor(private service: BagsService, private router: Router, private service2:OrdersService, private toast: ToasterService, private cardService:CardsService, private addService:AddressesService) { 
     service.getBag()
@@ -39,6 +46,22 @@ export class BagComponent implements OnInit {
         this.isEmpty = true;
         const key = prod.key;
         return <any>{ key, ...payload };
+      }))
+    )
+
+    this.addressProducts = this.addService.getAddress()?.snapshotChanges().pipe(
+      map((products:any[]) => products.map(prod => {
+        const payload = prod.payload.val();
+        const key = prod.key;
+        return <any>{key, ...payload};
+      }))
+    )
+
+    this.cardsProducts = this.cardService.getCards()?.snapshotChanges().pipe(
+      map((products:any[]) => products.map(prod => {
+        const payload = prod.payload.val();
+        const key = prod.key;
+        return <any>{key, ...payload};
       }))
     )
 
@@ -70,6 +93,15 @@ export class BagComponent implements OnInit {
       this.service.setTotalItem(this.itemTotal)
     })
     this.stepIndicator(this.steps - 1);
+  }
+
+  getAddressInForm(datas:any){
+    this.booAdd = true;
+    console.log(datas);
+    this.addName = datas.name
+    this.addNumber = datas.phone
+    this.addAddress = datas.address
+    this.addPin = datas.pin
   }
 
   getDatas(arr:any,data:any){
@@ -111,11 +143,6 @@ export class BagComponent implements OnInit {
     this.router.navigate(["/home"])
     this.toast.successMessage("Order placed successfully")
   }
-
-  // submit(data:any){
-  //   console.log(data);
-  //   this.service.setDetails(data)
-  // }
 
   deleteItem(key:any){
     this.toast.errorMessage("This item will be no longer available")

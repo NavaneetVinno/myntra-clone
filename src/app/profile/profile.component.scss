@@ -115,6 +115,9 @@ h2{
 }
 
 .products-card-box{
+    overflow: scroll;
+    height: 45vh;
+    overflow-x: hidden;
     .card--none{
         height: 40vh;
         display: flex;
@@ -135,6 +138,9 @@ h2{
 }
 
 .products-address-box{
+    overflow: scroll;
+    height: 45vh;
+    overflow-x: hidden;
     .address--none{
         height: 40vh;
         display: flex;
